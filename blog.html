@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Blog | Ultra Corpotech Inc.</title>
+<meta name="description" content="Practical notes on sourcing fabricated and machined parts: quote requests, welding standards and choosing a finish.">
+<meta name="theme-color" content="#00a972">
+<link rel="icon" type="image/png" href="assets/img/mark.png">
+<link rel="preload" href="assets/fonts/barlow-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/barlow-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/site.css">
+<script>
+  /* Motion bootstrap: runs before first paint, so the intro and the page curtain can cover the page.
+     Motion is skipped when the visitor prefers reduced motion or an automated browser is capturing the page. */
+  (function (d, w) {
+    var r = d.documentElement;
+    r.classList.add('js');
+    if (navigator.webdriver || (w.matchMedia && w.matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+    r.classList.add('motion');
+    try {
+      var c = w.sessionStorage.getItem('uci:curtain');
+      if (c) {
+        r.classList.add('is-entering');
+        r.style.setProperty('--curtain-label', JSON.stringify(c));
+      } else if (!w.sessionStorage.getItem('uci:intro')) {
+        r.classList.add('is-intro');
+      }
+    } catch (e) {}
+    w.setTimeout(function () {
+      if (!w.UCI) r.classList.remove('motion', 'is-intro', 'is-entering');
+    }, 4000);
+  })(document, window);
+</script>
+<script src="assets/js/site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="intro" aria-hidden="true"><div class="intro-grid"></div><div class="intro-logo"><img class="brand-lockup" src="assets/img/lockup.png" alt="" width="692" height="265"><img class="brand-mark" src="assets/img/mark.png" alt="" width="118" height="171"></div><div class="intro-bar"></div></div>
+<div class="curtain" aria-hidden="true"><span class="curtain-label"></span></div>
+
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="index.html" aria-label="Ultra Corpotech Inc. home"><img class="brand-lockup" src="assets/img/lockup.png" alt="" width="692" height="265"><img class="brand-mark" src="assets/img/mark.png" alt="" width="118" height="171"></a>
+    <nav class="nav" aria-label="Main">
+      <ul class="nav-list">
+        <li><a class="nav-link" href="products.html">Products</a></li>
+        <li><a class="nav-link" href="services.html">Services</a></li>
+        <li><a class="nav-link" href="case-studies.html">Case studies</a></li>
+        <li><a class="nav-link" href="about.html">About</a></li>
+        <li><a class="nav-link" href="careers.html">Careers</a></li>
+        <li><a class="nav-link" href="blog.html" aria-current="page">Blog</a></li>
+        <li><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+      <span class="nav-indicator" aria-hidden="true"></span>
+    </nav>
+    <a class="btn btn-primary header-cta" href="contact.html" data-magnetic>Request a quote</a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu"><span class="menu-toggle-label">Menu</span><span class="menu-toggle-icon" aria-hidden="true"><i></i><i></i></span></button>
+  </div>
+</header>
+
+<div class="menu" id="menu">
+  <div class="wrap">
+    <nav aria-label="Menu">
+      <ul class="menu-list">
+        <li><a class="menu-link" href="index.html" style="--i: 0"><span>Home</span></a></li>
+        <li><a class="menu-link" href="products.html" style="--i: 1"><span>Products</span></a></li>
+        <li><a class="menu-link" href="services.html" style="--i: 2"><span>Services</span></a></li>
+        <li><a class="menu-link" href="case-studies.html" style="--i: 3"><span>Case studies</span></a></li>
+        <li><a class="menu-link" href="about.html" style="--i: 4"><span>About</span></a></li>
+        <li><a class="menu-link" href="careers.html" style="--i: 5"><span>Careers</span></a></li>
+        <li><a class="menu-link" href="blog.html" aria-current="page" style="--i: 6"><span>Blog</span></a></li>
+        <li><a class="menu-link" href="contact.html" style="--i: 7"><span>Contact</span></a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="wrap menu-foot">
+    <a class="btn btn-primary btn-lg" href="contact.html">Request a quote</a>
+    <span>Engineering &amp; Energy Solutions</span>
+  </div>
+</div>
+
+<main id="main">
+  <section class="page-hero" aria-labelledby="page-title" data-hero>
+    <canvas class="plus-field" data-plus-field aria-hidden="true"></canvas>
+    <div class="wrap page-hero-inner">
+      <div>
+        <p class="eyebrow" data-reveal><span class="eyebrow-bar" aria-hidden="true"></span><span data-scramble>Blog</span></p>
+        <h1 id="page-title" class="page-title is-long" data-split style="--delay: 120ms">Notes From the Shop Floor</h1>
+        <p class="lead" data-reveal style="--delay: 460ms">Practical guides to sourcing machined and fabricated parts, from quote requests to welding standards and finishes.</p>
+      </div>
+    </div>
+    <div class="hero-rule" aria-hidden="true"></div>
+  </section>
+
+  <section class="band band-muted" aria-labelledby="posts-title">
+    <div class="wrap">
+      <h2 id="posts-title" class="sr-only">Articles</h2>
+      <ul class="post-grid" data-stagger>
+        <li>
+          <a class="tile post-card" href="blog-rfq-checklist.html">
+            <span class="tile-top"><span data-icon="rfq" aria-hidden="true"></span></span>
+            <span class="post-meta"><span>Buying guide</span><time datetime="2026-10-15">October 15, 2026</time><span>2 min read</span></span>
+            <span class="tile-name">What to Include in a Request for Quote</span>
+            <span class="post-excerpt">The drawings, grades, volumes and documents that let a supplier quote fast and quote right.</span>
+            <span class="learn">Read the article<svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><path d="M4 12h15"/><path d="M13 6l6 6-6 6"/></svg></span>
+          </a>
+        </li>
+        <li>
+          <a class="tile post-card" href="blog-en-15085-2.html">
+            <span class="tile-top"><span data-icon="metro" aria-hidden="true"></span></span>
+            <span class="post-meta"><span>Standards</span><time datetime="2026-10-15">October 15, 2026</time><span>2 min read</span></span>
+            <span class="tile-name">What EN 15085-2 Certification Means for Rail Buyers</span>
+            <span class="post-excerpt">The certification levels, what CL1 covers, and what to ask a supplier of welded rail components.</span>
+            <span class="learn">Read the article<svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><path d="M4 12h15"/><path d="M13 6l6 6-6 6"/></svg></span>
+          </a>
+        </li>
+        <li>
+          <a class="tile post-card" href="blog-choosing-a-finish.html">
+            <span class="tile-top"><span data-icon="quality" aria-hidden="true"></span></span>
+            <span class="post-meta"><span>Finishes</span><time datetime="2026-10-15">October 15, 2026</time><span>3 min read</span></span>
+            <span class="tile-name">Galvanizing, Powder Coating or Plating?</span>
+            <span class="post-excerpt">How the common finishes for steel parts compare, and how to choose one for yours.</span>
+            <span class="learn">Read the article<svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><path d="M4 12h15"/><path d="M13 6l6 6-6 6"/></svg></span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="cta theme-light" aria-labelledby="cta-title" data-tone="light" data-scrub="enter" data-span="0.85">
+    <div class="wrap cta-inner">
+      <h2 id="cta-title" class="cta-title" data-split>Have a Question About Your Part?</h2>
+      <p class="cta-line" data-reveal>Ask our engineers. We would be glad to help you on any queries.</p>
+      <div data-reveal style="--delay: 150ms"><a class="btn btn-primary btn-xl" href="contact.html" data-magnetic>Request a quote</a></div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <a class="brand" href="index.html" aria-label="Ultra Corpotech Inc. home"><img class="brand-lockup" src="assets/img/lockup.png" alt="" width="692" height="265" loading="lazy"><img class="brand-mark" src="assets/img/mark.png" alt="" width="118" height="171" loading="lazy"></a>
+      <p>The American subsidiary of Ultra Corpotech Pvt Ltd, Pune, India.</p>
+    </div>
+    <nav class="footer-col is-links" aria-label="What we do">
+      <h2>What we do</h2>
+      <ul class="footer-links">
+        <li><a class="link" href="products.html">Products</a></li>
+        <li><a class="link" href="services.html">Services</a></li>
+        <li><a class="link" href="case-studies.html">Case studies</a></li>
+      </ul>
+    </nav>
+    <nav class="footer-col is-links" aria-label="Company">
+      <h2>Company</h2>
+      <ul class="footer-links">
+        <li><a class="link" href="about.html">About</a></li>
+        <li><a class="link" href="careers.html">Careers</a></li>
+        <li><a class="link" href="blog.html">Blog</a></li>
+        <li><a class="link" href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="footer-col">
+      <h2>United States</h2>
+      <address>Ultra Corpotech Inc.<br>14737 Firetower Rd<br>Conroe, Texas 77306<br>[Phone]<br>[Email]</address>
+    </div>
+    <div class="footer-col">
+      <h2>Group headquarters</h2>
+      <address>Ultra Corpotech Pvt Ltd<br>Nighoje–Kuruli Road, Chakan<br>Pune, Maharashtra, India<br><a class="link" href="tel:+912135693500">+91 2135 693 500</a></address>
+      <a class="link" href="https://ultracorpotech.com/">ultracorpotech.com</a>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="footer-base">
+      <p>© 2026 Ultra Corpotech Inc. All rights reserved.</p>
+      <p>Engineering &amp; Energy Solutions</p>
+    </div>
+  </div>
+  <div class="foot-bar" aria-hidden="true"></div>
+</footer>
+</body>
+</html>

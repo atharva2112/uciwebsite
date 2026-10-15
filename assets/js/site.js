@@ -267,7 +267,7 @@
       el.classList.add('is-split');
     });
     $$('[data-stagger]').forEach((g) => Array.from(g.children).forEach((c, i) => c.style.setProperty('--i', i)));
-    $$('.std-grid, .glance').forEach((g) => Array.from(g.children).forEach((c, i) => c.style.setProperty('--i', i)));
+    $$('.std-grid, .glance, .values, .timeline-track').forEach((g) => Array.from(g.children).forEach((c, i) => c.style.setProperty('--i', i)));
     $$('[data-words]').forEach((el) => {
       splitText(el, plainWord);
       if (!motion) return;
@@ -322,6 +322,12 @@
 
   /* Odometers: every digit rolls up through a full turn to its value */
   function initOdometers() {
+    // "Years since 1991" stays current without anyone editing the page
+    $$('[data-since]').forEach((el) => {
+      const years = String(new Date().getFullYear() - Number(el.dataset.since));
+      el.setAttribute('data-odometer', years);
+      el.textContent = years;
+    });
     $$('[data-odometer]').forEach((el) => {
       const text = el.getAttribute('data-odometer') || el.textContent.trim();
       if (!motion) return;
@@ -457,11 +463,15 @@
   const PAGE_NAMES = {
     '': 'Home',
     'index.html': 'Home',
+    'products.html': 'Products',
+    'services.html': 'Services',
+    'case-studies.html': 'Case studies',
     'about.html': 'About',
-    'capabilities.html': 'Capabilities',
-    'industries.html': 'Industries',
+    'careers.html': 'Careers',
+    'blog.html': 'Blog',
     'contact.html': 'Contact',
   };
+  const pageName = (file) => PAGE_NAMES[file] || (/^blog-[\w-]+\.html$/.test(file) ? 'Article' : '');
   let closeMenu = () => {};
 
   function initTransitions() {
@@ -473,10 +483,10 @@
       const url = new URL(a.getAttribute('href'), window.location.href);
       if (url.origin !== window.location.origin) return;
       const file = url.pathname.split('/').pop();
-      if (!(file in PAGE_NAMES)) return;
+      const label = pageName(file);
+      if (!label) return;
       if (url.pathname === window.location.pathname) return;
       e.preventDefault();
-      const label = PAGE_NAMES[file];
       root.style.setProperty('--curtain-label', JSON.stringify(label));
       try {
         sessionStorage.setItem('uci:curtain', label);
@@ -515,7 +525,7 @@
     if (!nav || !ind) return;
     nav.classList.add('has-indicator');
     const links = $$('.nav-link', nav);
-    const current = links.find((l) => l.getAttribute('aria-current') === 'page');
+    const current = links.find((l) => l.hasAttribute('aria-current'));
     const moveTo = (l) => {
       if (!l) {
         ind.style.setProperty('--o', 0);
@@ -557,7 +567,7 @@
         btn.focus();
       }
     });
-    const wide = mq('(min-width: 1024px)');
+    const wide = mq('(min-width: 1120px)');
     const onWide = (e) => {
       if (e.matches) set(false);
     };
@@ -641,11 +651,12 @@
     const c = doc.createElement('div');
     c.className = 'cursor is-hidden';
     c.setAttribute('aria-hidden', 'true');
-    c.innerHTML = '<span class="cursor-frame"><i></i><i></i><i></i><i></i></span><span class="cursor-cross"></span>';
+    c.innerHTML = '<span class="cursor-frame"><i></i><i></i><i></i><i></i></span><span class="cursor-cross"><span class="cursor-label"></span></span>';
     doc.body.appendChild(c);
     root.classList.add('has-cursor');
     const frame = c.firstElementChild;
     const cross = c.lastElementChild;
+    const label = cross.firstElementChild;
     const TARGET = 'a, button, select, label, summary, .drop, [data-cursor]';
     const TEXT = 'input:not([type="file"]):not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]), textarea';
     let mx = -100;
@@ -706,6 +717,9 @@
         const tone = el && el.closest('[data-tone]');
         c.classList.toggle('on-dark', !!tone && tone.dataset.tone === 'dark');
         c.classList.toggle('on-light', !!tone && tone.dataset.tone === 'light');
+        const tagged = el && el.closest('[data-cursor-label]');
+        c.classList.toggle('has-label', !!tagged);
+        if (tagged && label.textContent !== tagged.dataset.cursorLabel) label.textContent = tagged.dataset.cursorLabel;
         ticker.add(task);
       },
       { passive: true }
@@ -814,10 +828,12 @@
     });
   }
 
-  /* Drawing to delivery: vertical scroll drives a horizontal run of steps */
+  /* Process runs: vertical scroll drives a horizontal run of steps */
   function initHScroll() {
-    const sec = $('[data-hscroll]');
-    if (!sec || !motion) return;
+    if (!motion) return;
+    $$('[data-hscroll]').forEach(initHScrollOne);
+  }
+  function initHScrollOne(sec) {
     const track = $('.process-track', sec);
     const viewport = $('.process-viewport', sec);
     const rail = $('.rail', sec);
@@ -970,6 +986,36 @@
       const p = (x, cls) => `<g class="a-wave ${cls}"><circle cx="${x}" cy="22" r="6"/><path d="M${x - 10} 46C${x - 10} 36 ${x - 6} 32 ${x} 32C${x + 6} 32 ${x + 10} 36 ${x + 10} 46"/></g>`;
       return SVG('0 0 64 64', `${p(14, '')}${p(32, 'd1')}${p(50, 'd2')}<path class="acc" d="M2 52H62"/>`);
     },
+    award: () => {
+      let d = '';
+      for (let k = 0; k <= 10; k++) {
+        const a = (k / 10) * Math.PI * 2 - Math.PI / 2;
+        const r = k % 2 ? 4.4 : 10;
+        d += `${k ? 'L' : 'M'}${f2(32 + Math.cos(a) * r)} ${f2(24 + Math.sin(a) * r)}`;
+      }
+      return SVG('0 0 64 64', `<path d="M23 37L18 60L26 55L30 61L33 40M41 37L46 60L38 55L34 61L31 40"/><circle class="bg-fill" cx="32" cy="24" r="17"/><g class="a-rays" ${at(32, 24)}><path class="acc" d="${d}Z"/></g>`);
+    },
+    price: () =>
+      SVG('0 0 64 64', `<path d="M5 31L30 6H57V33L32 58Z"/><circle cx="46" cy="17" r="4"/><g class="a-hoist"><path class="acc" d="M27 21V38M20 31L27 38L34 31"/></g>`),
+    easy: () =>
+      SVG('0 0 64 64', `<path d="M6 9H58V44H30L18 56V44H6Z"/><path class="acc a-tick" pathLength="24" d="M20 26L28 34L44 18"/>`),
+    globe: (uid) => {
+      const id = `globe-clip-${uid}`;
+      let m = '';
+      for (let k = -2; k <= 4; k++) {
+        const x = 8 + k * 12;
+        m += `M${x} 6Q${x - 9} 32 ${x} 58`;
+      }
+      return SVG('0 0 64 64', `<defs><clipPath id="${id}"><circle cx="32" cy="32" r="24"/></clipPath></defs><circle cx="32" cy="32" r="24"/><path d="M8 32H56M12 20H52M12 44H52" stroke-opacity=".55"/><g clip-path="url(#${id})"><g class="a-meridian"><path class="acc" d="${m}"/></g></g>`);
+    },
+    quote: () =>
+      SVG('0 0 64 64', `<path d="M13 10H51V60H13Z"/><path class="bg-fill" d="M24 5H40V14H24Z"/><path class="a-write" pathLength="30" d="M20 25H44"/><path class="a-write d1" pathLength="30" d="M20 33H44"/><path class="a-write d2" pathLength="30" d="M20 41H34"/><path class="acc a-tick" pathLength="24" d="M33 50L38 55L47 45"/>`),
+    factory: () =>
+      SVG('0 0 64 64', `<path d="M4 58V30L18 38V30L32 38V30L46 38V14H56V58Z"/><path d="M10 47H16M24 47H30M38 47H44"/><circle class="acc a-smoke" cx="51" cy="9" r="3"/><circle class="acc a-smoke d1" cx="51" cy="9" r="3"/><circle class="acc a-smoke d2" cx="51" cy="9" r="3"/><path d="M1 58H63"/>`),
+    leaf: () =>
+      SVG('0 0 64 64', `<g class="a-sway" ${at(32, 60)}><path d="M32 58C10 46 8 22 32 6C56 22 54 46 32 58Z"/><path class="acc" d="M32 60V18M32 30L23 22M32 40L42 31M32 49L24 42"/></g>`),
+    learn: () =>
+      SVG('0 0 64 64', `<path d="M32 15C24 9 14 9 5 11V51C14 49 24 49 32 55C40 49 50 49 59 51V11C50 9 40 9 32 15Z"/><path d="M32 15V55"/><path class="acc a-write" pathLength="30" d="M11 21C17 20 23 20 27 23"/><path class="acc a-write d1" pathLength="30" d="M11 30C17 29 23 29 27 32"/><path class="a-write d2" pathLength="30" d="M37 23C41 20 47 20 53 21"/>`),
   };
 
   const ARTS = {
@@ -1751,10 +1797,366 @@
     const gears = $$('[data-gears]').map((c) => Gears(c));
     $$('[data-laser]').forEach((c) => LaserCutter(c, $('[data-laser-readout]')));
     $$('[data-dots]').forEach((c) => DotMatrix(c));
+    $$('[data-world-map]').forEach((c) => WorldMap(c));
     heroHooks.push(() => {
       gears.forEach((g) => g.start());
       fields.forEach((f) => f.ripple());
     });
+  }
+
+  /* World map: Natural Earth land as a square dot matrix (2° cells). Export and
+     delivery regions light up green, and delivery lanes run out from Pune. */
+  const LAND = {
+    cols: 180,
+    rows: 68,
+    lon0: -180,
+    latTop: 78,
+    step: 2,
+    mask:
+      'AAAABxH34////4AAYAAAEAAPwAAAAAAAAAAfm/wAf//wAAAAADgAf/4AHAAAAAAAH8338AP//gAAAAAMBD///8DAAAgDwADfz3/gP//gAAA4AMH///////wAAf////7934H//AAAP/gJ//////////8f//////h+H/gAAAf/7///////////M///////n8D8A+AB+/////////////Af/////5g8D4AAAH9/////////////Af/////gHgB4AAAP5///////////P4AHoP///gH2AAAAAH4//////////+cAADQB///8H+AAAAGDz/////////8A8AAIAA////v/gAAAPDv/////////wA4AAAABf///v/wAAAbv///////////AwAAAAAP/////wAAAH////////////AAAAAAAH////84AAAD///////////9AAAAAAAD////8MAAAB///////////9AAAAAAAD////+AAAAB//7/P//////5AAAAAAAD////gAAAAf5vwPP//////jgAAAAAAD////gAAAAfi///n/////+CAAAAAAAD///+AAAAAfCLf/n////+MCAAAAAAAB///8AAAAAOeRP///////mOAAAAAAAB///8AAAAAH/AC///////G8AAAAAAAAf//4AAAAAf/gB///////hgAAAAAAAAP//wAAAAAf//////////gAAAAAAAAAP/owAAAAA/////f/////gAAAAAAAAAF/AQAAAAB///+/v/////AAAAAAAAAAC+AQAAAAD/////2/////gAAAAAAAAAAeA4AAAAD////f/D///8gAAAAAAAAAAfGGAAAAH////v/B/z/wAAAAAAAAAAAPMFwAAAD////v+A/h+gAAAAAAAAAAAH8AAAAAD////38A+B/AgAAAAAAAAAAAfAAAAAH////3wAcAfggAAAAAAAAAAAHAAAAAH////+AAcAfgwAAAAAAAAAAABD4AAAD////9wAMAXAYAAAAAAAAAAAA//AAAB/////gAOAQAYAAAAAAAAAAAAH/gAAA/////gACAICYAAAAAAAAAAAAH/8AAAfP///AAAAsGAAAAAAAAAAAAAH/+AAAAB///AAAA8OAAAAAAAAAAAAAP/+AAAAD//8AAAAc+wAAAAAAAAAAAAf//gAAAD//4AAAAMeggAAAAAAAAAAAP//+AAAB//wAAAAGdi+AAAAAAAAAAAf///AAAA//wAAAACAwPkAAAAAAAAAAP///gAAA//wAAAAB4AHwAAAAAAAAAAP///gAAA//wAAAAABoDYIAAAAAAAAAH///AAAAf/wAAAAAAAAAAAAAAAAAAAH//+AAAA//4gAAAAABxAAAAAAAAAAAD//+AAAA//5gAAAAAPxgAAAAAAAAAAA//+AAAA//zgAAAAAf/gABAAAAAAAAAf/8AAAA//DgAAAAA//wAAAAAAAAAAAf/8AAAAf/DAAAAAD//4CAAAAAAAAAAf/4AAAAf/HAAAAAH//8AAAAAAAAAAA//AAAAAf+DAAAAAH//+AAAAAAAAAAA//AAAAAf+AAAAAAH//+AAAAAAAAAAA//AAAAAP8AAAAAAH//+AAAAAAAAAAA/+AAAAAH4AAAAAAH//+AAAAAAAAAAA/8AAAAAHwAAAAAAD4f8AAAAAAAAAAA/4AAAAAAAAAAAAADAH8AAAAAAAAAAB/wAAAAAAAAAAAAAAAD4AEAAAAAAAAB/AAAAAAAAAAAAAAAABAAGAAAAAAAAB+AAAAAAAAAAAAAAAAAwAMAAAAAAAAB8AAAAAAAAAAAAAAAAAQAYAAAAAAAAB4AAAAAAAAAAAAAAAAAABwAAAAAAAAD4AAAAAAAAAAAAAAAAAAAgAAAAAAAAD4AAAAAAAAAACAAAAAAAAAAAAAAAAADwgAAAAAAAAAAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+  };
+  // Regions the group delivers to: North and South America, Europe, the Middle East,
+  // Africa, Australia and Asia Pacific (India included). Tested in this order.
+  const REGION_TESTS = [
+    (lon, lat) => lat > 7 && lon < -50 && !(lon > -75 && lat > 59),
+    (lon, lat) => lat <= 13 && lon < -33,
+    (lon, lat) => lon > 34 && lon < 63 && lat > 12 && lat < 42,
+    (lon, lat) => lon >= -25 && lon <= 45 && lat >= 36,
+    (lon, lat) => lon >= -20 && lon <= 52 && lat < 37,
+    (lon, lat) => lon > 110 && lat < -9,
+    (lon, lat) => lon >= 66 && lon <= 150 && lat >= -11 && lat <= 50,
+  ];
+  const MAP_HOME = [73.86, 18.52];
+  const MAP_LANES = [[-95.46, 30.31], [10, 50], [47, 26], [22, 2], [-58, -16], [135, -25], [116, 32]];
+
+  function WorldMap(canvas) {
+    const ctx = canvas.getContext('2d');
+    const { cols, rows, lon0, latTop, step } = LAND;
+    const bin = atob(LAND.mask);
+    const land = new Uint8Array(cols * rows);
+    const region = new Int8Array(cols * rows).fill(-1);
+    for (let i = 0; i < land.length; i++) land[i] = (bin.charCodeAt(i >> 3) >> (7 - (i & 7))) & 1;
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const i = r * cols + c;
+        if (!land[i]) continue;
+        const lon = lon0 + (c + 0.5) * step;
+        const lat = latTop - (r + 0.5) * step;
+        for (let k = 0; k < REGION_TESTS.length; k++) {
+          if (REGION_TESTS[k](lon, lat)) {
+            region[i] = k;
+            break;
+          }
+        }
+      }
+    }
+    const host = canvas.closest('[data-in]') || canvas;
+    const layer = doc.createElement('canvas');
+    const lctx = layer.getContext('2d');
+    let layerReady = false;
+    let w = 0;
+    let h = 0;
+    let dpr = 1;
+    let colors = null;
+    let dots = motion ? 0 : 1;
+    let lanes = motion ? 0 : 1;
+    let t0 = 0;
+    let started = !motion;
+    let running = false;
+
+    const project = (lon, lat) => [((lon - lon0) / (cols * step)) * w, ((latTop - lat) / (rows * step)) * h];
+    const control = (a, b) => [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2 - Math.hypot(b[0] - a[0], b[1] - a[1]) * 0.3];
+    const bez = (a, c, b, t) => {
+      const u = 1 - t;
+      return [u * u * a[0] + 2 * u * t * c[0] + t * t * b[0], u * u * a[1] + 2 * u * t * c[1] + t * t * b[1]];
+    };
+    const readColors = () => {
+      colors = {
+        land: hexToRgb(token('--line-strong')),
+        hot: hexToRgb(token('--green')),
+        draw: hexToRgb(token('--draw')),
+        ink: hexToRgb(token('--ink')),
+      };
+      layerReady = false;
+    };
+    const paintDots = (g, amount) => {
+      g.setTransform(dpr, 0, 0, dpr, 0, 0);
+      g.clearRect(0, 0, w, h);
+      const cw = w / cols;
+      const ch = h / rows;
+      const s = Math.max(1, Math.min(cw, ch) * 0.62);
+      const limit = amount * (cols + rows * 0.4);
+      for (let pass = 0; pass < 2; pass++) {
+        g.beginPath();
+        for (let r = 0; r < rows; r++) {
+          for (let c = 0; c < cols; c++) {
+            const i = r * cols + c;
+            if (!land[i] || region[i] >= 0 !== (pass === 1) || c + r * 0.4 > limit) continue;
+            g.rect(c * cw + (cw - s) / 2, r * ch + (ch - s) / 2, s, s);
+          }
+        }
+        g.fillStyle = pass ? rgba(colors.hot, 0.9) : rgba(colors.land, 0.38);
+        g.fill();
+      }
+    };
+    const draw = (now) => {
+      if (dots >= 1 && !layerReady) {
+        layer.width = canvas.width;
+        layer.height = canvas.height;
+        paintDots(lctx, 1);
+        layerReady = true;
+      }
+      if (layerReady) {
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(layer, 0, 0);
+      } else {
+        paintDots(ctx, dots);
+      }
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const home = project(MAP_HOME[0], MAP_HOME[1]);
+      const n = MAP_LANES.length;
+      ctx.lineWidth = 1.5;
+      for (let k = 0; k < n; k++) {
+        const lp = clamp(lanes * (n + 1) - k);
+        if (lp <= 0) continue;
+        const end = project(MAP_LANES[k][0], MAP_LANES[k][1]);
+        const ctl = control(home, end);
+        ctx.setLineDash([4, 5]);
+        ctx.strokeStyle = rgba(colors.draw, 0.95);
+        ctx.beginPath();
+        for (let i = 0; i <= 48; i++) {
+          const p = bez(home, ctl, end, (i / 48) * lp);
+          if (i) ctx.lineTo(p[0], p[1]);
+          else ctx.moveTo(p[0], p[1]);
+        }
+        ctx.stroke();
+        ctx.setLineDash([]);
+        if (lp < 1) continue;
+        ctx.fillStyle = rgba(colors.ink);
+        ctx.fillRect(end[0] - 2.5, end[1] - 2.5, 5, 5);
+        if (!motion) continue;
+        for (let q = 0; q < 2; q++) {
+          const p = bez(home, ctl, end, ((now / 1000) * 0.16 + k * 0.137 + q * 0.5) % 1);
+          ctx.fillRect(p[0] - 3, p[1] - 3, 6, 6);
+        }
+      }
+    };
+    const task = (dt, now) => {
+      if (started) {
+        const t = (now - t0) / 1000;
+        dots = clamp(t / 1.6);
+        lanes = clamp((t - 1.1) / 2.2);
+      }
+      draw(now);
+    };
+    const resize = () => {
+      ({ w, h, dpr } = fitCanvas(canvas));
+      layerReady = false;
+      if (!running) draw(performance.now());
+    };
+    readColors();
+    resize();
+    layoutHooks.push(resize);
+    themeHooks.push(() => {
+      readColors();
+      if (!running) draw(performance.now());
+    });
+    if (!motion) return;
+    revealHooks.push((el) => {
+      if (el !== host || started) return;
+      started = true;
+      t0 = performance.now();
+    });
+    onVisible(canvas, (v) => {
+      running = v;
+      if (v) ticker.add(task);
+      else ticker.remove(task);
+    });
+  }
+
+  /* Milestone strip: drag (or use the buttons) to travel through the years */
+  function initTimelines() {
+    $$('[data-timeline]').forEach((tl) => {
+      const track = $('.timeline-track', tl);
+      const bar = $('.timeline-bar', tl);
+      const prev = $('[data-tl-prev]', tl);
+      const next = $('[data-tl-next]', tl);
+      const items = $$('.milestone', tl);
+      if (!track) return;
+      const update = () => {
+        const max = track.scrollWidth - track.clientWidth;
+        if (bar) bar.style.setProperty('--tp', (max > 0 ? track.scrollLeft / max : 1).toFixed(4));
+        if (prev) prev.disabled = track.scrollLeft < 4;
+        if (next) next.disabled = track.scrollLeft > max - 4;
+      };
+      track.addEventListener('scroll', update, { passive: true });
+      layoutHooks.push(update);
+      update();
+      const stepBy = (dir) => {
+        const width = items[0] ? items[0].getBoundingClientRect().width : 300;
+        track.scrollBy({ left: dir * width, behavior: motion ? 'smooth' : 'auto' });
+      };
+      if (prev) prev.addEventListener('click', () => stepBy(-1));
+      if (next) next.addEventListener('click', () => stepBy(1));
+
+      let down = false;
+      let moved = false;
+      let startX = 0;
+      let startLeft = 0;
+      let lastX = 0;
+      let lastT = 0;
+      let vx = 0;
+      track.addEventListener('pointerdown', (e) => {
+        if (e.pointerType !== 'mouse' || e.button !== 0) return;
+        down = true;
+        moved = false;
+        startX = lastX = e.clientX;
+        startLeft = track.scrollLeft;
+        lastT = performance.now();
+        vx = 0;
+      });
+      track.addEventListener('pointermove', (e) => {
+        if (!down) return;
+        const dx = e.clientX - startX;
+        if (!moved && Math.abs(dx) > 5) {
+          moved = true;
+          track.classList.add('is-dragging');
+          try {
+            track.setPointerCapture(e.pointerId);
+          } catch (err) {
+            /* ignore */
+          }
+        }
+        if (!moved) return;
+        track.scrollLeft = startLeft - dx;
+        const now = performance.now();
+        vx = (e.clientX - lastX) / Math.max(1, now - lastT);
+        lastX = e.clientX;
+        lastT = now;
+      });
+      const end = () => {
+        if (!down) return;
+        down = false;
+        if (!moved) return;
+        let v = -vx * 16;
+        const glide = () => {
+          track.scrollLeft += v;
+          v *= 0.92;
+          if (motion && Math.abs(v) > 0.6) requestAnimationFrame(glide);
+          else track.classList.remove('is-dragging');
+        };
+        requestAnimationFrame(glide);
+      };
+      track.addEventListener('pointerup', end);
+      track.addEventListener('pointercancel', end);
+      track.addEventListener(
+        'click',
+        (e) => {
+          if (moved) {
+            e.preventDefault();
+            e.stopPropagation();
+            moved = false;
+          }
+        },
+        true
+      );
+    });
+  }
+
+  /* Testimonials: one quote at a time; the next one pushes up into place */
+  function initCarousels() {
+    $$('[data-carousel]').forEach((car) => {
+      const slides = $$('.quote-slide', car);
+      const count = $('.carousel-count', car);
+      if (!slides.length) return;
+      let i = 0;
+      const show = (n) => {
+        const before = i;
+        i = (n + slides.length) % slides.length;
+        slides.forEach((s, k) => {
+          s.classList.toggle('is-active', k === i);
+          s.classList.toggle('is-leaving', k === before && k !== i);
+          s.setAttribute('aria-hidden', k === i ? 'false' : 'true');
+        });
+        if (count) count.textContent = `${String(i + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
+      };
+      const prev = $('[data-car-prev]', car);
+      const next = $('[data-car-next]', car);
+      if (prev) prev.addEventListener('click', () => show(i - 1));
+      if (next) next.addEventListener('click', () => show(i + 1));
+      let sx = null;
+      car.addEventListener('pointerdown', (e) => {
+        sx = e.clientX;
+      });
+      car.addEventListener('pointerup', (e) => {
+        if (sx === null) return;
+        const dx = e.clientX - sx;
+        sx = null;
+        if (Math.abs(dx) > 60) show(i + (dx < 0 ? 1 : -1));
+      });
+      show(0);
+    });
+  }
+
+  /* Case studies: a card with the sector's animated icon trails the pointer */
+  function initCasePreview() {
+    const list = $('[data-case-list]');
+    if (!list || !motion || !finePointer) return;
+    const box = doc.createElement('div');
+    box.className = 'case-preview';
+    box.setAttribute('aria-hidden', 'true');
+    box.innerHTML = '<div class="case-preview-in ico-host is-playing"></div>';
+    doc.body.appendChild(box);
+    const inner = box.firstElementChild;
+    let x = 0;
+    let y = 0;
+    let tx = 0;
+    let ty = 0;
+    let on = false;
+    let key = '';
+    const task = () => {
+      x = lerp(x, tx, 0.16);
+      y = lerp(y, ty, 0.16);
+      box.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0)`;
+      if (!on && Math.abs(x - tx) + Math.abs(y - ty) < 0.6) ticker.remove(task);
+    };
+    $$('.case-row', list).forEach((row) => {
+      row.addEventListener('pointerenter', (e) => {
+        if (row.dataset.preview !== key && ICONS[row.dataset.preview]) {
+          key = row.dataset.preview;
+          inner.innerHTML = ICONS[key](0);
+        }
+        if (!on) {
+          x = tx = e.clientX + 28;
+          y = ty = e.clientY - 96;
+        }
+        on = true;
+        box.classList.add('is-on');
+        ticker.add(task);
+      });
+      row.addEventListener('pointermove', (e) => {
+        tx = e.clientX + 28;
+        ty = e.clientY - 96;
+      });
+      row.addEventListener('pointerleave', () => {
+        on = false;
+        box.classList.remove('is-on');
+      });
+    });
+  }
+
+  /* Contact: "Request a quote" links can name the industry, e.g. contact.html#oil-and-gas */
+  function initPreselect() {
+    const select = $('#f-industry');
+    if (!select) return;
+    const pick = () => {
+      const key = decodeURIComponent((window.location.hash || '').slice(1));
+      const option = Array.from(select.options).find((o) => o.dataset.key === key);
+      if (option) select.value = option.value;
+    };
+    pick();
+    window.addEventListener('hashchange', pick);
   }
 
   /* ---------------------------------------------------------------------------
@@ -1931,6 +2333,10 @@
     safe(initTilt);
     safe(initCursor);
     safe(initForm);
+    safe(initTimelines);
+    safe(initCarousels);
+    safe(initCasePreview);
+    safe(initPreselect);
 
     window.addEventListener('scroll', () => ticker.add(scrollTask), { passive: true });
     window.addEventListener('resize', scheduleLayout);
