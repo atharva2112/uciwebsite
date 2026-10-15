@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Capabilities | Ultra Corpotech Inc.</title>
+<meta name="description" content="Cutting, forming, welding, machining, surface treatment, inspection and logistics: the Ultra Corpotech group’s complete process chain, from plate to finished part.">
+<meta name="theme-color" content="#00a972">
+<link rel="icon" type="image/png" href="assets/img/mark.png">
+<link rel="preload" href="assets/fonts/barlow-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/barlow-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/site.css">
+<script>
+  /* Motion bootstrap: runs before first paint, so the intro and the page curtain can cover the page.
+     Motion is skipped when the visitor prefers reduced motion or an automated browser is capturing the page. */
+  (function (d, w) {
+    var r = d.documentElement;
+    r.classList.add('js');
+    if (navigator.webdriver || (w.matchMedia && w.matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+    r.classList.add('motion');
+    try {
+      var c = w.sessionStorage.getItem('uci:curtain');
+      if (c) {
+        r.classList.add('is-entering');
+        r.style.setProperty('--curtain-label', JSON.stringify(c));
+      } else if (!w.sessionStorage.getItem('uci:intro')) {
+        r.classList.add('is-intro');
+      }
+    } catch (e) {}
+    w.setTimeout(function () {
+      if (!w.UCI) r.classList.remove('motion', 'is-intro', 'is-entering');
+    }, 4000);
+  })(document, window);
+</script>
+<script src="assets/js/site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="intro" aria-hidden="true"><div class="intro-grid"></div><div class="intro-logo"><img class="brand-lockup" src="assets/img/lockup.png" alt="" width="692" height="265"><img class="brand-mark" src="assets/img/mark.png" alt="" width="118" height="171"></div><div class="intro-bar"></div></div>
+<div class="curtain" aria-hidden="true"><span class="curtain-label"></span></div>
+
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="index.html" aria-label="Ultra Corpotech Inc. home"><img class="brand-lockup" src="assets/img/lockup.png" alt="" width="692" height="265"><img class="brand-mark" src="assets/img/mark.png" alt="" width="118" height="171"></a>
+    <nav class="nav" aria-label="Main">
+      <ul class="nav-list">
+        <li><a class="nav-link" href="index.html">Home</a></li>
+        <li><a class="nav-link" href="about.html">About</a></li>
+        <li><a class="nav-link" href="capabilities.html" aria-current="page">Capabilities</a></li>
+        <li><a class="nav-link" href="industries.html">Industries</a></li>
+        <li><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+      <span class="nav-indicator" aria-hidden="true"></span>
+    </nav>
+    <a class="btn btn-primary header-cta" href="contact.html" data-magnetic>Request a quote</a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu"><span class="menu-toggle-label">Menu</span><span class="menu-toggle-icon" aria-hidden="true"><i></i><i></i></span></button>
+  </div>
+</header>
+
+<div class="menu" id="menu">
+  <div class="wrap">
+    <nav aria-label="Menu">
+      <ul class="menu-list">
+        <li><a class="menu-link" href="index.html" style="--i: 0"><span>Home</span></a></li>
+        <li><a class="menu-link" href="about.html" style="--i: 1"><span>About</span></a></li>
+        <li><a class="menu-link" href="capabilities.html" aria-current="page" style="--i: 2"><span>Capabilities</span></a></li>
+        <li><a class="menu-link" href="industries.html" style="--i: 3"><span>Industries</span></a></li>
+        <li><a class="menu-link" href="contact.html" style="--i: 4"><span>Contact</span></a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="wrap menu-foot">
+    <a class="btn btn-primary btn-lg" href="contact.html">Request a quote</a>
+    <span>Engineering &amp; Energy Solutions</span>
+  </div>
+</div>
+
+<main id="main">
+  <section class="page-hero" aria-labelledby="page-title" data-hero>
+    <canvas class="plus-field" data-plus-field aria-hidden="true"></canvas>
+    <div class="wrap page-hero-inner">
+      <div>
+        <p class="eyebrow" data-reveal><span class="eyebrow-bar" aria-hidden="true"></span><span data-scramble>Capabilities</span></p>
+        <h1 id="page-title" class="page-title is-long" data-split style="--delay: 120ms">From Plate to Finished Part</h1>
+        <p class="lead" data-reveal style="--delay: 520ms">Through UCI you work with the Ultra Corpotech group’s complete process chain: cutting, forming, welding, machining, surface treatment, inspection and logistics. One partner owns your part from raw material to delivery.</p>
+      </div>
+      <div class="page-hero-art" aria-hidden="true" data-reveal="fade" style="--delay: 300ms">
+        <canvas data-laser></canvas>
+        <p class="laser-readout" data-laser-readout>X 0000.0   Y 0000.0</p>
+      </div>
+    </div>
+    <div class="hero-rule" aria-hidden="true"></div>
+  </section>
+
+  <section class="band band-muted" aria-labelledby="capacity-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="capacity-title" class="h2" data-split>Capacity at a Glance</h2>
+      </div>
+      <ul class="cap-grid" data-stagger>
+        <li>
+          <div class="cap" data-in>
+            <span class="cap-label">Component weight</span>
+            <span class="cap-value">50 g to 30+ t</span>
+            <span class="cap-note">About 1.8 oz to over 66,000 lb</span>
+            <div class="cap-viz" aria-hidden="true"><div class="viz-weights"><i style="--i: 0"></i><i style="--i: 1"></i><i style="--i: 2"></i><i style="--i: 3"></i><i style="--i: 4"></i></div></div>
+          </div>
+        </li>
+        <li>
+          <div class="cap" data-in>
+            <span class="cap-label">Plate thickness</span>
+            <span class="cap-value">1 mm to 250+ mm</span>
+            <span class="cap-note">About 0.04 in to over 9.8 in</span>
+            <div class="cap-viz" aria-hidden="true"><div class="viz-plates"><div class="viz-plate thin"><b></b><span>1 mm</span></div><div class="viz-plate thick"><b></b><span>250 mm</span></div></div></div>
+          </div>
+        </li>
+        <li>
+          <div class="cap" data-in>
+            <span class="cap-label">Machine tools</span>
+            <span class="cap-value" data-odometer="450+">450+</span>
+            <span class="cap-note">CNC turning, VMC, HMC, VTL, mill-turn and grinding machines</span>
+            <div class="cap-viz viz-dots" aria-hidden="true"><canvas data-dots="450"></canvas></div>
+          </div>
+        </li>
+        <li>
+          <div class="cap" data-in>
+            <span class="cap-label">Materials</span>
+            <span class="cap-value">Carbon and alloy steel</span>
+            <span class="cap-note">To US, EU and other global grades, plus local equivalents</span>
+            <div class="cap-viz" aria-hidden="true"><span class="viz-beam" data-art="beam"></span></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="chain-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="chain-title" class="h2" data-split>Our Process Chain</h2>
+      </div>
+      <div class="chain" data-chain>
+        <span class="chain-progress" aria-hidden="true"></span>
+        <ul class="chain-list">
+          <li class="chain-stage">
+            <span class="chain-node" aria-hidden="true"></span>
+            <div>
+              <h3 data-split>Cutting and forming</h3>
+              <p class="chain-lede">Profiles cut and formed in-house, ready for welding or machining.</p>
+            </div>
+            <ul class="tags" data-stagger>
+              <li class="tag">Laser cutting</li>
+              <li class="tag">Plasma cutting</li>
+              <li class="tag">Oxy-fuel cutting</li>
+              <li class="tag">CNC bending</li>
+            </ul>
+          </li>
+          <li class="chain-stage">
+            <span class="chain-node" aria-hidden="true"></span>
+            <div>
+              <h3 data-split>Welding and fabrication</h3>
+              <p class="chain-lede">Welded fabrications and structures, up to 30 t and more.</p>
+            </div>
+            <ul class="tags" data-stagger>
+              <li class="tag">SMAW, GMAW, GTAW and SAW welding</li>
+              <li class="tag">Robotic welding</li>
+              <li class="tag">Welders qualified to AWS and EN standards</li>
+              <li class="tag">Gantry lines and overhead cranes</li>
+            </ul>
+          </li>
+          <li class="chain-stage">
+            <span class="chain-node" aria-hidden="true"></span>
+            <div>
+              <h3 data-split>Machining</h3>
+              <p class="chain-lede">More than 450 CNC machine tools across the group.</p>
+            </div>
+            <ul class="tags" data-stagger>
+              <li class="tag">CNC turning</li>
+              <li class="tag">Vertical machining centers (VMC)</li>
+              <li class="tag">Horizontal machining centers (HMC)</li>
+              <li class="tag">Vertical turret lathes (VTL)</li>
+              <li class="tag">WFL mill-turn machines</li>
+              <li class="tag">Grinding</li>
+            </ul>
+          </li>
+          <li class="chain-stage">
+            <span class="chain-node" aria-hidden="true"></span>
+            <div>
+              <h3 data-split>Surface treatment</h3>
+              <p class="chain-lede">Coatings and finishes, applied before your parts ship.</p>
+            </div>
+            <ul class="tags" data-stagger>
+              <li class="tag">Shot blasting</li>
+              <li class="tag">Painting and spray painting</li>
+              <li class="tag">Powder coating</li>
+              <li class="tag">Hot-dip galvanizing</li>
+              <li class="tag">Glass beading</li>
+              <li class="tag">CED coating</li>
+              <li class="tag">Zinc plating</li>
+            </ul>
+          </li>
+          <li class="chain-stage">
+            <span class="chain-node" aria-hidden="true"></span>
+            <div>
+              <h3 data-split>Engineering support</h3>
+              <p class="chain-lede">Preparing your part for production.</p>
+            </div>
+            <ul class="tags" data-stagger>
+              <li class="tag">In-house fixture design</li>
+              <li class="tag">Tooling development</li>
+              <li class="tag">First article development</li>
+            </ul>
+          </li>
+          <li class="chain-stage">
+            <span class="chain-node" aria-hidden="true"></span>
+            <div>
+              <h3 data-split>Quality</h3>
+              <p class="chain-lede">Inspection and documentation built into the process.</p>
+            </div>
+            <ul class="tags" data-stagger>
+              <li class="tag">Quality lab and inspection facility</li>
+              <li class="tag">Non-destructive testing (NDT)</li>
+              <li class="tag">Inspection and quality documentation</li>
+              <li class="tag">Training school for operators and workers</li>
+            </ul>
+          </li>
+          <li class="chain-stage">
+            <span class="chain-node" aria-hidden="true"></span>
+            <div>
+              <h3 data-split>Logistics</h3>
+              <p class="chain-lede">From the plant to your dock.</p>
+            </div>
+            <ul class="tags" data-stagger>
+              <li class="tag">Domestic and export shipping</li>
+              <li class="tag">Warehousing</li>
+              <li class="tag">Third-party logistics (3PL)</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band-muted" aria-labelledby="standards-title">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <h2 id="standards-title" class="h2" data-split>Standards We Work To</h2>
+          <p class="lead" data-reveal>Ask us about certificates and qualification records for your program.</p>
+        </div>
+      </div>
+      <ul class="std-grid" data-in>
+        <li><div class="std" data-tilt><span class="std-seal" aria-hidden="true"></span><span class="std-code">EN 15085-2 (CL1)</span><span class="std-desc">Welding of railway vehicles and components</span></div></li>
+        <li><div class="std" data-tilt><span class="std-seal" aria-hidden="true"></span><span class="std-code">DIN EN ISO 3834-2</span><span class="std-desc">Comprehensive quality requirements for fusion welding</span></div></li>
+        <li><div class="std" data-tilt><span class="std-seal" aria-hidden="true"></span><span class="std-code">EN 1090-2</span><span class="std-desc">Technical requirements for steel structures</span></div></li>
+        <li><div class="std" data-tilt><span class="std-seal" aria-hidden="true"></span><span class="std-code">EN 1090-3</span><span class="std-desc">Technical requirements for aluminum structures</span></div></li>
+        <li><div class="std" data-tilt><span class="std-seal" aria-hidden="true"></span><span class="std-code">AWS and EN</span><span class="std-desc">Welder qualifications</span></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="cta theme-light" aria-labelledby="cta-title" data-tone="light" data-scrub="enter" data-span="0.85">
+    <div class="wrap cta-inner">
+      <h2 id="cta-title" class="cta-title" data-split>Send Us Your Drawings</h2>
+      <p class="cta-line" data-reveal>We would be glad to help you on any queries.</p>
+      <div data-reveal style="--delay: 150ms"><a class="btn btn-primary btn-xl" href="contact.html" data-magnetic>Request a quote</a></div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <a class="brand" href="index.html" aria-label="Ultra Corpotech Inc. home"><img class="brand-lockup" src="assets/img/lockup.png" alt="" width="692" height="265" loading="lazy"><img class="brand-mark" src="assets/img/mark.png" alt="" width="118" height="171" loading="lazy"></a>
+      <p>The American subsidiary of Ultra Corpotech Pvt Ltd, Pune, India.</p>
+    </div>
+    <nav class="footer-col" aria-label="Footer">
+      <h2>Company</h2>
+      <ul class="footer-links">
+        <li><a class="link" href="about.html">About</a></li>
+        <li><a class="link" href="capabilities.html">Capabilities</a></li>
+        <li><a class="link" href="industries.html">Industries</a></li>
+        <li><a class="link" href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="footer-col">
+      <h2>United States</h2>
+      <address>Ultra Corpotech Inc.<br>[Street address]<br>[City, State ZIP]<br>[Phone]<br>[Email]</address>
+    </div>
+    <div class="footer-col">
+      <h2>Group headquarters</h2>
+      <p>Ultra Corpotech Pvt Ltd<br>Pune, Maharashtra, India</p>
+      <a class="link" href="https://ultracorpotech.com/">ultracorpotech.com</a>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="footer-base">
+      <p>© 2026 Ultra Corpotech Inc. All rights reserved.</p>
+      <p>Engineering &amp; Energy Solutions</p>
+    </div>
+  </div>
+  <div class="foot-bar" aria-hidden="true"></div>
+</footer>
+</body>
+</html>
