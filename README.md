@@ -2,7 +2,9 @@
 
 The animated website for Ultra Corpotech Inc., the American subsidiary of Ultra Corpotech Pvt Ltd. It is built on the Ultra Corpotech design system: brand green `#00a972` on white, Bahnschrift (Barlow on the web) in Regular and Bold only, square full-bleed photography, no drop shadows, and the 8px green foot bar.
 
-Pages: Home, Products, Services, Case studies, About, Careers, Blog (with three articles) and Contact. Product, process, plant and company details come from the group site, [ultracorpotech.com](https://ultracorpotech.com/).
+Pages: Home, Products, Services, Facilities, Case studies, About, Careers, Blog (with three articles) and Contact. Product, process, plant and company details come from the group site, [ultracorpotech.com](https://ultracorpotech.com/), and from the group's corporate presentation (December 2025): the Facilities page (units, machines, capacities, quality lab and the shop-floor photographs), the solar parts, business mix and solar project countries on Products, the 550+ machine tools and the six values.
+
+Where the presentation and the group site disagree on the number of plants, the site keeps the group site's "14 facilities across 10 locations" and shows the presentation's units as the main manufacturing units.
 
 It is a plain static site: HTML, one stylesheet and one script, with no build step and no third-party requests.
 
@@ -31,7 +33,8 @@ grep -n 'todo-badge\|todo-box\|\[[A-Z#][^]]*\]' *.html
 - **Proof.** The two missing figures on Home (parts delivered, by quantity and value; customers served), the customer logo wall and the testimonials (Home), and the challenge and result of each case study (Case studies). Use only logos and quotes you have permission to show.
 - **Careers.** Current openings, benefits, and employee stories, photos or video.
 - **About.** A short biography for Pratiksha A. Bhosle, and measurable sustainability figures (waste, energy, water). Facility photographs can go in the "Where We Make It" section once the photoshoot is done.
-- **Claims to confirm.** That the ISO 14001 certificate is current (the badge says so where it is claimed), the 24 to 48 hour reply time (Home, Services, Contact and the quote checklist article), 3,500+ people, the EEPC India Star Performer award, and the fifth value, written here as "Customer Focus".
+- **Facilities photographs.** The photographs in `assets/img/facilities/` are stills taken from the corporate presentation and are soft at large sizes. Replace them with photoshoot images of the same subjects (same file names, as `.jpg` and `.webp`) when they are available.
+- **Claims to confirm.** That the ISO 14001 certificate is current (the badge says so where it is claimed), that the ISO 9001:2015 certificate and the API Spec Q1 / API 5CT license are current (Facilities; the copies in the presentation expired in February 2023 and September 2021), the 24 to 48 hour reply time (Home, Services, Contact and the quote checklist article), 3,500+ people, and the EEPC India Star Performer award.
 - **Quote form.** The form validates and shows its confirmation, but a static site cannot send email. In `contact.html`, set `data-endpoint` on the `<form>` to your form handler's URL (Formspree, Netlify Forms, or your own endpoint). The script then posts the form, files included, and only shows the confirmation when the handler accepts it.
 
 ## How it is put together
@@ -40,6 +43,7 @@ grep -n 'todo-badge\|todo-box\|\[[A-Z#][^]]*\]' *.html
 index.html             Home
 products.html          Products, by line: oil and gas, renewable energy, rail, telecom, infrastructure, industrial, defense
 services.html          Services: capacity, the process chain, drawing to delivery, standards
+facilities.html        Plants and machines: figures, monthly capacity, main units, machining, cutting and forming, welding, finishing, quality lab
 case-studies.html      Case studies
 about.html             Story, milestones, vision, mission and values, leadership, plants, sustainability
 careers.html           Careers
@@ -48,10 +52,11 @@ contact.html           Quote form and offices
 assets/css/site.css    design tokens (light and dark), layout, components, motion states
 assets/js/site.js      the motion engine, canvases, world map, line icons and the form
 assets/img/            logos and photographs from the design system, plus WebP copies
+assets/img/facilities/ shop-floor photographs from the corporate presentation, as JPEG and WebP
 assets/fonts/          Barlow Regular and Bold, latin and latin-ext (SIL Open Font License)
 ```
 
-The header, menu, intro, page curtain and footer are identical on every page; change them in all eleven files.
+The header, menu, intro, page curtain and footer are identical on every page; change them in all twelve files. Below 1200px wide the header's links fold into the menu.
 
 - **Request a quote by industry.** A link to `contact.html#oil-and-gas` (or any other line's key, set as `data-key` on the options of the Industry field) opens the form with that industry selected.
 - **Adding an article.** Copy one of the `blog-*.html` files, change its title, date, reading time and text, then add its card to `blog.html` and to the "More From the Blog" lists in the other articles. Any page named `blog-*.html` gets the "Article" page transition.
@@ -77,8 +82,9 @@ The tags, dimension lines, readout and title-block cells are added by the script
 | --- | --- |
 | Every page | First-visit intro with the lockup framed in registration brackets, green page curtain patterned with the monogram, ruled scroll gauge along the foot, crosshair cursor whose frame locks onto links and buttons, magnetic buttons with rolling labels, section tags whose centre lines draw out, dimensioned page titles, card corners that draw out |
 | Home | Monogram field with CAD rulers and a millimetre readout, 3D wireframe gears with pitch circles and tooth-count callouts that mesh and follow the pointer, foot bar that opens into the cover photo, product cards, stacking service strips, scroll-driven marquees, pinned four-step "Working With UCI" run with a truck along the foot bar, rolling odometers, case study index with a preview that trails the pointer, testimonial slider, dot-matrix world map that draws its export lanes from Pune, a milestone strip you can drag, word-by-word vision quote, values that fill in, rising skyline |
-| Products | The sectors orbiting the mark, illustrations that stay in view beside each product line, scroll-driven metro train |
-| Services | Laser cutter that cuts parts from a plate (inner contours first) with a live X/Y readout, capacity visuals (450 squares for 450 machine tools), process chain whose monogram nodes fill green as you scroll, pinned "From Drawing to Delivery", stamped standards |
+| Products | The sectors orbiting the mark, the business mix drawn as bars, illustrations that stay in view beside each product line, scroll-driven metro train |
+| Services | Laser cutter that cuts parts from a plate (inner contours first) with a live X/Y readout, capacity visuals (550 squares for 550 machine tools), process chain whose monogram nodes fill green as you scroll, pinned "From Drawing to Delivery", stamped standards |
+| Facilities | A press brake that bends a blank and dimensions the angle, bars that draw out to scale (monthly capacity, floor area of each unit), machine icons that run (laser head, press ram, welding robot, roll formers, furnace, galvanizing dip, CMM probe), numbered figures in registration brackets |
 | Case studies | The four sectors orbiting the mark |
 | About | Datum ring around the mark, scroll-lit story, the milestone strip, vision and mission cards that lock together, plants listed year by year |
 | Careers | Meshing gears, values that fill in |
