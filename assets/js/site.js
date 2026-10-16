@@ -749,6 +749,181 @@
   }
 
   /* ---------------------------------------------------------------------------
+     Parts library: each cut-out photograph stands on a turntable, as a model
+     does in a CAD viewer. The grid floor turns under it, its shadow and a
+     highlight follow the angle, and its edges draw as a green wireframe when
+     it loads and while the pointer is over it
+     ------------------------------------------------------------------------ */
+  const PART_RY = -14;
+  const PART_RX = 9;
+  const fmtDeg = (d) => `${d < 0 ? '−' : '+'}${Math.abs(d).toFixed(1).padStart(4, '0')}°`;
+
+  function initParts() {
+    const figs = $$('[data-part]');
+    if (!figs.length) return;
+    const span = (cls) => {
+      const el = doc.createElement('span');
+      el.className = cls;
+      el.setAttribute('aria-hidden', 'true');
+      return el;
+    };
+    const items = figs.map((fig, i) => {
+      const stage = $('.part-stage', fig);
+      const img = $('img', stage);
+      const model = doc.createElement('div');
+      model.className = 'part-model';
+      const w = Number(img.getAttribute('width')) || 1;
+      const h = Number(img.getAttribute('height')) || 1;
+      model.style.setProperty('--ar', (w / h).toFixed(4));
+      const shadow = span('part-shadow');
+      const edges = span('part-edges');
+      const sheen = span('part-sheen');
+      model.append(shadow, img, edges, sheen, span('part-scan'));
+      const axes = span('part-axes');
+      axes.innerHTML = '<i class="ax-x"></i><i class="ax-y"></i><i class="ax-z"></i>';
+      const hud = span('part-hud');
+      hud.textContent = 'ISO';
+      stage.append(span('part-floor'), model, axes, hud);
+      return { fig, stage, model, img, shadow, edges, sheen, hud, phase: i * 2.3, ry: PART_RY, rx: PART_RX, px: 0, py: 0, over: false, hover: 0, maps: false };
+    });
+
+    /* The masks share the photograph's file, and the wireframe has its own;
+       they are set only as a part nears the viewport */
+    const maps = (it) => {
+      if (it.maps) return;
+      it.maps = true;
+      const src = new URL(it.img.getAttribute('src'), location.href).href;
+      const wire = src.replace(/\.webp$/, '-edges.webp');
+      [it.shadow, it.sheen].forEach((el) => {
+        el.style.webkitMaskImage = `url("${src}")`;
+        el.style.maskImage = `url("${src}")`;
+      });
+      it.edges.style.webkitMaskImage = `url("${wire}")`;
+      it.edges.style.maskImage = `url("${wire}")`;
+      it.model.classList.add('has-maps');
+    };
+
+    const live = new Set();
+    let t = 0;
+    const task = (dt) => {
+      t += dt;
+      const k = 1 - Math.exp(-dt * 7);
+      live.forEach((it) => {
+        it.hover = lerp(it.hover, it.over ? 1 : 0, 1 - Math.exp(-dt * 5));
+        const idleY = PART_RY + Math.sin(t * 0.42 + it.phase) * 18;
+        const idleX = PART_RX + Math.sin(t * 0.29 + it.phase) * 3;
+        it.ry = lerp(it.ry, lerp(idleY, it.px * 40, it.hover), k);
+        it.rx = lerp(it.rx, lerp(idleX, PART_RX - it.py * 16, it.hover), k);
+        const st = it.fig.style;
+        st.setProperty('--ry', `${it.ry.toFixed(2)}deg`);
+        st.setProperty('--rx', `${it.rx.toFixed(2)}deg`);
+        st.setProperty('--sh', clamp(0.5 - it.ry / 60).toFixed(3));
+        st.setProperty('--lift', (Math.sin(t * 1.4 + it.phase) * 0.5 + 0.5).toFixed(3));
+        if (it.over) it.hud.textContent = `AZ ${fmtDeg(it.ry)}\nEL ${fmtDeg(it.rx)}`;
+      });
+    };
+
+    items.forEach((it) => {
+      onVisible(
+        it.stage,
+        (v) => {
+          if (v) maps(it);
+          if (!motion) return;
+          if (v) live.add(it);
+          else live.delete(it);
+          if (live.size) ticker.add(task);
+          else ticker.remove(task);
+        },
+        '300px'
+      );
+      if (!motion || !finePointer) return;
+      let rect = null;
+      it.stage.addEventListener('pointerenter', () => {
+        rect = it.stage.getBoundingClientRect();
+        it.over = true;
+      });
+      it.stage.addEventListener('pointermove', (e) => {
+        if (!rect) rect = it.stage.getBoundingClientRect();
+        it.px = clamp((e.clientX - rect.left) / rect.width, 0, 1) - 0.5;
+        it.py = clamp((e.clientY - rect.top) / rect.height, 0, 1) - 0.5;
+      });
+      it.stage.addEventListener('pointerleave', () => {
+        rect = null;
+        it.over = false;
+        it.hud.textContent = 'ISO';
+      });
+    });
+  }
+
+  /* Part families as tabs; without the script every family shows in turn */
+  function initPartTabs() {
+    $$('[data-part-tabs]').forEach((lib) => {
+      const panels = $$('.parts-group', lib);
+      if (panels.length < 2) return;
+      const list = doc.createElement('div');
+      list.className = 'parts-tabs';
+      list.setAttribute('role', 'tablist');
+      list.setAttribute('aria-label', lib.dataset.partTabs || 'Part families');
+      const tabs = panels.map((panel) => {
+        const b = doc.createElement('button');
+        b.type = 'button';
+        b.className = 'parts-tab';
+        b.id = `${panel.id}-tab`;
+        b.setAttribute('role', 'tab');
+        b.setAttribute('aria-controls', panel.id);
+        const name = doc.createElement('span');
+        name.textContent = $('.parts-group-title', panel).textContent;
+        const n = doc.createElement('span');
+        n.className = 'parts-tab-n';
+        n.textContent = $$('[data-part]', panel).length;
+        b.append(name, n);
+        panel.setAttribute('role', 'tabpanel');
+        panel.setAttribute('aria-labelledby', b.id);
+        panel.tabIndex = 0;
+        list.appendChild(b);
+        return b;
+      });
+      const select = (i, focus) => {
+        tabs.forEach((b, k) => {
+          const on = k === i;
+          b.setAttribute('aria-selected', String(on));
+          b.tabIndex = on ? 0 : -1;
+          panels[k].hidden = !on;
+        });
+        if (focus) tabs[i].focus();
+        scheduleLayout();
+      };
+      tabs.forEach((b, i) => b.addEventListener('click', () => select(i, false)));
+      list.addEventListener('keydown', (e) => {
+        const i = tabs.indexOf(doc.activeElement);
+        if (i < 0) return;
+        const n = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: tabs.length - 1 }[e.key];
+        if (n === undefined) return;
+        e.preventDefault();
+        select((n + tabs.length) % tabs.length, true);
+      });
+      lib.classList.add('is-tabbed');
+      panels[0].before(list);
+      const fromHash = () => panels.findIndex((p) => `#${p.id}` === location.hash);
+      select(Math.max(0, fromHash()), false);
+      window.addEventListener('hashchange', () => {
+        const i = fromHash();
+        if (i >= 0) select(i, false);
+      });
+      /* Links to a family open its tab and bring the library into view */
+      doc.addEventListener('click', (e) => {
+        const a = e.target instanceof Element ? e.target.closest('a[href^="#"]') : null;
+        const i = a ? panels.findIndex((p) => `#${p.id}` === a.getAttribute('href')) : -1;
+        if (i < 0) return;
+        e.preventDefault();
+        select(i, false);
+        history.replaceState(null, '', `#${panels[i].id}`);
+        list.scrollIntoView({ behavior: motion ? 'smooth' : 'auto', block: 'start' });
+      });
+    });
+  }
+
+  /* ---------------------------------------------------------------------------
      Cursor: a precision crosshair; its bracket frame locks onto targets
      ------------------------------------------------------------------------ */
   function initCursor() {
@@ -879,32 +1054,6 @@
   /* ---------------------------------------------------------------------------
      Pinned sequences
      ------------------------------------------------------------------------ */
-  /* Shutter: the green foot bar splits open into the cover photograph */
-  function initShutter() {
-    const sec = $('[data-shutter]');
-    if (!sec || !motion) return;
-    const wide = mq('(min-width: 720px)');
-    const layout = () => sec.classList.toggle('is-pinned', wide.matches);
-    layout();
-    layoutHooks.push(layout);
-    sec.style.setProperty('--o', 0);
-    addScrub(sec, 'pin', (p) => {
-      if (!sec.classList.contains('is-pinned')) return;
-      sec.style.setProperty('--o', easeInOutCubic(clamp(p / 0.62)).toFixed(4));
-      sec.style.setProperty('--hold', clamp((p - 0.62) / 0.38).toFixed(4));
-    });
-    addScrub(
-      sec,
-      'enter',
-      (p) => {
-        if (sec.classList.contains('is-pinned')) return;
-        sec.style.setProperty('--o', easeInOutCubic(p).toFixed(4));
-        sec.style.setProperty('--hold', 0);
-      },
-      { span: 0.75 }
-    );
-  }
-
   /* Stack: each strip sticks, and the next one pushes up over it */
   function initStack() {
     const stack = $('[data-stack]');
@@ -2669,7 +2818,6 @@
     safe(initTransitions);
     safe(initProgress);
     safe(initMarquees);
-    safe(initShutter);
     safe(initStack);
     safe(initHScroll);
     safe(initChain);
@@ -2677,6 +2825,8 @@
     safe(initCanvases);
     safe(initMagnetic);
     safe(initTilt);
+    safe(initPartTabs);
+    safe(initParts);
     safe(initCursor);
     safe(initForm);
     safe(initTimelines);

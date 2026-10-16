@@ -122,6 +122,9 @@
   --warning-soft: #fcf1da;
   --ring-gap: #ffffff;
   --grid-ink: rgba(55, 52, 53, 0.055);
+  --studio-hi: #ffffff;
+  --studio-lo: #e6e8eb;
+  --studio-grid: rgba(55, 52, 53, 0.2);
   --lockup-display: block;
   --mark-display: none;
   color-scheme: light;
@@ -150,6 +153,10 @@
     --warning-soft: #3a2c0e;
     --ring-gap: #231f20;
     --grid-ink: rgba(246, 247, 249, 0.045);
+    --backdrop-o: 0.13;
+    --studio-hi: #403b3c;
+    --studio-lo: #1b1819;
+    --studio-grid: rgba(246, 247, 249, 0.14);
     --lockup-display: none;
     --mark-display: block;
     color-scheme: dark;
@@ -178,6 +185,10 @@
   --warning-soft: #3a2c0e;
   --ring-gap: #231f20;
   --grid-ink: rgba(246, 247, 249, 0.045);
+  --backdrop-o: 0.13;
+  --studio-hi: #403b3c;
+  --studio-lo: #1b1819;
+  --studio-grid: rgba(246, 247, 249, 0.14);
   --lockup-display: none;
   --mark-display: block;
   color-scheme: dark;
@@ -1089,11 +1100,11 @@ address { font-style: normal; }
 }
 .motion .is-in .draw-on { stroke-dashoffset: 0; }
 
-/* CTA band on the skyline: always light, the ground is a picture of mist */
+/* CTA band on the skyline: the silhouette is a mask, drawn in the theme's green */
 .cta {
   position: relative;
   overflow: hidden;
-  background: var(--mist);
+  background: var(--surface-muted);
   color: var(--ink);
   text-align: center;
   padding-block: clamp(88px, 11vw, 160px) calc(7.6vw + clamp(72px, 9vw, 136px));
@@ -1102,11 +1113,9 @@ address { font-style: normal; }
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("../img/skyline-background.png");
-  background-image: image-set(url("../img/skyline-background-2400.webp") type("image/webp"), url("../img/skyline-background.png") type("image/png"));
-  background-position: center bottom;
-  background-size: 100% auto;
-  background-repeat: no-repeat;
+  background: var(--draw);
+  -webkit-mask: url("../img/skyline-mask.png") center bottom / 100% auto no-repeat;
+  mask: url("../img/skyline-mask.png") center bottom / 100% auto no-repeat;
   transform: translate3d(0, calc((1 - var(--p, 1)) * 12vw), 0);
 }
 .cta-inner {
@@ -1188,56 +1197,55 @@ address { font-style: normal; }
   .hero-gears { margin-top: 0; aspect-ratio: 1.6; max-height: 340px; }
 }
 
-/* Shutter: the foot bar opens into the cover photograph */
-.shutter { position: relative; background: var(--surface); }
-.shutter-pin {
-  position: relative;
-  overflow: hidden;
-  aspect-ratio: 16 / 9;
-  max-height: 100vh;
-  width: 100%;
-}
-.shutter-frame {
+/* Backdrop: the cover photograph behind a band, screened like a print and
+   drifting slowly; a scan line passes over it */
+.has-backdrop { position: relative; isolation: isolate; overflow: hidden; }
+.backdrop {
   position: absolute;
-  inset: 0;
-  clip-path: inset(calc((1 - var(--o, 1)) * 50%) 0);
+  inset: 0 0 auto;
+  height: min(100%, 980px);
+  z-index: -1;
+  pointer-events: none;
+  -webkit-mask:
+    radial-gradient(circle at center, #000 58%, transparent 62%) 0 0 / 4px 4px,
+    linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, 0.85) 30%, transparent 92%);
+  -webkit-mask-composite: source-in;
+  mask:
+    radial-gradient(circle at center, #000 58%, transparent 62%) 0 0 / 4px 4px,
+    linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, 0.85) 30%, transparent 92%);
+  mask-composite: intersect;
 }
-.shutter-frame picture,
-.photo-band picture { display: block; width: 100%; height: 100%; }
-.shutter-frame img {
+.backdrop picture { display: block; width: 100%; height: 100%; }
+.backdrop img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 40%;
-  transform: scale(calc(1.32 - 0.32 * var(--o, 1) + 0.06 * var(--hold, 0)));
+  object-position: 50% 35%;
+  filter: grayscale(1) contrast(1.2);
+  opacity: var(--backdrop-o, 0.3);
+  transform: translate3d(0, calc((var(--p, 0.5) - 0.5) * -10%), 0) scale(1.14);
 }
-.shutter-edge {
+.backdrop::after {
+  content: "";
   position: absolute;
   left: 0;
   right: 0;
-  top: 50%;
-  height: var(--bar);
-  margin-top: calc(var(--bar) / -2);
-  background: var(--green);
-  opacity: calc(1 - var(--hold, 0) * 4);
-}
-.shutter-pin { --half: 28.125vw; }
-.shutter-edge.top { transform: translate3d(0, calc(var(--o, 1) * (var(--half) * -1 - var(--bar) / 2)), 0); }
-.shutter-edge.bottom { transform: translate3d(0, calc(var(--o, 1) * (var(--half) + var(--bar) / 2)), 0); }
-html:not(.motion) .shutter-edge { display: none; }
-
-.motion .shutter.is-pinned { height: 230vh; height: 230svh; }
-.motion .shutter.is-pinned .shutter-pin {
-  position: sticky;
   top: 0;
-  height: 100vh;
-  height: 100svh;
-  max-height: none;
-  aspect-ratio: auto;
-  --half: 50vh;
+  height: 22%;
+  background: linear-gradient(to bottom, transparent, color-mix(in srgb, var(--draw) 30%, transparent) 96%, var(--draw) 96% 100%);
+  opacity: 0;
 }
-@supports (height: 100svh) {
-  .motion .shutter.is-pinned .shutter-pin { --half: 50svh; }
+.motion .backdrop picture { animation: backdrop-drift 48s ease-in-out infinite alternate; }
+.motion .backdrop::after { animation: backdrop-scan 7s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
+@keyframes backdrop-drift {
+  from { transform: translate3d(-2.5%, 0, 0); }
+  to { transform: translate3d(2.5%, 0, 0); }
+}
+@keyframes backdrop-scan {
+  0% { transform: translate3d(0, -100%, 0); opacity: 0; }
+  12% { opacity: 1; }
+  70% { opacity: 0.9; }
+  100% { transform: translate3d(0, 360%, 0); opacity: 0; }
 }
 
 /* Group figures */
@@ -2048,6 +2056,7 @@ a.tile:focus-visible .badge { background: #000000; color: var(--mist); }
 .train svg { height: 100%; width: auto; max-width: none; }
 
 /* Contact */
+.photo-band picture { display: block; width: 100%; height: 100%; }
 .photo-band {
   position: relative;
   height: clamp(150px, 23.6vw, 354px);
@@ -3193,7 +3202,7 @@ html:not(.js) .quote-slide:first-child { opacity: 1; visibility: visible; transf
 .voice,
 .cs-block,
 .logo-slot { position: relative; }
-:is(.tile, .cap, .usp, .sustain-item, .std, .office, .leader, .voice, .cs-block, .logo-slot, .line-art, .aside, .machine)::after {
+:is(.tile, .cap, .usp, .sustain-item, .std, .office, .leader, .voice, .cs-block, .logo-slot, .line-art, .aside, .machine, .part)::after {
   content: "";
   position: absolute;
   inset: -1px;
@@ -3218,7 +3227,7 @@ a.tile:focus-visible::after,
 .std:hover::after { --c: var(--green); }
 /* On reveal the brackets draw out from each corner */
 @keyframes brackets-in { from { background-size: 0 2px, 2px 0, 0 2px, 2px 0, 0 2px, 2px 0, 0 2px, 2px 0; } }
-.motion :is([data-stagger], [data-in]).is-in :is(.tile, .cap, .usp, .sustain-item, .std, .office, .leader, .voice, .cs-block, .logo-slot, .machine)::after {
+.motion :is([data-stagger], [data-in]).is-in :is(.tile, .cap, .usp, .sustain-item, .std, .office, .leader, .voice, .cs-block, .logo-slot, .machine, .part)::after {
   animation: brackets-in 0.9s var(--ease-push) backwards;
   animation-delay: calc(var(--i, 0) * 75ms + 380ms);
 }
@@ -3380,26 +3389,6 @@ a.tile:focus-visible .tile-top::after { color: var(--on-green); }
   transition: opacity 0.35s;
 }
 .cad-readout.is-on { opacity: 1; }
-
-/* Registration brackets frame the cover photograph as the shutter opens */
-.shutter-pin::after {
-  content: "";
-  position: absolute;
-  inset: clamp(16px, 3vw, 40px);
-  --c: var(--green);
-  background:
-    linear-gradient(var(--c) 0 0) left top / 36px 3px,
-    linear-gradient(var(--c) 0 0) left top / 3px 36px,
-    linear-gradient(var(--c) 0 0) right top / 36px 3px,
-    linear-gradient(var(--c) 0 0) right top / 3px 36px,
-    linear-gradient(var(--c) 0 0) left bottom / 36px 3px,
-    linear-gradient(var(--c) 0 0) left bottom / 3px 36px,
-    linear-gradient(var(--c) 0 0) right bottom / 36px 3px,
-    linear-gradient(var(--c) 0 0) right bottom / 3px 36px;
-  background-repeat: no-repeat;
-  opacity: var(--o, 1);
-  pointer-events: none;
-}
 
 /* Figures sit on a scale */
 .stat::after {
@@ -3752,6 +3741,270 @@ main { counter-reset: fig; }
 .a-brake-arc { animation: brake-arc 4.2s var(--ease-out) infinite; }
 html:not(.motion) .a-brake-arc { opacity: 0; }
 
+/* 19. Parts library: each cut-out photograph on a turntable --------------- */
+.parts-lib .section-head { margin-bottom: var(--space-8); }
+.parts-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-8);
+}
+.parts-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface-raised);
+  color: var(--ink);
+  font: inherit;
+  font-size: var(--fs-fine);
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+}
+.parts-tab:hover { border-color: var(--green); }
+.parts-tab[aria-selected="true"] { background: var(--ink); border-color: var(--ink); color: var(--surface); }
+.parts-tab-n {
+  min-width: 2ch;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-muted);
+}
+.parts-tab[aria-selected="true"] .parts-tab-n { color: inherit; opacity: 0.7; }
+.parts-group + .parts-group { margin-top: clamp(48px, 6vw, 88px); }
+.is-tabbed .parts-group + .parts-group { margin-top: 0; }
+.parts-group-title { margin-bottom: var(--space-6); font-size: var(--fs-h3); }
+.is-tabbed .parts-group-title {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.parts-group:focus-visible { outline: 2px solid var(--focus); outline-offset: 8px; }
+.parts-sub {
+  margin: var(--space-8) 0 var(--space-4);
+  font-size: var(--fs-fine);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+.parts-sub:first-of-type { margin-top: 0; }
+.part-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(230px, 100%), 1fr));
+  gap: var(--space-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+@media (max-width: 520px) {
+  .part-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); }
+}
+
+.part {
+  --ry: -14deg;
+  --rx: 9deg;
+  --lift: 0.5;
+  --sh: 0.5;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+.part-stage {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  container-type: size;
+  perspective: 760px;
+  perspective-origin: 50% 24%;
+  background: radial-gradient(115% 90% at 50% 18%, var(--studio-hi) 0%, var(--studio-lo) 82%);
+}
+/* Without the script the photograph sits plain in the studio */
+.part-stage > img {
+  position: absolute;
+  inset: 12%;
+  width: 76%;
+  height: 76%;
+  object-fit: contain;
+}
+.part-model {
+  position: absolute;
+  left: 50%;
+  bottom: 25%;
+  width: min(80cqw, calc(60cqh * var(--ar, 1)));
+  aspect-ratio: var(--ar, 1);
+  transform-origin: 50% 100%;
+  transform:
+    translate3d(-50%, calc(var(--lift) * -5px), 0)
+    rotateX(calc((var(--rx) - 9deg) * 0.6))
+    rotateY(calc(var(--ry) * 0.55));
+}
+.part-model > img,
+.part-edges,
+.part-sheen,
+.part-shadow {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+.part-model > img { object-fit: fill; }
+.part-model:not(.has-maps) :is(.part-shadow, .part-edges, .part-sheen) { display: none; }
+/* The silhouette, flattened onto the floor */
+.part-shadow {
+  background: #000;
+  transform-origin: 50% 100%;
+  transform: translate3d(0, 4%, 0) scaleY(0.12) skewX(calc(var(--ry) * -0.5));
+  filter: blur(5px);
+  opacity: calc(0.42 - var(--lift) * 0.1);
+}
+/* A highlight that slides across the metal as the part turns */
+.part-sheen {
+  background: linear-gradient(100deg, transparent 32%, rgba(255, 255, 255, 0.5) 48%, transparent 64%) no-repeat;
+  background-size: 320% 100%;
+  background-position: calc(var(--sh) * 100%) 0;
+  mix-blend-mode: soft-light;
+}
+/* The part's edges as a green wireframe: drawn on load and on hover */
+.part-edges {
+  background: var(--draw);
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+.part:hover .part-edges { opacity: 0.85; }
+.part-scan {
+  position: absolute;
+  left: -8%;
+  right: -8%;
+  top: 100%;
+  height: 16px;
+  background: linear-gradient(var(--draw) 0 2px, color-mix(in srgb, var(--draw) 22%, transparent) 2px, transparent);
+  opacity: 0;
+  pointer-events: none;
+}
+/* The turntable: a grid floor that turns with the part */
+.part-floor {
+  position: absolute;
+  left: 50%;
+  top: 75%;
+  width: 170cqw;
+  height: 170cqw;
+  margin: -85cqw 0 0 -85cqw;
+  transform: rotateX(calc(80deg - var(--rx))) rotateZ(var(--ry));
+  background-image:
+    linear-gradient(var(--studio-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--studio-grid) 1px, transparent 1px);
+  background-size: 8.5cqw 8.5cqw;
+  background-position: center;
+  -webkit-mask: radial-gradient(closest-side, #000 18%, transparent 92%);
+  mask: radial-gradient(closest-side, #000 18%, transparent 92%);
+  pointer-events: none;
+}
+.part-floor::before,
+.part-floor::after {
+  content: "";
+  position: absolute;
+  inset: 30%;
+  border: 1px dashed var(--draw);
+  border-radius: 50%;
+  opacity: 0.55;
+}
+.part-floor::after {
+  inset: 67% 50% 27% calc(50% - 1px);
+  width: 2px;
+  border: 0;
+  border-radius: 0;
+  background: var(--draw);
+  opacity: 0.9;
+}
+/* View triad: X green, Y ink, Z grey */
+.part-axes {
+  position: absolute;
+  left: 18px;
+  bottom: 18px;
+  width: 0;
+  height: 0;
+  transform-style: preserve-3d;
+  transform: perspective(240px) rotateX(calc(-1 * var(--rx) - 12deg)) rotateY(var(--ry));
+  pointer-events: none;
+}
+.part-axes i {
+  position: absolute;
+  left: 0;
+  top: -1px;
+  width: 22px;
+  height: 2px;
+  transform-origin: 0 50%;
+}
+.part-axes .ax-x { background: var(--draw); }
+.part-axes .ax-y { background: var(--ink); transform: rotateZ(-90deg); }
+.part-axes .ax-z { background: var(--ink-muted); transform: rotateY(-90deg); }
+.part-hud {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 12px;
+  line-height: 1.4;
+  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;
+  white-space: pre;
+  color: var(--ink-muted);
+  pointer-events: none;
+}
+.part figcaption {
+  display: grid;
+  gap: 2px;
+  padding: 14px 16px 16px;
+  border-top: 1px solid var(--line);
+}
+.part-no {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-muted);
+}
+.part-name { font-size: 17px; font-weight: 600; line-height: 1.3; }
+.part-meta { font-size: 14px; line-height: 1.4; color: var(--ink-muted); }
+@media (max-width: 520px) {
+  .part figcaption { padding: 10px 12px 12px; }
+  .part-name { font-size: 15px; }
+  .part-hud, .part-axes { display: none; }
+}
+
+/* Load: the wireframe draws, a scan line passes and the part fills in behind it */
+.motion .part[data-in] .part-model > img { transition: clip-path 1.2s var(--ease-inout) 0.45s; }
+.motion .part[data-in]:not(.is-in) .part-model > img,
+.motion .part[data-in]:not(.is-in) .part-sheen { clip-path: inset(100% 0 0 0); }
+.motion .part[data-in]:not(.is-in) .part-shadow { opacity: 0; }
+.motion .part[data-in] .part-shadow { transition: opacity 0.8s 1.2s; }
+.motion .part.is-in .part-edges { animation: part-wire 2.2s var(--ease-out) backwards; }
+.motion .part.is-in .part-scan { animation: part-scan 1.2s var(--ease-inout) 0.45s backwards; }
+@keyframes part-wire {
+  0% { opacity: 0; clip-path: inset(0 0 100% 0); }
+  22% { opacity: 1; clip-path: inset(0); }
+  70% { opacity: 1; }
+  100% { opacity: 0; }
+}
+@keyframes part-scan {
+  0% { top: 100%; opacity: 1; }
+  90% { opacity: 1; }
+  100% { top: 0; opacity: 0; }
+}
+
 /* 14. Reduced motion --------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -3779,8 +4032,6 @@ html:not(.motion) .a-brake-arc { opacity: 0; }
   .motion [data-reveal],
   .motion [data-stagger] > *,
   .motion [data-split] .wi { opacity: 1 !important; transform: none !important; clip-path: none !important; }
-  .shutter,
   .process { height: auto !important; }
-  .shutter-pin,
   .process-pin { position: relative !important; height: auto !important; }
 }
