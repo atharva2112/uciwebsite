@@ -367,6 +367,110 @@
   }
 
   /* ---------------------------------------------------------------------------
+     Drawing furniture: the page reads like an engineering drawing sheet.
+     All of it is decorative and hidden from assistive technology.
+     ------------------------------------------------------------------------ */
+  /* Section tags: each section heading gets a number and a dash-dot centre line */
+  function initSectionTags() {
+    $$('main h2.h2')
+      .filter((h) => !h.closest('[data-hero]'))
+      .forEach((h, i) => {
+        const tag = doc.createElement('span');
+        tag.className = 'sec-tag';
+        tag.setAttribute('aria-hidden', 'true');
+        tag.innerHTML = `<span class="sec-num">§ ${String(i + 1).padStart(2, '0')}</span><span class="sec-line"></span>`;
+        h.prepend(tag);
+      });
+  }
+
+  /* Dimension lines: page titles are dimensioned to their measured width in
+     millimetres, and the figure counts up as the line draws out */
+  function initDims() {
+    $$('.hero-title, .page-title, .article-title').forEach((title) => {
+      const dim = doc.createElement('span');
+      dim.className = 'dim';
+      dim.setAttribute('aria-hidden', 'true');
+      dim.innerHTML = '<i class="dim-line"></i><b class="dim-val">0.0</b>';
+      const val = dim.lastElementChild;
+      const range = doc.createRange();
+      let mm = 0;
+      let shown = motion ? 0 : 1;
+      const set = () => {
+        val.textContent = (mm * easeOutCubic(shown)).toFixed(1);
+      };
+      const measure = () => {
+        const box = title.getBoundingClientRect();
+        let l = Infinity;
+        let r = -Infinity;
+        const walker = doc.createTreeWalker(title, NodeFilter.SHOW_TEXT);
+        for (let n = walker.nextNode(); n; n = walker.nextNode()) {
+          if (!n.textContent.trim() || dim.contains(n)) continue;
+          range.selectNodeContents(n);
+          Array.from(range.getClientRects()).forEach((rc) => {
+            if (!rc.width) return;
+            l = Math.min(l, rc.left);
+            r = Math.max(r, rc.right);
+          });
+        }
+        if (!(r > l)) return;
+        dim.style.left = `${(l - box.left).toFixed(1)}px`;
+        dim.style.width = `${(r - l).toFixed(1)}px`;
+        mm = (r - l) * PX_TO_MM;
+        set();
+      };
+      title.classList.add('has-dim');
+      title.appendChild(dim);
+      measure();
+      layoutHooks.push(measure);
+      if (!motion) return;
+      revealHooks.push((el) => {
+        if (el !== title) return;
+        const start = performance.now();
+        const step = (dt, now) => {
+          shown = clamp((now - start - 450) / 1300);
+          set();
+          if (shown >= 1) ticker.remove(step);
+        };
+        ticker.add(step);
+      });
+    });
+  }
+
+  /* Title block: the footer's last row becomes a drawing title block */
+  const SHEETS = ['index.html', 'products.html', 'services.html', 'case-studies.html', 'about.html', 'careers.html', 'blog.html', 'contact.html'];
+  function initTitleBlock() {
+    const base = $('.footer-base');
+    if (!base) return;
+    const file = window.location.pathname.split('/').pop() || 'index.html';
+    let n = SHEETS.indexOf(file);
+    if (n < 0 && /^blog-/.test(file)) n = SHEETS.indexOf('blog.html');
+    const pad = (k) => String(k).padStart(2, '0');
+    const key = (text) => {
+      const k = doc.createElement('span');
+      k.className = 'tb-key';
+      k.setAttribute('aria-hidden', 'true');
+      k.textContent = text;
+      return k;
+    };
+    const given = $$(':scope > p', base);
+    if (given[0]) given[0].prepend(key('Company'));
+    if (given[1]) given[1].prepend(key('Discipline'));
+    [
+      ['Title', pageName(file) || 'Home'],
+      ['Sheet', n >= 0 ? `${pad(n + 1)} / ${pad(SHEETS.length)}` : '01 / 01'],
+      ['Scale', '1 : 1'],
+      ['Units', 'mm'],
+    ].forEach(([k, v]) => {
+      const p = doc.createElement('p');
+      p.className = 'tb-cell';
+      p.setAttribute('aria-hidden', 'true');
+      p.append(key(k), v);
+      base.appendChild(p);
+    });
+    base.classList.add('title-block');
+  }
+
+  /* ---------------------------------------------------------------------------
      Reveals
      ------------------------------------------------------------------------ */
   const REVEAL_SEL = '[data-reveal], [data-split], [data-stagger], [data-odometer], [data-in]';
@@ -1119,6 +1223,47 @@
   }
 
   /* ---------------------------------------------------------------------------
+     The Ultra "U" monogram: two pillars and the dot, traced from mark-large.png
+     (68.75 × 100 units; the same path is the --mark mask in site.css).
+     MARK_POLYS holds it as polygons, 1 unit tall and centred on the origin, so
+     canvases can draw it at any size or in perspective.
+     ------------------------------------------------------------------------ */
+  const MARK_W = 68.75;
+  const MARK_POLYS = (() => {
+    const pillar = (mirror) => {
+      const P = (x, y) => [mirror ? MARK_W - x : x, y];
+      const pts = [P(0, 17.3)];
+      const cubic = (a, b, c, d) => {
+        for (let i = 1; i <= 10; i++) {
+          const t = i / 10;
+          const u = 1 - t;
+          pts.push([0, 1].map((k) => u * u * u * a[k] + 3 * u * u * t * b[k] + 3 * u * t * t * c[k] + t * t * t * d[k]));
+        }
+      };
+      cubic(P(0, 17.3), P(11, 17.5), P(24.6, 22.6), P(27.3, 36.3));
+      pts.push(P(27.3, 100));
+      cubic(P(27.3, 100), P(12.6, 99.6), P(0.6, 92.5), P(0.1, 79.6));
+      return pts;
+    };
+    const dot = Array.from({ length: 28 }, (_, k) => {
+      const a = (k / 28) * Math.PI * 2;
+      return [34.4 + 10.4 * Math.cos(a), 10.4 + 10.4 * Math.sin(a)];
+    });
+    return [pillar(false), pillar(true), dot].map((poly) => poly.map(([x, y]) => [(x - MARK_W / 2) / 100, (y - 50) / 100]));
+  })();
+  /* Adds the mark, h px tall and centred on x, y, to the current path */
+  const markPath = (ctx, x, y, h) => {
+    for (let p = 0; p < MARK_POLYS.length; p++) {
+      const poly = MARK_POLYS[p];
+      ctx.moveTo(x + poly[0][0] * h, y + poly[0][1] * h);
+      for (let i = 1; i < poly.length; i++) ctx.lineTo(x + poly[i][0] * h, y + poly[i][1] * h);
+      ctx.closePath();
+    }
+  };
+  const PX_TO_MM = 25.4 / 96;
+  const fmtMM = (px) => (Math.max(0, px) * PX_TO_MM).toFixed(1).padStart(6, '0');
+
+  /* ---------------------------------------------------------------------------
      Canvas helpers
      ------------------------------------------------------------------------ */
   const fitCanvas = (canvas, box) => {
@@ -1131,41 +1276,80 @@
     return { w, h, dpr };
   };
 
-  /* Plus field: the cover's plus grid, live. Crosses near the pointer turn,
-     grow and go green; a slow diagonal sweep keeps it alive on touch screens. */
-  function PlusField(canvas) {
+  /* Mark field: the cover's grid set with the U monogram, live. Marks near the
+     pointer grow and go green, rulers on the top and left edges track the
+     pointer like a CAD viewport, the nearest grid node shows a snap box, and a
+     readout gives the pointer's position in millimetres. A slow diagonal sweep
+     keeps the field alive on touch screens. */
+  function MarkField(canvas) {
     const host = canvas.parentElement;
     const ctx = canvas.getContext('2d');
+    const base = doc.createElement('canvas');
+    const bctx = base.getContext('2d');
     let w = 0;
     let h = 0;
     let dpr = 1;
     let pitch = 48;
+    let size = 12;
     let cols = 0;
     let rows = 0;
     let ox = 0;
     let oy = 0;
     let colors = null;
+    let readout = null;
+    let frame = 0;
     const readColors = () => {
-      colors = { base: hexToRgb(token('--line')), hot: hexToRgb(token('--green')) };
+      colors = {
+        base: hexToRgb(token('--line')),
+        hot: hexToRgb(token('--green')),
+        rule: hexToRgb(token('--line-strong')),
+        ink: hexToRgb(token('--ink')),
+      };
     };
     const ptr = { x: -1e4, y: -1e4, tx: -1e4, ty: -1e4, amp: 0, tamp: 0 };
     const ripples = [];
     const t0 = performance.now();
     let running = false;
 
+    /* The still layer: every mark at rest, plus the ruler ticks */
+    const paintBase = () => {
+      base.width = canvas.width;
+      base.height = canvas.height;
+      bctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      bctx.clearRect(0, 0, w, h);
+      bctx.beginPath();
+      for (let j = 0; j < rows; j++) for (let i = 0; i < cols; i++) markPath(bctx, ox + i * pitch, oy + j * pitch, size);
+      bctx.fillStyle = rgba(colors.base);
+      bctx.fill();
+      const q = pitch / 4;
+      bctx.fillStyle = rgba(colors.rule, 0.55);
+      for (let k = Math.floor(-ox / q); ox + k * q < w; k++) {
+        const len = k % 4 === 0 ? 10 : k % 2 === 0 ? 6 : 3;
+        bctx.fillRect(Math.round(ox + k * q), 0, 1, len);
+      }
+      for (let k = Math.floor(-oy / q); oy + k * q < h; k++) {
+        const len = k % 4 === 0 ? 10 : k % 2 === 0 ? 6 : 3;
+        bctx.fillRect(0, Math.round(oy + k * q), len, 1);
+      }
+    };
+
     const resize = () => {
       ({ w, h, dpr } = fitCanvas(canvas, host));
       pitch = w < 700 ? 40 : 48;
+      size = w < 700 ? 10 : 12;
       cols = Math.ceil(w / pitch) + 1;
       rows = Math.ceil(h / pitch) + 1;
       ox = (w - (cols - 1) * pitch) / 2;
       oy = (h - (rows - 1) * pitch) / 2;
+      paintBase();
       if (!running) draw(0, performance.now());
     };
 
     function draw(dt, now) {
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(base, 0, 0);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.clearRect(0, 0, w, h);
       const t = (now - t0) / 1000;
       ptr.x = lerp(ptr.x, ptr.tx, 0.16);
       ptr.y = lerp(ptr.y, ptr.ty, 0.16);
@@ -1177,7 +1361,6 @@
       const R = 220;
       const sweep = motion ? ((t % 10) / 10) * (w * 0.6 + h + 700) - 350 : -1e5;
       const hot = [];
-      ctx.beginPath();
       for (let j = 0; j < rows; j++) {
         const y = oy + j * pitch;
         for (let i = 0; i < cols; i++) {
@@ -1194,26 +1377,53 @@
             const dd = Math.abs(Math.hypot(x - rp.x, y - rp.y) - rp.t * 640);
             if (dd < 80) k = Math.max(k, (1 - dd / 80) * (1 - rp.t / 2.4));
           }
-          if (k < 0.03) {
-            ctx.rect(x - 6, y - 1, 12, 2);
-            ctx.rect(x - 1, y - 6, 2, 12);
-          } else {
-            hot.push(x, y, k);
-          }
+          if (k >= 0.03) hot.push(x, y, k);
         }
       }
-      ctx.fillStyle = rgba(colors.base);
-      ctx.fill();
+      // Lift the resting mark out from under each hot one, then draw it grown and green
+      const hw = size * 0.36 + 1;
+      const hh = size * 0.5 + 1;
+      for (let n = 0; n < hot.length; n += 3) ctx.clearRect(hot[n] - hw, hot[n + 1] - hh, hw * 2, hh * 2);
       for (let n = 0; n < hot.length; n += 3) {
         const k = hot[n + 2];
-        const arm = 6 * (1 + k * 0.9);
-        ctx.save();
-        ctx.translate(hot[n], hot[n + 1]);
-        ctx.rotate((k * Math.PI) / 4);
+        ctx.beginPath();
+        markPath(ctx, hot[n], hot[n + 1], size * (1 + k * 0.95));
         ctx.fillStyle = rgba(mixRgb(colors.base, colors.hot, Math.min(1, k * 1.5)));
-        ctx.fillRect(-arm, -1, arm * 2, 2);
-        ctx.fillRect(-1, -arm, 2, arm * 2);
-        ctx.restore();
+        ctx.fill();
+      }
+      if (ptr.amp > 0.01) {
+        const a = ptr.amp;
+        // Guides through the pointer, like a CAD crosshair spanning the viewport
+        ctx.setLineDash([2, 5]);
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = rgba(colors.rule, 0.32 * a);
+        ctx.beginPath();
+        ctx.moveTo(0, Math.round(ptr.y) + 0.5);
+        ctx.lineTo(w, Math.round(ptr.y) + 0.5);
+        ctx.moveTo(Math.round(ptr.x) + 0.5, 0);
+        ctx.lineTo(Math.round(ptr.x) + 0.5, h);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        // Ruler markers
+        ctx.fillStyle = rgba(colors.hot, a);
+        ctx.beginPath();
+        ctx.moveTo(ptr.x - 6, 0);
+        ctx.lineTo(ptr.x + 6, 0);
+        ctx.lineTo(ptr.x, 10);
+        ctx.closePath();
+        ctx.moveTo(0, ptr.y - 6);
+        ctx.lineTo(0, ptr.y + 6);
+        ctx.lineTo(10, ptr.y);
+        ctx.closePath();
+        ctx.fill();
+        // Snap box on the nearest grid node
+        const sx = ox + Math.round((ptr.x - ox) / pitch) * pitch;
+        const sy = oy + Math.round((ptr.y - oy) / pitch) * pitch;
+        const b = size * 1.45;
+        ctx.strokeStyle = rgba(colors.ink, 0.7 * a);
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(Math.round(sx - b) + 0.5, Math.round(sy - b) + 0.5, Math.round(b * 2), Math.round(b * 2));
+        if (readout && frame++ % 3 === 0) readout.textContent = `X ${fmtMM(ptr.x)}   Y ${fmtMM(h - ptr.y)}`;
       }
     }
 
@@ -1222,13 +1432,22 @@
     layoutHooks.push(resize);
     themeHooks.push(() => {
       readColors();
+      paintBase();
       if (!running) draw(0, performance.now());
     });
     if (!motion) return { ripple() {} };
 
+    if (finePointer && !$('[data-laser]', host)) {
+      readout = doc.createElement('p');
+      readout.className = 'cad-readout';
+      readout.setAttribute('aria-hidden', 'true');
+      readout.textContent = 'X 0000.0   Y 0000.0';
+      host.appendChild(readout);
+    }
     host.addEventListener(
       'pointermove',
       (e) => {
+        if (e.pointerType === 'touch') return;
         const r = canvas.getBoundingClientRect();
         ptr.tx = e.clientX - r.left;
         ptr.ty = e.clientY - r.top;
@@ -1237,11 +1456,13 @@
           ptr.y = ptr.ty;
         }
         ptr.tamp = 1;
+        if (readout) readout.classList.add('is-on');
       },
       { passive: true }
     );
     host.addEventListener('pointerleave', () => {
       ptr.tamp = 0;
+      if (readout) readout.classList.remove('is-on');
     });
     const ripple = (x, y) => ripples.push({ x, y, t: 0 });
     host.addEventListener('pointerdown', (e) => {
@@ -1324,12 +1545,14 @@
     let cys = 1;
     let sys = 0;
     const tmp = [0, 0];
+    const font = token('--font-sans') || 'sans-serif';
 
     const readColors = () => {
       colors = {
         front: hexToRgb(token('--draw')),
         back: hexToRgb(token('--line-strong')),
         ink: hexToRgb(token('--ink')),
+        bg: hexToRgb(token('--surface')),
       };
     };
     const project = (x, y, z) => {
@@ -1392,12 +1615,83 @@
       strokePath(bore, cx, cy, phi, z0 + half, rgba(colors.front, e), 1.3, e);
       strokePath(hub, cx, cy, phi, z0 + half, rgba(colors.back, 0.55 * e), 1, e);
       ctx.setLineDash([]);
-      const o = project(cx, cy, z0 + half);
-      const ox = o[0];
-      const oy = o[1];
-      ctx.fillStyle = rgba(colors.ink, e);
-      ctx.fillRect(ox - 7, oy - 1, 14, 2);
-      ctx.fillRect(ox - 1, oy - 7, 2, 14);
+      // The U monogram on the hub cap, upright like a spinner cap
+      const mh = g.N > 12 ? 0.26 : 0.15;
+      ctx.beginPath();
+      MARK_POLYS.forEach((poly) => {
+        poly.forEach((p, i) => {
+          const q = project(cx + p[0] * mh, cy + p[1] * mh, z0 + half);
+          if (i) ctx.lineTo(q[0], q[1]);
+          else ctx.moveTo(q[0], q[1]);
+        });
+        ctx.closePath();
+      });
+      ctx.fillStyle = rgba(colors.front, e);
+      ctx.fill();
+    };
+
+    /* Drawing annotations: dash-dot pitch circles and centre line, and leader
+       callouts with each gear's tooth count */
+    const CENTER_DASH = [14, 4, 2, 4];
+    const projectPath = (pts, z) => {
+      ctx.beginPath();
+      pts.forEach((p, i) => {
+        const q = project(p[0], p[1], z);
+        if (i) ctx.lineTo(q[0], q[1]);
+        else ctx.moveTo(q[0], q[1]);
+      });
+    };
+    const callout = (x, y, dx, dy, text, a) => {
+      const fs = 17.33;
+      ctx.font = `400 ${fs}px ${font}`;
+      const tw = ctx.measureText(text).width;
+      let ex = x + dx;
+      const ey = clamp(y + dy, fs + 6, h - 6);
+      const right = dx >= 0;
+      ex = right ? Math.min(ex, w - tw - 12) : Math.max(ex, tw + 12);
+      const sx = right ? ex + tw + 8 : ex - tw - 8;
+      ctx.strokeStyle = rgba(colors.back, 0.8 * a);
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      ctx.lineTo(ex, ey);
+      ctx.lineTo(sx, ey);
+      ctx.stroke();
+      ctx.fillStyle = rgba(colors.ink, a);
+      ctx.beginPath();
+      ctx.arc(x, y, 2.5, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = rgba(colors.bg, 0.85 * a);
+      ctx.fillRect(right ? ex + 1 : ex - tw - 7, ey - fs - 4, tw + 6, fs + 2);
+      ctx.fillStyle = rgba(colors.back, a);
+      ctx.textAlign = right ? 'left' : 'right';
+      ctx.textBaseline = 'alphabetic';
+      ctx.fillText(text, right ? ex + 4 : ex - 4, ey - 6);
+    };
+    const annotate = (p1, p2, z2, e) => {
+      const ux = Math.cos(theta);
+      const uy = Math.sin(theta);
+      const a = clamp((e - 0.55) / 0.45);
+      if (a <= 0) return;
+      ctx.setLineDash(CENTER_DASH);
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = rgba(colors.back, 0.5 * a);
+      projectPath(circle(1, 120, p1[0], p1[1]), g1.t / 2);
+      ctx.closePath();
+      ctx.stroke();
+      projectPath(circle(0.5, 72, p2[0], p2[1]), z2 + g2.t / 2);
+      ctx.closePath();
+      ctx.stroke();
+      projectPath([[p1[0] - ux * 1.32, p1[1] - uy * 1.32], [p2[0] + ux * 0.82, p2[1] + uy * 0.82]], g1.t / 2);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      if (w < 340) return;
+      const k1 = theta + Math.PI + 1.15;
+      const q1 = project(p1[0] + Math.cos(k1) * 1.0, p1[1] + Math.sin(k1) * 1.0, g1.t / 2);
+      callout(q1[0], q1[1], -38, 34, `z = ${g1.N}`, a);
+      const k2 = theta - 1.35;
+      const q2 = project(p2[0] + Math.cos(k2) * 0.5, p2[1] + Math.sin(k2) * 0.5, z2 + g2.t / 2);
+      callout(q2[0], q2[1], 34, -30, `z = ${g2.N}`, a);
     };
 
     function draw() {
@@ -1412,8 +1706,12 @@
       const spread = (1 - e) * 1.4;
       const a1 = phi1 + drive - (1 - e) * 1.4;
       const a2 = phi2 - (drive * g1.N) / g2.N + (1 - e) * 2.6;
-      drawGear(g1, holes1, bore1, hub1, c1[0] - Math.cos(theta) * spread * 0.25, c1[1] - Math.sin(theta) * spread * 0.25, a1, 0, e);
-      drawGear(g2, [], bore2, hub2, c2[0] + Math.cos(theta) * spread, c2[1] + Math.sin(theta) * spread, a2, (1 - e) * 1.6, e);
+      const p1 = [c1[0] - Math.cos(theta) * spread * 0.25, c1[1] - Math.sin(theta) * spread * 0.25];
+      const p2 = [c2[0] + Math.cos(theta) * spread, c2[1] + Math.sin(theta) * spread];
+      const z2 = (1 - e) * 1.6;
+      annotate(p1, p2, z2, e);
+      drawGear(g1, holes1, bore1, hub1, p1[0], p1[1], a1, 0, e);
+      drawGear(g2, [], bore2, hub2, p2[0], p2[1], a2, z2, e);
     }
 
     const task = (dt, now) => {
@@ -1637,14 +1935,15 @@
       ctx.strokeStyle = rgba(colors.strong);
       ctx.lineWidth = 1.5;
       ctx.strokeRect(ox + 0.75, oy + 0.75, PW * s - 1.5, PH * s - 1.5);
+      // The plate carries the brand's grid of U marks
       ctx.fillStyle = rgba(colors.line);
       const step = s / 8;
+      const mh = Math.min(10, step * 0.42);
+      ctx.beginPath();
       for (let gx = step; gx < PW * s - 2; gx += step) {
-        for (let gy = step; gy < PH * s - 2; gy += step) {
-          ctx.fillRect(ox + gx - 4, oy + gy - 0.75, 8, 1.5);
-          ctx.fillRect(ox + gx - 0.75, oy + gy - 4, 1.5, 8);
-        }
+        for (let gy = step; gy < PH * s - 2; gy += step) markPath(ctx, ox + gx, oy + gy, mh);
       }
+      ctx.fill();
 
       ctx.setLineDash([4, 6]);
       ctx.strokeStyle = rgba(colors.strong, 0.4);
@@ -1793,7 +2092,7 @@
   }
 
   function initCanvases() {
-    const fields = $$('[data-plus-field]').map((c) => PlusField(c));
+    const fields = $$('[data-mark-field]').map((c) => MarkField(c));
     const gears = $$('[data-gears]').map((c) => Gears(c));
     $$('[data-laser]').forEach((c) => LaserCutter(c, $('[data-laser-readout]')));
     $$('[data-dots]').forEach((c) => DotMatrix(c));
@@ -2172,11 +2471,11 @@
     const cy = r.top + r.height / 2;
     for (let i = 0; i < 26; i++) {
       const p = doc.createElement('i');
-      p.className = 'plus-burst';
+      p.className = 'mark-burst';
       p.setAttribute('aria-hidden', 'true');
       const a = Math.random() * Math.PI * 2;
       const d = 90 + Math.random() * 240;
-      p.style.cssText = `left:${cx}px;top:${cy}px;--dx:${(Math.cos(a) * d).toFixed(0)}px;--dy:${(Math.sin(a) * d).toFixed(0)}px;--r:${((Math.random() * 360 - 180) | 0)}deg;--s:${(0.5 + Math.random() * 1.1).toFixed(2)};--c:${i % 3 === 0 ? 'var(--charcoal)' : 'var(--green)'}`;
+      p.style.cssText = `left:${cx}px;top:${cy}px;--dx:${(Math.cos(a) * d).toFixed(0)}px;--dy:${(Math.sin(a) * d).toFixed(0)}px;--r:${((Math.random() * 60 - 30) | 0)}deg;--s:${(0.5 + Math.random() * 1.1).toFixed(2)};--c:${i % 3 === 0 ? 'var(--charcoal)' : 'var(--green)'}`;
       doc.body.appendChild(p);
       p.addEventListener('animationend', () => p.remove());
     }
@@ -2318,6 +2617,9 @@
     safe(initScramble);
     safe(initOdometers);
     safe(initText);
+    safe(initSectionTags);
+    safe(initDims);
+    safe(initTitleBlock);
     safe(initHeader);
     safe(initMenu);
     safe(initTransitions);

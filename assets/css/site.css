@@ -4,7 +4,10 @@
    on white, Bahnschrift (Barlow on the web) in Regular and Bold only, square
    full-bleed photography, no drop shadows, and the 8px green foot bar.
    Motion follows the brand's slide transition, a slow upward push, and turns
-   the cover's plus grid and the foot bar into live, interactive structure.
+   the cover's grid (set with the Ultra "U" monogram) and the foot bar into
+   live, interactive structure. Drawing furniture (rulers, dimension lines,
+   centre lines, corner brackets, a title block) gives the pages the look of an
+   engineering drawing.
    ============================================================================= */
 
 /* 0. Fonts: Barlow, the web stand-in for Bahnschrift ------------------------ */
@@ -89,8 +92,11 @@
   --ease-inout: cubic-bezier(0.76, 0, 0.24, 1);
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 
-  /* The cover's plus grid: 12px arms, 2px thick, on a 48px pitch */
-  --plus-tile: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cpath d='M18 23h12v2H18zM23 18h2v12h-2z'/%3E%3C/svg%3E");
+  /* The Ultra "U" monogram (two pillars and the dot), traced from mark-large.png,
+     for masks: on its own, and as the cover's grid, 12px tall on a 48px pitch */
+  --mark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 68.75 100'%3E%3Cpath d='M0 17.3C11 17.5 24.6 22.6 27.3 36.3V100C12.6 99.6 0.6 92.5 0.1 79.6ZM68.75 17.3C57.75 17.5 44.15 22.6 41.45 36.3V100C56.15 99.6 68.15 92.5 68.65 79.6ZM34.4 0A10.4 10.4 0 1 0 34.4 20.8A10.4 10.4 0 1 0 34.4 0Z'/%3E%3C/svg%3E");
+  --mark-tile: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cpath transform='translate(19.875 18) scale(.12)' d='M0 17.3C11 17.5 24.6 22.6 27.3 36.3V100C12.6 99.6 0.6 92.5 0.1 79.6ZM68.75 17.3C57.75 17.5 44.15 22.6 41.45 36.3V100C56.15 99.6 68.15 92.5 68.65 79.6ZM34.4 0A10.4 10.4 0 1 0 34.4 20.8A10.4 10.4 0 1 0 34.4 0Z'/%3E%3C/svg%3E");
+  --ratio-mark: 0.6875;
 }
 
 :root,
@@ -115,6 +121,7 @@
   --warning: #8a5a00;
   --warning-soft: #fcf1da;
   --ring-gap: #ffffff;
+  --grid-ink: rgba(55, 52, 53, 0.055);
   --lockup-display: block;
   --mark-display: none;
   color-scheme: light;
@@ -142,6 +149,7 @@
     --warning: #f2b84b;
     --warning-soft: #3a2c0e;
     --ring-gap: #231f20;
+    --grid-ink: rgba(246, 247, 249, 0.045);
     --lockup-display: none;
     --mark-display: block;
     color-scheme: dark;
@@ -169,6 +177,7 @@
   --warning: #f2b84b;
   --warning-soft: #3a2c0e;
   --ring-gap: #231f20;
+  --grid-ink: rgba(246, 247, 249, 0.045);
   --lockup-display: none;
   --mark-display: block;
   color-scheme: dark;
@@ -797,8 +806,8 @@ address { font-style: normal; }
   position: absolute;
   inset: 0;
   background: var(--line);
-  -webkit-mask: var(--plus-tile) center / 48px 48px repeat;
-  mask: var(--plus-tile) center / 48px 48px repeat;
+  -webkit-mask: var(--mark-tile) center / 48px 48px repeat;
+  mask: var(--mark-tile) center / 48px 48px repeat;
   animation: intro-grid 1.4s var(--ease-out) both;
 }
 .intro-logo {
@@ -841,8 +850,8 @@ address { font-style: normal; }
   position: absolute;
   inset: 0;
   background: var(--green-deep);
-  -webkit-mask: var(--plus-tile) center / 48px 48px repeat;
-  mask: var(--plus-tile) center / 48px 48px repeat;
+  -webkit-mask: var(--mark-tile) center / 48px 48px repeat;
+  mask: var(--mark-tile) center / 48px 48px repeat;
 }
 .curtain-label {
   position: relative;
@@ -976,23 +985,18 @@ address { font-style: normal; }
 }
 .cursor.has-label .cursor-label { opacity: 1; transform: none; }
 
-.plus-burst {
+.mark-burst {
   position: fixed;
   z-index: 96;
-  width: 20px;
-  height: 20px;
-  margin: -10px 0 0 -10px;
+  width: 15px;
+  height: 22px;
+  margin: -11px 0 0 -7.5px;
+  background: var(--c, var(--green));
+  -webkit-mask: var(--mark) center / contain no-repeat;
+  mask: var(--mark) center / contain no-repeat;
   pointer-events: none;
   animation: burst 1.1s var(--ease-out) forwards;
 }
-.plus-burst::before,
-.plus-burst::after {
-  content: "";
-  position: absolute;
-  background: var(--c, var(--green));
-}
-.plus-burst::before { left: 9px; top: 0; width: 3px; height: 20px; }
-.plus-burst::after { left: 0; top: 9px; width: 20px; height: 3px; }
 @keyframes burst {
   0% { transform: translate3d(0, 0, 0) rotate(0) scale(0.2); opacity: 1; }
   70% { opacity: 1; }
@@ -1000,7 +1004,7 @@ address { font-style: normal; }
 }
 
 /* 10. Shared section pieces -------------------------------------------------- */
-.plus-field {
+.mark-field {
   position: absolute;
   inset: 0;
   z-index: 0;
@@ -1321,22 +1325,16 @@ html:not(.motion) .shutter-edge { display: none; }
   color: transparent;
   -webkit-text-stroke: 1.5px var(--ink);
 }
-.marquee-plus {
-  position: relative;
+.marquee-mark {
   flex: none;
-  width: clamp(28px, 4vw, 60px);
-  height: clamp(28px, 4vw, 60px);
-}
-.marquee-plus::before,
-.marquee-plus::after {
-  content: "";
-  position: absolute;
+  width: calc(clamp(30px, 4.4vw, 66px) * var(--ratio-mark));
+  height: clamp(30px, 4.4vw, 66px);
+  margin-inline: 0.12em;
   background: var(--green);
+  -webkit-mask: var(--mark) center / contain no-repeat;
+  mask: var(--mark) center / contain no-repeat;
 }
-.marquee-plus::before { left: 50%; top: 0; bottom: 0; width: 18%; transform: translateX(-50%); }
-.marquee-plus::after { top: 50%; left: 0; right: 0; height: 18%; transform: translateY(-50%); }
-.marquee-outline .marquee-plus::before,
-.marquee-outline .marquee-plus::after { background: var(--ink); }
+.marquee-outline .marquee-mark { background: var(--ink); }
 
 /* What we deliver: stacking strips */
 .deliver { position: relative; padding-top: var(--band-pad); }
@@ -1735,8 +1733,8 @@ a.tile:focus-visible .badge { background: #000000; color: var(--mist); }
   width: 60%;
   height: 70%;
   z-index: -1;
-  -webkit-mask: var(--plus-tile) 0 0 / 48px 48px repeat;
-  mask: var(--plus-tile) 0 0 / 48px 48px repeat;
+  -webkit-mask: var(--mark-tile) 0 0 / 48px 48px repeat;
+  mask: var(--mark-tile) 0 0 / 48px 48px repeat;
   transition: transform 1.2s var(--ease-push);
 }
 .vm-card:hover::before { transform: translate3d(-24px, -24px, 0); }
@@ -1929,9 +1927,9 @@ a.tile:focus-visible .badge { background: #000000; color: var(--mist); }
 .chain-node {
   position: absolute;
   left: calc(-1 * clamp(44px, 6vw, 88px) + clamp(11px, 1.8vw, 23px) - 12px);
-  top: calc(clamp(32px, 4vw, 56px) + 6px);
+  top: calc(clamp(32px, 4vw, 56px) + 2px);
   width: 26px;
-  height: 26px;
+  height: 34px;
   background: var(--surface);
   transition: transform 0.7s var(--ease-push);
 }
@@ -1940,14 +1938,19 @@ a.tile:focus-visible .badge { background: #000000; color: var(--mist); }
 .chain-node::after {
   content: "";
   position: absolute;
+  inset: 4px 2px;
   background: var(--line-strong);
-  transition: background-color 0.4s;
+  -webkit-mask: var(--mark) center / contain no-repeat;
+  mask: var(--mark) center / contain no-repeat;
 }
-.chain-node::before { left: 12px; top: 0; width: 2px; height: 26px; }
-.chain-node::after { left: 0; top: 12px; width: 26px; height: 2px; }
-.chain-stage.is-lit .chain-node { transform: rotate(90deg) scale(1.15); }
-.chain-stage.is-lit .chain-node::before,
-.chain-stage.is-lit .chain-node::after { background: var(--green); }
+/* The green mark fills up from its foot, like a part being built up */
+.chain-node::after {
+  background: var(--green);
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 0.9s var(--ease-inout);
+}
+.chain-stage.is-lit .chain-node { transform: scale(1.18); }
+.chain-stage.is-lit .chain-node::after { clip-path: inset(0); }
 .chain-stage h3 { font-size: var(--fs-h3); line-height: 1.08; letter-spacing: -0.012em; }
 .chain-stage .chain-lede { margin-top: var(--space-3); font-size: var(--fs-fine); line-height: 1.5; color: var(--ink-muted); }
 .tags {
@@ -2000,15 +2003,14 @@ a.tile:focus-visible .badge { background: #000000; color: var(--mist); }
 .std-desc { font-size: var(--fs-fine); line-height: 1.5; }
 .std-seal {
   position: absolute;
-  right: 16px;
+  right: 18px;
   top: 16px;
-  width: 26px;
-  height: 26px;
+  width: 21px;
+  height: 30px;
+  background: var(--green);
+  -webkit-mask: var(--mark) center / contain no-repeat;
+  mask: var(--mark) center / contain no-repeat;
 }
-.std-seal::before,
-.std-seal::after { content: ""; position: absolute; background: var(--green); }
-.std-seal::before { left: 12px; top: 0; width: 2px; height: 26px; }
-.std-seal::after { left: 0; top: 12px; width: 26px; height: 2px; }
 .motion .std-grid > li {
   opacity: 0;
   transform: scale(1.35) rotate(-5deg);
@@ -2158,8 +2160,8 @@ select.input { padding-right: 44px; appearance: none; -webkit-appearance: none; 
   position: absolute;
   inset: 0;
   background: var(--line);
-  -webkit-mask: var(--plus-tile) center / 32px 32px repeat;
-  mask: var(--plus-tile) center / 32px 32px repeat;
+  -webkit-mask: var(--mark-tile) center / 32px 32px repeat;
+  mask: var(--mark-tile) center / 32px 32px repeat;
   opacity: 0;
   transition: opacity 0.3s;
 }
@@ -2713,13 +2715,13 @@ html:not(.js) .quote-slide:first-child { opacity: 1; visibility: visible; transf
   transition: opacity 0.6s var(--ease-out) 1.2s, transform 0.8s var(--ease-push) 1.2s;
 }
 .motion .map-wrap:not(.is-in) .map-pin { opacity: 0; transform: scale(0.4); }
-.map-pin-mark { position: absolute; left: -12px; top: -12px; width: 24px; height: 24px; }
-.map-pin-mark::before,
-.map-pin-mark::after,
-.swatch-pin::before,
-.swatch-pin::after { content: ""; position: absolute; background: var(--ink); }
-.map-pin-mark::before { left: 11px; top: 0; width: 2px; height: 24px; }
-.map-pin-mark::after { left: 0; top: 11px; width: 24px; height: 2px; }
+.map-pin-mark,
+.swatch-pin::before {
+  background: var(--ink);
+  -webkit-mask: var(--mark) center / contain no-repeat;
+  mask: var(--mark) center / contain no-repeat;
+}
+.map-pin-mark { position: absolute; left: -9px; top: -13px; width: 18px; height: 26px; }
 .map-pin-ring {
   position: absolute;
   left: -22px;
@@ -2761,8 +2763,7 @@ html:not(.js) .quote-slide:first-child { opacity: 1; visibility: visible; transf
 .swatch-region::before,
 .swatch-land::before { content: ""; position: absolute; inset: 4px; background: var(--green); }
 .swatch-land::before { background: var(--line-strong); opacity: 0.45; }
-.swatch-pin::before { left: 9px; top: 0; width: 2px; height: 20px; }
-.swatch-pin::after { left: 0; top: 9px; width: 20px; height: 2px; }
+.swatch-pin::before { content: ""; position: absolute; inset: 0 3px; }
 .swatch-lane { width: 30px; height: 2px; background: repeating-linear-gradient(90deg, var(--draw) 0 4px, transparent 4px 9px); }
 .map-note { margin-top: var(--space-4); max-width: 46em; font-size: var(--fs-fine); line-height: 1.55; color: var(--ink-muted); }
 @media (max-width: 760px) {
@@ -2808,15 +2809,22 @@ html:not(.js) .quote-slide:first-child { opacity: 1; visibility: visible; transf
 .milestone-node {
   position: absolute;
   left: 0;
-  top: 12px;
-  width: 24px;
-  height: 24px;
+  top: 7px;
+  width: 26px;
+  height: 34px;
   background: var(--tone-bg, var(--surface));
 }
-.milestone-node::before,
-.milestone-node::after { content: ""; position: absolute; background: var(--green); }
-.milestone-node::before { left: 11px; top: 0; width: 2px; height: 24px; }
-.milestone-node::after { left: 0; top: 11px; width: 24px; height: 2px; }
+.milestone-node::before {
+  content: "";
+  position: absolute;
+  inset: 3px 4px 3px 0;
+  background: var(--green);
+  -webkit-mask: var(--mark) left center / contain no-repeat;
+  mask: var(--mark) left center / contain no-repeat;
+  transition: clip-path 0.9s var(--ease-inout);
+  transition-delay: calc(var(--i, 0) * 90ms + 300ms);
+}
+.motion .timeline:not(.is-in) .milestone-node::before { clip-path: inset(100% 0 0 0); }
 .milestone-year {
   display: block;
   font-size: clamp(48px, 5.2vw, 80px);
@@ -3157,6 +3165,320 @@ html:not(.js) .quote-slide:first-child { opacity: 1; visibility: visible; transf
 .a-smoke.d2 { animation-delay: 1.6s; }
 .a-sway { animation: sway 3.2s ease-in-out infinite; }
 
+/* 17. Drawing furniture ------------------------------------------------------ */
+/* The pages read like an engineering drawing sheet: graph paper on the muted
+   bands, bracketed corners on cards, sections numbered on dash-dot centre
+   lines, titles dimensioned to their width, CAD rulers and a readout in the
+   heroes, a ruled scroll gauge and a title block in the footer. The script adds
+   the tags, dimensions, readout and title block; all are hidden from
+   assistive technology. */
+
+/* Graph paper: a 48px grid, the same pitch as the hero's mark grid */
+.band-muted,
+.tone-muted {
+  background-image:
+    linear-gradient(var(--grid-ink) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-ink) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-position: center -1px;
+}
+
+/* Bracketed corners, like the cursor's frame and a drawing's registration marks */
+.cap,
+.usp,
+.sustain-item,
+.office,
+.leader,
+.voice,
+.cs-block,
+.logo-slot { position: relative; }
+:is(.tile, .cap, .usp, .sustain-item, .std, .office, .leader, .voice, .cs-block, .logo-slot, .line-art, .aside)::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  --c: var(--line-strong);
+  background:
+    linear-gradient(var(--c) 0 0) left top / var(--arm, 12px) 2px,
+    linear-gradient(var(--c) 0 0) left top / 2px var(--arm, 12px),
+    linear-gradient(var(--c) 0 0) right top / var(--arm, 12px) 2px,
+    linear-gradient(var(--c) 0 0) right top / 2px var(--arm, 12px),
+    linear-gradient(var(--c) 0 0) left bottom / var(--arm, 12px) 2px,
+    linear-gradient(var(--c) 0 0) left bottom / 2px var(--arm, 12px),
+    linear-gradient(var(--c) 0 0) right bottom / var(--arm, 12px) 2px,
+    linear-gradient(var(--c) 0 0) right bottom / 2px var(--arm, 12px);
+  background-repeat: no-repeat;
+  pointer-events: none;
+  transition: background-size 0.5s var(--ease-push);
+}
+.std::after { inset: -2px; --c: var(--green); }
+a.tile:hover::after,
+a.tile:focus-visible::after,
+.std:hover::after { --c: currentColor; --arm: 24px; }
+.std:hover::after { --c: var(--green); }
+/* On reveal the brackets draw out from each corner */
+@keyframes brackets-in { from { background-size: 0 2px, 2px 0, 0 2px, 2px 0, 0 2px, 2px 0, 0 2px, 2px 0; } }
+.motion :is([data-stagger], [data-in]).is-in :is(.tile, .cap, .usp, .sustain-item, .std, .office, .leader, .voice, .cs-block, .logo-slot)::after {
+  animation: brackets-in 0.9s var(--ease-push) backwards;
+  animation-delay: calc(var(--i, 0) * 75ms + 380ms);
+}
+
+/* Section hatching on the slots still waiting for content */
+.logo-slot:not(:has(img)) {
+  background: repeating-linear-gradient(-45deg, transparent 0 10px, var(--line) 10px 11px), var(--surface-raised);
+}
+
+/* Part numbers on the product cards */
+.product-grid { counter-reset: part; }
+.product-grid > li { counter-increment: part; }
+.product-card .tile-top::after {
+  content: "P-" counter(part, decimal-leading-zero);
+  content: "P-" counter(part, decimal-leading-zero) / "";
+  font-size: var(--fs-fine);
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+  color: var(--ink-muted);
+  font-variant-numeric: tabular-nums;
+  transition: color 0.35s;
+}
+a.tile:hover .tile-top::after,
+a.tile:focus-visible .tile-top::after { color: var(--on-green); }
+
+/* Technical labels */
+.eyebrow { text-transform: uppercase; letter-spacing: 0.08em; }
+
+/* Section tags: "§ 01" on a dash-dot centre line that ends in a tick */
+.sec-tag {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: clamp(16px, 1.6vw, 24px);
+  font-size: var(--fs-fine);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+  color: var(--ink-muted);
+}
+.sec-num { flex: none; font-variant-numeric: tabular-nums; }
+.sec-line {
+  position: relative;
+  flex: 1 1 auto;
+  height: 1px;
+  background: repeating-linear-gradient(90deg, var(--line-strong) 0 22px, transparent 22px 27px, var(--line-strong) 27px 30px, transparent 30px 35px);
+  transform-origin: left center;
+}
+.sec-line::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -5px;
+  width: 1px;
+  height: 11px;
+  background: var(--line-strong);
+}
+.motion [data-split] .sec-line {
+  transform: scaleX(0);
+  transition: transform 1.4s var(--ease-inout) 0.1s;
+}
+.motion [data-split].is-in .sec-line { transform: none; }
+
+/* Dimension lines under the page titles */
+.has-dim { position: relative; padding-bottom: 46px; }
+.dim {
+  position: absolute;
+  bottom: 6px;
+  height: 22px;
+  color: var(--line-strong);
+  font-size: var(--fs-fine);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  pointer-events: none;
+}
+.dim::before,
+.dim::after {
+  content: "";
+  position: absolute;
+  top: -8px;
+  bottom: 0;
+  width: 1px;
+  background: currentColor;
+  transform-origin: 50% 100%;
+}
+.dim::before { left: 0; }
+.dim::after { right: 0; }
+.dim-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: currentColor;
+}
+.dim-line::before,
+.dim-line::after {
+  content: "";
+  position: absolute;
+  top: -4px;
+  width: 11px;
+  height: 9px;
+  background: currentColor;
+}
+.dim-line::before { left: 0; clip-path: polygon(0 50%, 100% 0, 100% 100%); }
+.dim-line::after { right: 0; clip-path: polygon(100% 50%, 0 0, 0 100%); }
+.dim-val {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  padding: 0 12px;
+  background: var(--surface);
+  color: var(--ink-muted);
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  transform: translate(-50%, -50%);
+}
+.motion .dim::before,
+.motion .dim::after {
+  transform: scaleY(0);
+  transition: transform 0.6s var(--ease-push) 0.35s;
+}
+.motion .dim-line {
+  transform: scaleX(0);
+  transition: transform 1.3s var(--ease-inout) 0.45s;
+}
+.motion .dim-val {
+  opacity: 0;
+  transition: opacity 0.5s 0.6s;
+}
+.motion .is-in .dim::before,
+.motion .is-in .dim::after,
+.motion .is-in .dim-line { transform: none; }
+.motion .is-in .dim-val { opacity: 1; }
+@media (max-width: 640px) {
+  .has-dim { padding-bottom: 0; }
+  .dim { display: none; }
+}
+
+/* The hero's pointer readout, in millimetres from its lower left corner */
+.cad-readout {
+  position: absolute;
+  z-index: 2;
+  top: 18px;
+  right: max(var(--gutter), env(safe-area-inset-right, 0px));
+  margin: 0;
+  padding: 4px 10px;
+  background: var(--surface);
+  font-size: var(--fs-fine);
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  color: var(--ink-muted);
+  white-space: pre;
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+.cad-readout.is-on { opacity: 1; }
+
+/* Registration brackets frame the cover photograph as the shutter opens */
+.shutter-pin::after {
+  content: "";
+  position: absolute;
+  inset: clamp(16px, 3vw, 40px);
+  --c: var(--green);
+  background:
+    linear-gradient(var(--c) 0 0) left top / 36px 3px,
+    linear-gradient(var(--c) 0 0) left top / 3px 36px,
+    linear-gradient(var(--c) 0 0) right top / 36px 3px,
+    linear-gradient(var(--c) 0 0) right top / 3px 36px,
+    linear-gradient(var(--c) 0 0) left bottom / 36px 3px,
+    linear-gradient(var(--c) 0 0) left bottom / 3px 36px,
+    linear-gradient(var(--c) 0 0) right bottom / 36px 3px,
+    linear-gradient(var(--c) 0 0) right bottom / 3px 36px;
+  background-repeat: no-repeat;
+  opacity: var(--o, 1);
+  pointer-events: none;
+}
+
+/* Figures sit on a scale */
+.stat::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 6px;
+  height: 6px;
+  background: repeating-linear-gradient(90deg, var(--line-strong) 0 1px, transparent 1px 12px);
+  opacity: 0.45;
+}
+
+/* The scroll gauge reads off a scale: a long tick every tenth, a short one every fiftieth */
+.progress::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+  height: 7px;
+  background:
+    repeating-linear-gradient(90deg, var(--line-strong) 0 1px, transparent 1px 10%) left bottom / 100% 7px no-repeat,
+    repeating-linear-gradient(90deg, var(--line-strong) 0 1px, transparent 1px 2%) left bottom / 100% 3px no-repeat;
+  opacity: 0.5;
+}
+
+/* The intro frames the lockup in registration brackets that close in on it */
+.intro-logo::after {
+  content: "";
+  position: absolute;
+  inset: -28px -36px;
+  --c: var(--ink);
+  background:
+    linear-gradient(var(--c) 0 0) left top / 20px 2px,
+    linear-gradient(var(--c) 0 0) left top / 2px 20px,
+    linear-gradient(var(--c) 0 0) right top / 20px 2px,
+    linear-gradient(var(--c) 0 0) right top / 2px 20px,
+    linear-gradient(var(--c) 0 0) left bottom / 20px 2px,
+    linear-gradient(var(--c) 0 0) left bottom / 2px 20px,
+    linear-gradient(var(--c) 0 0) right bottom / 20px 2px,
+    linear-gradient(var(--c) 0 0) right bottom / 2px 20px;
+  background-repeat: no-repeat;
+  animation: frame-in 1.1s var(--ease-push) 0.3s both;
+}
+@keyframes frame-in { from { opacity: 0; inset: -96px -120px; } }
+
+/* Title block: the footer's last row, ruled like a drawing's title block */
+.footer-base.title-block {
+  display: grid;
+  grid-template-columns: minmax(0, 2.4fr) minmax(0, 2fr) repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  margin-bottom: var(--space-8);
+  padding: 0;
+  border: 1px solid var(--line-strong);
+  background: var(--line-strong);
+}
+.title-block > p {
+  display: grid;
+  align-content: start;
+  gap: var(--space-1);
+  padding: 10px 14px;
+  background: var(--surface);
+  color: var(--ink);
+}
+.tb-key {
+  font-size: var(--fs-fine);
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+.tb-cell { font-variant-numeric: tabular-nums; }
+@media (max-width: 1023px) {
+  .footer-base.title-block { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 420px) {
+  .footer-base.title-block { grid-template-columns: minmax(0, 1fr); }
+}
+
 /* 14. Reduced motion --------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -3177,7 +3499,8 @@ html:not(.js) .quote-slide:first-child { opacity: 1; visibility: visible; transf
   .cursor,
   .intro,
   .curtain,
-  .plus-field,
+  .mark-field,
+  .cad-readout,
   .marquee-band,
   .hero-gears { display: none !important; }
   .motion [data-reveal],

@@ -58,18 +58,31 @@ The header, menu, intro, page curtain and footer are identical on every page; ch
 
 ### Motion
 
-The motion language comes from the brand: the slides' slow upward push drives every reveal and the page transitions, the cover lockup grows from its centre on the first visit, the green foot bar becomes the scroll gauge (and the shutter that opens into the cover photograph), and the cover's plus grid becomes a field that reacts to the pointer.
+The motion language comes from the brand: the slides' slow upward push drives every reveal and the page transitions, the cover lockup grows from its centre on the first visit, the green foot bar becomes the scroll gauge (and the shutter that opens into the cover photograph), and the cover's grid, set with the Ultra "U" monogram, becomes a field that reacts to the pointer.
+
+The monogram is a vector traced from `mark-large.png` (two pillars and the dot). It is the `--mark` and `--mark-tile` masks in `site.css` and `MARK_POLYS` in `site.js`, and it appears wherever the design used to repeat a plus sign: the hero fields, the intro and page curtain, the marquee separators, the process-chain and milestone nodes, the standards seals, the map pins, the gear hubs, the laser cutter's plate and the burst when the quote form is sent. The crosshair cursor and the file-drop "add" icon stay as crosses because they are controls, not decoration.
+
+The pages also read like an engineering drawing sheet:
+
+- **Heroes** are CAD viewports: rulers along the top and left edges, guides through the pointer, a snap box on the nearest grid node and a readout of the pointer's position in millimetres. Page titles carry a dimension line with their measured width, which counts up as the line draws out.
+- **Sections** are numbered (§ 01, § 02, …) on a dash-dot centre line that ends in a tick.
+- **Cards** have bracketed corners that draw out on reveal and reach further on hover; product cards carry part numbers (P-01, P-02, …). Placeholders still waiting for content are cross-hatched.
+- **Muted bands** are graph paper on the same 48px pitch as the hero grid. Figures sit on a scale, and the scroll gauge has a tick every tenth.
+- **Gears** show dash-dot pitch circles, the centre line and callouts with each gear's tooth count.
+- **The footer** ends in a title block: company, discipline, page title, sheet number, scale and units.
+
+The tags, dimension lines, readout and title-block cells are added by the script and hidden from assistive technology; without the script the page is unchanged.
 
 | Where | What moves |
 | --- | --- |
-| Every page | First-visit intro, green page curtain between pages, scroll gauge along the foot, crosshair cursor whose frame locks onto links and buttons, magnetic buttons with rolling labels |
-| Home | Plus-grid field, 3D wireframe gears that mesh and follow the pointer, foot bar that opens into the cover photo, product cards, stacking service strips, scroll-driven marquees, pinned four-step "Working With UCI" run with a truck along the foot bar, rolling odometers, case study index with a preview that trails the pointer, testimonial slider, dot-matrix world map that draws its export lanes from Pune, a milestone strip you can drag, word-by-word vision quote, values that fill in, rising skyline |
+| Every page | First-visit intro with the lockup framed in registration brackets, green page curtain patterned with the monogram, ruled scroll gauge along the foot, crosshair cursor whose frame locks onto links and buttons, magnetic buttons with rolling labels, section tags whose centre lines draw out, dimensioned page titles, card corners that draw out |
+| Home | Monogram field with CAD rulers and a millimetre readout, 3D wireframe gears with pitch circles and tooth-count callouts that mesh and follow the pointer, foot bar that opens into the cover photo, product cards, stacking service strips, scroll-driven marquees, pinned four-step "Working With UCI" run with a truck along the foot bar, rolling odometers, case study index with a preview that trails the pointer, testimonial slider, dot-matrix world map that draws its export lanes from Pune, a milestone strip you can drag, word-by-word vision quote, values that fill in, rising skyline |
 | Products | The sectors orbiting the mark, illustrations that stay in view beside each product line, scroll-driven metro train |
-| Services | Laser cutter that cuts parts from a plate (inner contours first) with a live X/Y readout, capacity visuals (450 squares for 450 machine tools), process chain that lights up as you scroll, pinned "From Drawing to Delivery", stamped standards |
+| Services | Laser cutter that cuts parts from a plate (inner contours first) with a live X/Y readout, capacity visuals (450 squares for 450 machine tools), process chain whose monogram nodes fill green as you scroll, pinned "From Drawing to Delivery", stamped standards |
 | Case studies | The four sectors orbiting the mark |
 | About | Datum ring around the mark, scroll-lit story, the milestone strip, vision and mission cards that lock together, plants listed year by year |
 | Careers | Meshing gears, values that fill in |
-| Contact | Handshake photo that opens from the centre, animated fields and file drop, a burst of plus crosses on sending |
+| Contact | Handshake photo that opens from the centre, animated fields and file drop, a burst of monograms on sending |
 
 The line icons and illustrations are drawn in code (one stroke weight, ink with a green accent) in the `ICONS` and `ARTS` tables in `site.js`; a page asks for one with `data-icon="wind"` or `data-art="weld"`.
 
