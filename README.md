@@ -2,7 +2,7 @@
 
 The animated website for Ultra Corpotech Inc., the American subsidiary of Ultra Corpotech Pvt Ltd. It is built on the Ultra Corpotech design system: brand green `#00a972` on white, Bahnschrift (Barlow on the web) in Regular and Bold only, square full-bleed photography, no drop shadows, and the 8px green foot bar.
 
-Pages: Home, Products, Services, Facilities, Case studies, About, Careers, Blog (with three articles) and Contact. Product, process, plant and company details come from the group site, [ultracorpotech.com](https://ultracorpotech.com/), and from the group's corporate presentation (December 2025): the Facilities page (units, machines, capacities, quality lab and the shop-floor photographs), the solar parts, business mix and solar project countries on Products, the 550+ machine tools and the six values.
+Pages: Home, Products, Services, Facilities, Case studies, About, Careers, Blog (with three articles) and Contact. Product, process, plant and company details come from the group site, [ultracorpotech.com](https://ultracorpotech.com/), and from the group's corporate presentation (December 2025): the Facilities page (units, machines, capacities, quality lab and the shop-floor photographs), the solar parts, business mix, solar project countries and the Parts Library on Products (87 parts cut out of the presentation's photographs and drawings), the 550+ machine tools and the six values.
 
 Where the presentation and the group site disagree on the number of plants, the site keeps the group site's "14 facilities across 10 locations" and shows the presentation's units as the main manufacturing units.
 
@@ -34,6 +34,7 @@ grep -n 'todo-badge\|todo-box\|\[[A-Z#][^]]*\]' *.html
 - **Careers.** Current openings, benefits, and employee stories, photos or video.
 - **About.** A short biography for Pratiksha A. Bhosle, and measurable sustainability figures (waste, energy, water). Facility photographs can go in the "Where We Make It" section once the photoshoot is done.
 - **Facilities photographs.** The photographs in `assets/img/facilities/` are stills taken from the corporate presentation and are soft at large sizes. Replace them with photoshoot images of the same subjects (same file names, as `.jpg` and `.webp`) when they are available.
+- **Parts library.** The solar tracker, aluminum and hardware parts carry the names in the presentation's captions (without the customer program codes such as GCS and VMS). The presentation does not name the oil and gas, mining and industrial parts, so their names are descriptive, written from the photographs: check them against your part list and correct them in `products.html`. Those presentation photographs are small, so the oil and gas parts look soft; to replace any part, cut it out with a background remover and run `python3 tools/part-image.py cutout.png og-drill-01` (same file name), then update the image's `width` and `height` if they changed.
 - **Claims to confirm.** That the ISO 14001 certificate is current (the badge says so where it is claimed), that the ISO 9001:2015 certificate and the API Spec Q1 / API 5CT license are current (Facilities; the copies in the presentation expired in February 2023 and September 2021), the 24 to 48 hour reply time (Home, Services, Contact and the quote checklist article), 3,500+ people, and the EEPC India Star Performer award.
 - **Quote form.** The form validates and shows its confirmation, but a static site cannot send email. In `contact.html`, set `data-endpoint` on the `<form>` to your form handler's URL (Formspree, Netlify Forms, or your own endpoint). The script then posts the form, files included, and only shows the confirmation when the handler accepts it.
 
@@ -53,6 +54,8 @@ assets/css/site.css    design tokens (light and dark), layout, components, motio
 assets/js/site.js      the motion engine, canvases, world map, line icons and the form
 assets/img/            logos and photographs from the design system, plus WebP copies
 assets/img/facilities/ shop-floor photographs from the corporate presentation, as JPEG and WebP
+assets/img/parts/      parts cut out of the presentation, as WebP with transparency, each with an -edges.webp wireframe
+tools/part-image.py    turns a cut-out part photograph into the two files the Parts Library uses
 assets/fonts/          Barlow Regular and Bold, latin and latin-ext (SIL Open Font License)
 ```
 
@@ -63,7 +66,7 @@ The header, menu, intro, page curtain and footer are identical on every page; ch
 
 ### Motion
 
-The motion language comes from the brand: the slides' slow upward push drives every reveal and the page transitions, the cover lockup grows from its centre on the first visit, the green foot bar becomes the scroll gauge (and the shutter that opens into the cover photograph), and the cover's grid, set with the Ultra "U" monogram, becomes a field that reacts to the pointer.
+The motion language comes from the brand: the slides' slow upward push drives every reveal and the page transitions, the cover lockup grows from its centre on the first visit, the green foot bar becomes the scroll gauge, and the cover's grid, set with the Ultra "U" monogram, becomes a field that reacts to the pointer.
 
 The monogram is a vector traced from `mark-large.png` (two pillars and the dot). It is the `--mark` and `--mark-tile` masks in `site.css` and `MARK_POLYS` in `site.js`, and it appears wherever the design used to repeat a plus sign: the hero fields, the intro and page curtain, the marquee separators, the process-chain and milestone nodes, the standards seals, the map pins, the gear hubs, the laser cutter's plate and the burst when the quote form is sent. The crosshair cursor and the file-drop "add" icon stay as crosses because they are controls, not decoration.
 
@@ -75,14 +78,15 @@ The pages also read like an engineering drawing sheet:
 - **Muted bands** are graph paper on the same 48px pitch as the hero grid. Figures sit on a scale, and the scroll gauge has a tick every tenth.
 - **Gears** show dash-dot pitch circles, the centre line and callouts with each gear's tooth count.
 - **The footer** ends in a title block: company, discipline, page title, sheet number, scale and units.
+- **The Parts Library** shows each part like a model in a CAD viewer: it stands on a turntable whose grid floor turns with it, with its shadow on the floor, a highlight that slides across the metal, a view triad and an azimuth and elevation readout. A part loads as a green wireframe that a scan line fills in, turns slowly on its own, follows the pointer, and shows its wireframe again on hover. The parts are photographs, so they turn within a few degrees either side rather than all the way round.
 
 The tags, dimension lines, readout and title-block cells are added by the script and hidden from assistive technology; without the script the page is unchanged.
 
 | Where | What moves |
 | --- | --- |
 | Every page | First-visit intro with the lockup framed in registration brackets, green page curtain patterned with the monogram, ruled scroll gauge along the foot, crosshair cursor whose frame locks onto links and buttons, magnetic buttons with rolling labels, section tags whose centre lines draw out, dimensioned page titles, card corners that draw out |
-| Home | Monogram field with CAD rulers and a millimetre readout, 3D wireframe gears with pitch circles and tooth-count callouts that mesh and follow the pointer, foot bar that opens into the cover photo, product cards, stacking service strips, scroll-driven marquees, pinned four-step "Working With UCI" run with a truck along the foot bar, rolling odometers, case study index with a preview that trails the pointer, testimonial slider, dot-matrix world map that draws its export lanes from Pune, a milestone strip you can drag, word-by-word vision quote, values that fill in, rising skyline |
-| Products | The sectors orbiting the mark, the business mix drawn as bars, illustrations that stay in view beside each product line, scroll-driven metro train |
+| Home | Monogram field with CAD rulers and a millimetre readout, 3D wireframe gears with pitch circles and tooth-count callouts that mesh and follow the pointer, the cover photo screened behind What We Make, drifting under a scan line, product cards, stacking service strips, scroll-driven marquees, pinned four-step "Working With UCI" run with a truck along the foot bar, rolling odometers, case study index with a preview that trails the pointer, testimonial slider, dot-matrix world map that draws its export lanes from Pune, a milestone strip you can drag, word-by-word vision quote, values that fill in, rising skyline |
+| Products | The sectors orbiting the mark, the business mix drawn as bars, the Parts Library's turntables, illustrations that stay in view beside each product line, scroll-driven metro train |
 | Services | Laser cutter that cuts parts from a plate (inner contours first) with a live X/Y readout, capacity visuals (550 squares for 550 machine tools), process chain whose monogram nodes fill green as you scroll, pinned "From Drawing to Delivery", stamped standards |
 | Facilities | A press brake that bends a blank and dimensions the angle, bars that draw out to scale (monthly capacity, floor area of each unit), machine icons that run (laser head, press ram, welding robot, roll formers, furnace, galvanizing dip, CMM probe), numbered figures in registration brackets |
 | Case studies | The four sectors orbiting the mark |
@@ -98,12 +102,14 @@ The line icons and illustrations are drawn in code (one stroke weight, ink with 
 - Automated browsers (link previews, screenshots) also get the still page.
 - Text never goes below 13 pt (17.33px), green is never used for small text, and every interactive element shows the design system's focus ring.
 - The milestone strip scrolls with the keyboard as well as by dragging, and has Earlier and Later buttons.
-- The site follows the visitor's light or dark setting using the design system's dark theme. On dark grounds the header and footer use the mark alone, as the logo rules require; the skyline bands always stay light.
+- The Parts Library's families are tabs (the arrow keys move between them, Home and End jump to the ends); without the script every family is listed in turn under its own heading.
+- The site follows the visitor's light or dark setting using the design system's dark theme. On dark grounds the header and footer use the mark alone, as the logo rules require. The skyline at the foot of each page is a mask drawn in the theme's green, so its band follows the theme too.
 
 ### Brand notes
 
 - Logos are the design system's files, unaltered: `lockup.png` on light grounds, `mark.png` / `mark-large.png` on their own.
-- Photographs are full-bleed, square-cornered and untinted. The WebP copies are resized versions of the same images.
+- Photographs are full-bleed, square-cornered and untinted, except the cover photograph behind "What We Make" on Home, which is screened in grey as a backdrop. The WebP copies are resized versions of the same images.
+- The interface has no drop shadows. The only shadows are the ones the parts cast on their turntables, which belong to the 3D scene.
 - Bahnschrift is used where it is installed (Windows); everywhere else the site falls back to Barlow.
 
 ### Credits
