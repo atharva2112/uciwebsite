@@ -437,7 +437,7 @@
   }
 
   /* Title block: the footer's last row becomes a drawing title block */
-  const SHEETS = ['index.html', 'products.html', 'services.html', 'case-studies.html', 'about.html', 'careers.html', 'blog.html', 'contact.html'];
+  const SHEETS = ['index.html', 'products.html', 'services.html', 'facilities.html', 'case-studies.html', 'about.html', 'careers.html', 'blog.html', 'contact.html'];
   function initTitleBlock() {
     const base = $('.footer-base');
     if (!base) return;
@@ -569,6 +569,7 @@
     'index.html': 'Home',
     'products.html': 'Products',
     'services.html': 'Services',
+    'facilities.html': 'Facilities',
     'case-studies.html': 'Case studies',
     'about.html': 'About',
     'careers.html': 'Careers',
@@ -671,7 +672,7 @@
         btn.focus();
       }
     });
-    const wide = mq('(min-width: 1120px)');
+    const wide = mq('(min-width: 1200px)');
     const onWide = (e) => {
       if (e.matches) set(false);
     };
@@ -1120,6 +1121,29 @@
       SVG('0 0 64 64', `<g class="a-sway" ${at(32, 60)}><path d="M32 58C10 46 8 22 32 6C56 22 54 46 32 58Z"/><path class="acc" d="M32 60V18M32 30L23 22M32 40L42 31M32 49L24 42"/></g>`),
     learn: () =>
       SVG('0 0 64 64', `<path d="M32 15C24 9 14 9 5 11V51C14 49 24 49 32 55C40 49 50 49 59 51V11C50 9 40 9 32 15Z"/><path d="M32 15V55"/><path class="acc a-write" pathLength="30" d="M11 21C17 20 23 20 27 23"/><path class="acc a-write d1" pathLength="30" d="M11 30C17 29 23 29 27 32"/><path class="a-write d2" pathLength="30" d="M37 23C41 20 47 20 53 21"/>`),
+    /* Machines, for the facilities page */
+    laser: () =>
+      SVG('0 0 64 64', `<path d="M2 12H62"/><path class="bg-fill" d="M8 44H56V49H8Z"/><path d="M4 54H60M10 54V60M54 54V60"/><g class="a-trolley"><path class="acc a-pulse" d="M32 30V44"/><path class="bg-fill" d="M26 8H38V24L35 30H29L26 24Z"/><path d="M29 16H35"/></g>`),
+    press: () =>
+      SVG('0 0 64 64', `<g class="a-hoist"><path d="M32 12V26"/><path class="bg-fill" d="M16 26H48V32H16Z"/></g><path class="bg-fill" d="M8 6H56V18H8Z"/><path d="M12 18V52M52 18V52"/><path class="acc" d="M20 44H44V52H20Z"/><path d="M6 52H58V58H6Z"/>`),
+    brake: () =>
+      SVG('0 0 64 64', `<path d="M4 4H60M4 4V58M60 4V58"/><g class="a-hoist"><path class="bg-fill" d="M8 10H56V22H8Z"/><path class="bg-fill" d="M28 22L32 28L36 22Z"/></g><path class="acc" d="M10 37H54"/><path d="M22 39H42V50H22Z"/><path d="M28 39L32 44L36 39"/><path d="M2 58H62"/>`),
+    robot: () =>
+      SVG('0 0 64 64', `<path d="M38 40H62V45H38Z"/><path d="M8 58H36"/><path class="bg-fill" d="M14 58V50H30V58"/><circle class="bg-fill" cx="22" cy="46" r="4"/><path d="M21 42L18 27"/><g class="a-swing" ${at(18, 24)}><path d="M20.5 22.5L41.5 16.5"/><path d="M45 18L50 29"/><circle class="bg-fill" cx="44" cy="16" r="2.5"/><path class="acc a-pulse" d="M50 33L46 36M50 33L54 36M50 33V38"/></g><circle class="bg-fill" cx="18" cy="24" r="3"/>`),
+    rollform: () => {
+      const roll = (x, y, cls) => `<g class="${cls}" ${at(x, y)}><circle class="bg-fill" cx="${x}" cy="${y}" r="7"/><circle cx="${x}" cy="${y}" r="2"/><path d="M${x} ${y - 7}V${y - 2}"/></g>`;
+      return SVG('0 0 64 64', `<path d="M14 50V56M32 50V56M50 50V56M6 56H58"/><path class="acc" d="M2 33H62"/>${[14, 32, 50].map((x) => roll(x, 24, 'a-rev') + roll(x, 42, 'a-spin')).join('')}`);
+    },
+    turning: () =>
+      SVG('0 0 64 64', `<path d="M4 16H16V50H4Z"/><path d="M2 54H62"/><path d="M54 22H62V50H54Z"/><path class="bg-fill" d="M30 30H54V36H30Z"/><g class="a-spin-fast" ${at(24, 33)}><circle class="bg-fill" cx="24" cy="33" r="8"/><path d="M24 25V29M17 37L20.5 35M31 37L27.5 35"/></g><g class="a-drive"><path class="acc" d="M40 37L44 42H50V48H40Z"/></g>`),
+    furnace: () =>
+      SVG('0 0 64 64', `<path d="M4 4H60"/><g class="a-hoist"><path d="M32 4V14"/><path class="bg-fill" d="M24 14H40V26H24Z"/><path d="M28 18H36M28 22H36" stroke-opacity=".5"/></g><path class="bg-fill" d="M12 30H52V58H12Z"/><path d="M8 30H56"/><path class="acc a-pulse" d="M22 52Q26 48 22 44Q18 40 22 36"/><path class="acc a-pulse d1" d="M32 52Q36 48 32 44Q28 40 32 36"/><path class="acc a-pulse d2" d="M42 52Q46 48 42 44Q38 40 42 36"/>`),
+    galvanize: () =>
+      SVG('0 0 64 64', `<path d="M2 6H62"/><g class="a-dip"><path d="M32 6V16"/><path class="bg-fill" d="M22 16H42V28H22Z"/><path d="M26 20H38M26 24H38" stroke-opacity=".5"/></g><path class="bg-fill" d="M6 34H58L54 58H10Z"/><path class="acc" d="M9 40H55"/>`),
+    coat: () =>
+      SVG('0 0 64 64', `<path class="bg-fill" d="M4 24H28V32H4Z"/><path d="M28 26H36V30H28Z"/><path d="M10 32L8 48H16L18 32"/><circle class="acc-fill a-pulse" cx="42" cy="28" r="1.8" stroke="none"/><circle class="acc-fill a-pulse d1" cx="46" cy="22" r="1.8" stroke="none"/><circle class="acc-fill a-pulse d2" cx="46" cy="34" r="1.8" stroke="none"/><circle class="acc-fill a-pulse d1" cx="50" cy="28" r="1.8" stroke="none"/><path class="acc-fill" d="M54 10H60V50H54Z" fill-opacity=".35"/><path d="M54 10H60V50H54Z"/><path d="M2 58H62"/>`),
+    cmm: () =>
+      SVG('0 0 64 64', `<path d="M10 48V12M54 48V12"/><path class="bg-fill" d="M8 8H56V14H8Z"/><path d="M20 44H44V48H20Z"/><g class="a-trolley"><g class="a-hoist"><path d="M32 18V31"/><circle class="acc-fill" cx="32" cy="33" r="2.5" stroke="none"/></g><path class="bg-fill" d="M26 14H38V20H26Z"/></g><path class="bg-fill" d="M4 48H60V56H4Z"/>`),
   };
 
   const ARTS = {
@@ -1194,6 +1218,26 @@
       return SVG(`0 0 ${3 * W + 2 * G} 114`, cars + couplers);
     },
     beam: () => SVG('0 0 120 96', '<path class="draw-on" pathLength="100" d="M8 8H112V22H67V74H112V88H8V74H53V22H8Z"/>'),
+    /* Press brake: the ram drives the punch into the die, the blank bends up on
+       both sides, the bend angle is dimensioned, then the part is unloaded */
+    brake: () => {
+      const bx = 160;
+      const by = 132;
+      const wing = (x1, x2, cls) => `<g class="${cls}" ${at(bx, by)}><path class="bg-fill" d="M${x1} ${by - 4}H${x2}V${by}H${x1}Z"/></g>`;
+      const a = (38 * Math.PI) / 180;
+      const r = 30;
+      const ay = by + 12;
+      return SVG(
+        '0 0 320 220',
+        `<path d="M20 20H300V200H20Z" stroke-opacity=".3"/><path d="M20 20V200M300 20V200"/><path d="M8 200H312"/>` +
+          `<path d="M120 ${by}H200V176H120Z"/><path d="M140 ${by}L160 150L180 ${by}"/><path d="M110 176H210V200H110Z"/>` +
+          `<path class="acc" d="M234 108V${by}M228 ${by}H240"/>` +
+          `<g class="a-brake-sheet">${wing(100, bx, 'a-brake-l')}${wing(bx, 220, 'a-brake-r')}</g>` +
+          `<path class="acc a-brake-arc" pathLength="40" stroke-dasharray="40" d="M${f2(bx - Math.cos(a) * r)} ${f2(ay - Math.sin(a) * r)}A${r} ${r} 0 0 1 ${f2(bx + Math.cos(a) * r)} ${f2(ay - Math.sin(a) * r)}"/>` +
+          `<g class="a-brake-ram"><path d="M90 0V30M230 0V30"/><path class="bg-fill" d="M40 30H280V56H40Z"/><path d="M60 43H260" stroke-opacity=".35"/><path class="bg-fill" d="M150 56H170V92L160 110L150 92Z"/><path d="M150 92H170" stroke-opacity=".5"/></g>` +
+          `<path class="bg-fill" d="M80 2H100V30H80Z"/><path class="bg-fill" d="M220 2H240V30H220Z"/>`
+      );
+    },
   };
 
   function initIcons() {

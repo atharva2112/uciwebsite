@@ -1,0 +1,567 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Plants and Machines | Ultra Corpotech Inc.</title>
+<meta name="description" content="The Ultra Corpotech group’s plants and machines near Pune: more than 550 CNC machine tools, 25 laser cutting machines, 30 welding robots, a 1,000 t press, galvanizing, heat treatment and a quality lab.">
+<meta name="theme-color" content="#00a972">
+<link rel="icon" type="image/png" href="assets/img/mark.png">
+<link rel="preload" href="assets/fonts/barlow-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/barlow-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/site.css">
+<script>
+  /* Motion bootstrap: runs before first paint, so the intro and the page curtain can cover the page.
+     Motion is skipped when the visitor prefers reduced motion or an automated browser is capturing the page. */
+  (function (d, w) {
+    var r = d.documentElement;
+    r.classList.add('js');
+    if (navigator.webdriver || (w.matchMedia && w.matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+    r.classList.add('motion');
+    try {
+      var c = w.sessionStorage.getItem('uci:curtain');
+      if (c) {
+        r.classList.add('is-entering');
+        r.style.setProperty('--curtain-label', JSON.stringify(c));
+      } else if (!w.sessionStorage.getItem('uci:intro')) {
+        r.classList.add('is-intro');
+      }
+    } catch (e) {}
+    w.setTimeout(function () {
+      if (!w.UCI) r.classList.remove('motion', 'is-intro', 'is-entering');
+    }, 4000);
+  })(document, window);
+</script>
+<script src="assets/js/site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="intro" aria-hidden="true"><div class="intro-grid"></div><div class="intro-logo"><img class="brand-lockup" src="assets/img/lockup.png" alt="" width="692" height="265"><img class="brand-mark" src="assets/img/mark.png" alt="" width="118" height="171"></div><div class="intro-bar"></div></div>
+<div class="curtain" aria-hidden="true"><span class="curtain-label"></span></div>
+
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="index.html" aria-label="Ultra Corpotech Inc. home"><img class="brand-lockup" src="assets/img/lockup.png" alt="" width="692" height="265"><img class="brand-mark" src="assets/img/mark.png" alt="" width="118" height="171"></a>
+    <nav class="nav" aria-label="Main">
+      <ul class="nav-list">
+        <li><a class="nav-link" href="products.html">Products</a></li>
+        <li><a class="nav-link" href="services.html">Services</a></li>
+        <li><a class="nav-link" href="facilities.html" aria-current="page">Facilities</a></li>
+        <li><a class="nav-link" href="case-studies.html">Case studies</a></li>
+        <li><a class="nav-link" href="about.html">About</a></li>
+        <li><a class="nav-link" href="careers.html">Careers</a></li>
+        <li><a class="nav-link" href="blog.html">Blog</a></li>
+        <li><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+      <span class="nav-indicator" aria-hidden="true"></span>
+    </nav>
+    <a class="btn btn-primary header-cta" href="contact.html" data-magnetic>Request a quote</a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu"><span class="menu-toggle-label">Menu</span><span class="menu-toggle-icon" aria-hidden="true"><i></i><i></i></span></button>
+  </div>
+</header>
+
+<div class="menu" id="menu">
+  <div class="wrap">
+    <nav aria-label="Menu">
+      <ul class="menu-list">
+        <li><a class="menu-link" href="index.html" style="--i: 0"><span>Home</span></a></li>
+        <li><a class="menu-link" href="products.html" style="--i: 1"><span>Products</span></a></li>
+        <li><a class="menu-link" href="services.html" style="--i: 2"><span>Services</span></a></li>
+        <li><a class="menu-link" href="facilities.html" aria-current="page" style="--i: 3"><span>Facilities</span></a></li>
+        <li><a class="menu-link" href="case-studies.html" style="--i: 4"><span>Case studies</span></a></li>
+        <li><a class="menu-link" href="about.html" style="--i: 5"><span>About</span></a></li>
+        <li><a class="menu-link" href="careers.html" style="--i: 6"><span>Careers</span></a></li>
+        <li><a class="menu-link" href="blog.html" style="--i: 7"><span>Blog</span></a></li>
+        <li><a class="menu-link" href="contact.html" style="--i: 8"><span>Contact</span></a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="wrap menu-foot">
+    <a class="btn btn-primary btn-lg" href="contact.html">Request a quote</a>
+    <span>Engineering &amp; Energy Solutions</span>
+  </div>
+</div>
+
+<main id="main">
+  <section class="page-hero" aria-labelledby="page-title" data-hero>
+    <canvas class="mark-field" data-mark-field aria-hidden="true"></canvas>
+    <div class="wrap page-hero-inner">
+      <div>
+        <p class="eyebrow" data-reveal><span class="eyebrow-bar" aria-hidden="true"></span><span data-scramble>Facilities</span></p>
+        <h1 id="page-title" class="page-title is-long" data-split style="--delay: 120ms">Plants and Machines</h1>
+        <p class="lead" data-reveal style="--delay: 460ms">More than 550 CNC machine tools, 25 laser cutting machines, 30 welding robots and a 1,000&nbsp;t hydraulic press, in the group’s plants at Bhosari, Chakan and Nighoje, near Pune.</p>
+        <nav aria-label="Facilities">
+          <ul class="chip-nav" data-stagger style="--delay: 600ms">
+            <li><a href="#units">Units</a></li>
+            <li><a href="#machining">Machining</a></li>
+            <li><a href="#cutting-and-forming">Cutting and forming</a></li>
+            <li><a href="#welding">Welding</a></li>
+            <li><a href="#finishing">Heat treatment and finishing</a></li>
+            <li><a href="#quality-lab">Quality lab</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="page-hero-art" aria-hidden="true" data-reveal="fade" style="--delay: 300ms"><span data-art="brake"></span></div>
+    </div>
+    <div class="hero-rule" aria-hidden="true"></div>
+  </section>
+
+  <section class="band band-muted" aria-labelledby="numbers-title">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <h2 id="numbers-title" class="h2" data-split>The Plants in Numbers</h2>
+          <p class="lead" data-reveal>The equipment behind every quote.</p>
+        </div>
+      </div>
+      <ul class="stat-grid is-wide" data-stagger>
+        <li class="stat"><span class="stat-value" data-odometer="550+">550+</span><span class="stat-label">CNC turning centers and vertical and horizontal machining centers</span></li>
+        <li class="stat"><span class="stat-value" data-odometer="25+">25+</span><span class="stat-label">Laser cutting machines</span></li>
+        <li class="stat"><span class="stat-value" data-odometer="20+">20+</span><span class="stat-label">Presses and CNC bending machines</span></li>
+        <li class="stat"><span class="stat-value" data-odometer="30+">30+</span><span class="stat-label">Welding robots</span></li>
+        <li class="stat"><span class="stat-value" data-odometer="968,000">968,000</span><span class="stat-label">Square feet in the main manufacturing units, about 90,000&nbsp;m²</span></li>
+        <li class="stat"><span class="stat-value" data-odometer="1,000 t">1,000&nbsp;t</span><span class="stat-label">Largest hydraulic press, with a 3,000&nbsp;×&nbsp;1,600&nbsp;mm bed</span></li>
+        <li class="stat"><span class="stat-value" data-odometer="5 t">5&nbsp;t</span><span class="stat-label">Heat treatment per furnace charge</span></li>
+        <li class="stat"><span class="stat-value" data-odometer="15+">15+</span><span class="stat-label">Countries the group exports to</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="capacity-title">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <h2 id="capacity-title" class="h2" data-split>Monthly Capacity</h2>
+          <p class="lead" data-reveal>Metric tons of steel each process can handle in a month.</p>
+        </div>
+      </div>
+      <table class="bar-table" data-in>
+        <caption class="sr-only">Monthly capacity by process, in metric tons</caption>
+        <thead>
+          <tr><th scope="col">Process</th><th scope="col">Tons a month</th></tr>
+        </thead>
+        <tbody>
+          <tr style="--v: 1; --i: 0"><th scope="row">Laser cutting</th><td><span class="bar-cell"><span class="bar" aria-hidden="true"><i></i></span><span class="bar-val">3,000&nbsp;t</span></span></td></tr>
+          <tr style="--v: 0.8333; --i: 1"><th scope="row">Hot-dip galvanizing</th><td><span class="bar-cell"><span class="bar" aria-hidden="true"><i></i></span><span class="bar-val">2,500&nbsp;t</span></span></td></tr>
+          <tr style="--v: 0.8; --i: 2"><th scope="row">Pressing</th><td><span class="bar-cell"><span class="bar" aria-hidden="true"><i></i></span><span class="bar-val">2,400&nbsp;t</span></span></td></tr>
+          <tr style="--v: 0.6667; --i: 3"><th scope="row">Robotic welding and fabrication</th><td><span class="bar-cell"><span class="bar" aria-hidden="true"><i></i></span><span class="bar-val">2,000&nbsp;t</span></span></td></tr>
+          <tr style="--v: 0.5; --i: 4"><th scope="row">Press brakes</th><td><span class="bar-cell"><span class="bar" aria-hidden="true"><i></i></span><span class="bar-val">1,500&nbsp;t</span></span></td></tr>
+          <tr style="--v: 0.4; --i: 5"><th scope="row">Powder coating</th><td><span class="bar-cell"><span class="bar" aria-hidden="true"><i></i></span><span class="bar-val">1,200&nbsp;t</span></span></td></tr>
+          <tr style="--v: 0.2; --i: 6"><th scope="row">Roll forming</th><td><span class="bar-cell"><span class="bar" aria-hidden="true"><i></i></span><span class="bar-val">600&nbsp;t</span></span></td></tr>
+        </tbody>
+      </table>
+      <p class="map-note">Stainless steel pins are passivated in-house, up to 200,000 a day. One metric ton is about 2,205&nbsp;lb.</p>
+    </div>
+  </section>
+
+  <section class="band band-muted" id="units" aria-labelledby="units-title">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <h2 id="units-title" class="h2" data-split>Main Manufacturing Units</h2>
+          <p class="lead" data-reveal>In Bhosari, Chakan and Nighoje, around Pune, with about 968,000&nbsp;sq ft of manufacturing space.</p>
+        </div>
+        <a class="link-arrow" href="about.html#footprint">Where we make it<svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><path d="M4 12h15"/><path d="M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="split">
+        <ol class="units" data-in>
+          <li class="unit" style="--v: 0.032; --i: 0"><span class="unit-no" aria-hidden="true">01</span><div><h3>Unit 1, Bhosari</h3><p>Heat treatment, with a pit-type electric furnace followed by polymer quenching and tempering.</p></div><div class="unit-area"><span class="bar" aria-hidden="true"><i></i></span>8,000&nbsp;sq ft</div></li>
+          <li class="unit" style="--v: 0.2; --i: 1"><span class="unit-no" aria-hidden="true">02</span><div><h3>Unit 2, Bhosari</h3><p>Medium to heavy-duty components, turned and milled on DMG MORI, Puma, Mazak and Makino machines.</p></div><div class="unit-area"><span class="bar" aria-hidden="true"><i></i></span>50,000&nbsp;sq ft</div></li>
+          <li class="unit" style="--v: 0.8; --i: 2"><span class="unit-no" aria-hidden="true">03</span><div><h3>Unit 3, Bhosari</h3><p>Solar panel mounting structures, fabricated and roll formed, with plasma and fiber lasers and a five-face machine.</p></div><div class="unit-area"><span class="bar" aria-hidden="true"><i></i></span>200,000&nbsp;sq ft</div></li>
+          <li class="unit" style="--v: 0.24; --i: 3"><span class="unit-no" aria-hidden="true">04</span><div><h3>Unit 4, Chakan</h3><p>Very large components machined on Trevisan, Femco, Doosan and HNK machines, with zinc and manganese phosphating, shot blasting and magnetic particle inspection.</p></div><div class="unit-area"><span class="bar" aria-hidden="true"><i></i></span>60,000&nbsp;sq ft</div></li>
+          <li class="unit" style="--v: 0.28; --i: 4"><span class="unit-no" aria-hidden="true">05</span><div><h3>Unit 5, Nighoje</h3><p>Heavy-duty fabrication with a robotic cell, and a Zeiss CMM.</p></div><div class="unit-area"><span class="bar" aria-hidden="true"><i></i></span>70,000&nbsp;sq ft</div></li>
+          <li class="unit" style="--v: 1; --i: 5"><span class="unit-no" aria-hidden="true">06</span><div><h3>Unit 6, Chakan</h3><p>Precision components on a fleet of more than 70 machines, including Mazak and DMG, and heavy fabrication for wind and mining with laser and bending machines.</p></div><div class="unit-area"><span class="bar" aria-hidden="true"><i></i></span>250,000&nbsp;sq ft</div></li>
+          <li class="unit" style="--v: 0.52; --i: 6"><span class="unit-no" aria-hidden="true">07</span><div><h3>Unit 7, Nighoje</h3><p>Heavy fabrication for metro and transportation, with Bystronic laser and bending machines.</p></div><div class="unit-area"><span class="bar" aria-hidden="true"><i></i></span>130,000&nbsp;sq ft</div></li>
+          <li class="unit" style="--v: 0.8; --i: 7"><span class="unit-no" aria-hidden="true">08</span><div><h3>Unit 8, Chakan</h3><p>High-duty fabrication and machining for railway and metro.</p></div><div class="unit-area"><span class="bar" aria-hidden="true"><i></i></span>200,000&nbsp;sq ft</div></li>
+          <li class="unit" style="--v: 0; --i: 8"><span class="unit-no" aria-hidden="true">09</span><div><h3>Unit 9, Nighoje</h3><p>The solar division, with infrastructure added in 2021.</p></div><div class="unit-area"></div></li>
+          <li class="unit is-total"><span class="unit-no" aria-hidden="true"></span><div><h3>Total, Units 1 to 8</h3><p>About 1 million sq ft, or 90,000&nbsp;m².</p></div><div class="unit-area">968,000&nbsp;sq ft</div></li>
+        </ol>
+        <div class="split-aside">
+          <figure class="fig" data-reveal style="--ar: 1 / 1">
+            <picture><source type="image/webp" srcset="assets/img/facilities/plant-aerial.webp"><img src="assets/img/facilities/plant-aerial.jpg" alt="Aerial view of a large white-roofed factory beside a highway, with parked cars and trucks in its yard" width="678" height="554" loading="lazy" decoding="async"></picture>
+            <figcaption><span class="fig-no"></span>Unit 7 at Nighoje, from the air.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="machining" aria-labelledby="machining-title">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <h2 id="machining-title" class="h2" data-split>Machining</h2>
+          <p class="lead" data-reveal>More than 550 CNC turning centers and vertical and horizontal machining centers from DMG MORI, Mazak, Makino, Doosan, Trevisan, Femco, HNK and Breton, for parts from 50&nbsp;g to over 30&nbsp;t.</p>
+        </div>
+      </div>
+      <figure class="fig" data-reveal style="--ar: 21 / 9; --pos: 50% 55%">
+        <picture><source type="image/webp" srcset="assets/img/facilities/machining-hall.webp"><img src="assets/img/facilities/machining-hall.jpg" alt="A long machining bay lined with CNC machines on both sides of a central aisle, under overhead cranes" width="1074" height="715" loading="lazy" decoding="async"></picture>
+        <figcaption><span class="fig-no"></span>A CNC machining bay.</figcaption>
+      </figure>
+      <ul class="fig-grid block" data-stagger>
+        <li><figure class="fig" style="--ar: 16 / 9"><picture><source type="image/webp" srcset="assets/img/facilities/trevisan.webp"><img src="assets/img/facilities/trevisan.jpg" alt="A Trevisan machining center with its pallet loading station" width="736" height="390" loading="lazy" decoding="async"></picture><figcaption><span class="fig-no"></span>Trevisan</figcaption></figure></li>
+        <li><figure class="fig" style="--ar: 16 / 9"><picture><source type="image/webp" srcset="assets/img/facilities/hnk.webp"><img src="assets/img/facilities/hnk.jpg" alt="A large HNK machine with its guarding open" width="730" height="390" loading="lazy" decoding="async"></picture><figcaption><span class="fig-no"></span>HNK</figcaption></figure></li>
+        <li><figure class="fig" style="--ar: 16 / 9"><picture><source type="image/webp" srcset="assets/img/facilities/breton.webp"><img src="assets/img/facilities/breton.jpg" alt="A Breton five-axis machining center and its control panel" width="760" height="388" loading="lazy" decoding="async"></picture><figcaption><span class="fig-no"></span>Breton five-axis</figcaption></figure></li>
+        <li><figure class="fig" style="--ar: 16 / 9"><picture><source type="image/webp" srcset="assets/img/facilities/doosan.webp"><img src="assets/img/facilities/doosan.jpg" alt="An operator at a long Doosan CNC machine" width="736" height="385" loading="lazy" decoding="async"></picture><figcaption><span class="fig-no"></span>Doosan</figcaption></figure></li>
+        <li><figure class="fig" style="--ar: 16 / 9"><picture><source type="image/webp" srcset="assets/img/facilities/dmg-mori.webp"><img src="assets/img/facilities/dmg-mori.jpg" alt="A large DMG MORI machine on a long bed" width="750" height="386" loading="lazy" decoding="async"></picture><figcaption><span class="fig-no"></span>DMG MORI</figcaption></figure></li>
+        <li><figure class="fig" style="--ar: 16 / 9"><picture><source type="image/webp" srcset="assets/img/facilities/mazak.webp"><img src="assets/img/facilities/mazak.jpg" alt="An operator at the control panel of a Mazak machining center" width="760" height="385" loading="lazy" decoding="async"></picture><figcaption><span class="fig-no"></span>Mazak</figcaption></figure></li>
+      </ul>
+      <ul class="machine-grid block" data-stagger>
+        <li>
+          <article class="machine">
+            <div class="machine-top"><span data-icon="turning" aria-hidden="true"></span><span class="machine-count" data-odometer="200,000">200,000</span></div>
+            <h3>Turning and passivation</h3>
+            <p>Four CNC turning centers and an in-house nitric passivation plant finish stainless steel pins, up to 200,000 a day.</p>
+          </article>
+        </li>
+        <li>
+          <article class="machine">
+            <div class="machine-top"><span data-icon="production" aria-hidden="true"></span><span class="machine-count" data-odometer="29">29</span></div>
+            <h3>Special-purpose machines</h3>
+            <p>Dedicated to customers’ products: 12 assembly machines, 16 turning machines and a pin-counting machine.</p>
+          </article>
+        </li>
+        <li>
+          <figure class="fig" style="--ar: 4 / 3"><picture><source type="image/webp" srcset="assets/img/facilities/assembly-line.webp"><img src="assets/img/facilities/assembly-line.jpg" alt="Rows of workers in red hard hats assembling galvanized steel brackets at long benches" width="823" height="501" loading="lazy" decoding="async"></picture><figcaption><span class="fig-no"></span>An assembly line for galvanized structures.</figcaption></figure>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="band band-muted" id="cutting-and-forming" aria-labelledby="cutting-title">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <h2 id="cutting-title" class="h2" data-split>Cutting and Forming</h2>
+          <p class="lead" data-reveal>Fiber lasers, presses, press brakes and roll forming lines turn sheet and plate into blanks, brackets and sections.</p>
+        </div>
+      </div>
+      <ul class="machine-grid" data-stagger>
+        <li>
+          <article class="machine">
+            <div class="machine-top"><span data-icon="laser" aria-hidden="true"></span><span class="machine-count" data-odometer="20">20</span></div>
+            <h3>Fiber laser cutting machines</h3>
+            <p>Four from Bystronic and 16 from SIL Laser, 16 of them added in 2020–21, among more than 25 laser cutting machines in the group.</p>
+            <dl class="spec">
+              <div><dt>Steel</dt><dd>0.5 to 25&nbsp;mm</dd></div>
+              <div><dt>Aluminum, copper</dt><dd>1 to 10&nbsp;mm</dd></div>
+              <div><dt>Capacity</dt><dd>3,000&nbsp;t a month</dd></div>
+            </dl>
+          </article>
+        </li>
+        <li>
+          <article class="machine">
+            <div class="machine-top"><span data-icon="press" aria-hidden="true"></span><span class="machine-count" data-odometer="14">14</span></div>
+            <h3>Hydraulic and mechanical presses</h3>
+            <p>Including a 320&nbsp;t mechanical press and 500&nbsp;t and 300&nbsp;t hydraulic presses, with eight added in 2020–21.</p>
+            <dl class="spec">
+              <div><dt>Steel</dt><dd>0.5 to 25&nbsp;mm</dd></div>
+              <div><dt>Aluminum, copper</dt><dd>1 to 10&nbsp;mm</dd></div>
+              <div><dt>Capacity</dt><dd>2,400&nbsp;t a month</dd></div>
+            </dl>
+          </article>
+        </li>
+        <li>
+          <article class="machine">
+            <div class="machine-top"><span data-icon="press" aria-hidden="true"></span><span class="machine-count" data-odometer="1,000 t">1,000&nbsp;t</span></div>
+            <h3>Heavy hydraulic press</h3>
+            <p>The group’s largest press, added in July 2022.</p>
+            <dl class="spec">
+              <div><dt>Bed</dt><dd>3,000&nbsp;×&nbsp;1,600&nbsp;mm, about 118&nbsp;×&nbsp;63&nbsp;in</dd></div>
+              <div><dt>Force</dt><dd>1,000 metric tons</dd></div>
+            </dl>
+          </article>
+        </li>
+        <li>
+          <article class="machine">
+            <div class="machine-top"><span data-icon="brake" aria-hidden="true"></span><span class="machine-count" data-odometer="6">6</span></div>
+            <h3>CNC press brakes</h3>
+            <p>From Bystronic and Amada, two of them added in 2020–21.</p>
+            <dl class="spec">
+              <div><dt>Largest</dt><dd>Amada, 4&nbsp;m bed, 200&nbsp;t</dd></div>
+              <div><dt>Others</dt><dd>Bystronic and Amada, 2&nbsp;m bed, 80&nbsp;t</dd></div>
+              <div><dt>Capacity</dt><dd>1,500&nbsp;t a month</dd></div>
+            </dl>
+          </article>
+        </li>
+        <li>
+          <article class="machine">
+            <div class="machine-top"><span data-icon="rollform" aria-hidden="true"></span><span class="machine-count" data-odometer="3">3</span></div>
+            <h3>Roll forming lines</h3>
+            <p>Each with an uncoiler, roll former, cut-off press and conveyor, making sections for solar mounting structures.</p>
+            <dl class="spec">
+              <div><dt>Capacity</dt><dd>600&nbsp;t a month</dd></div>
+            </dl>
+          </article>
+        </li>
+        <li>
+          <article class="machine">
+            <div class="machine-top"><span data-icon="laser" aria-hidden="true"></span></div>
+            <h3>Plasma and oxy-fuel cutting</h3>
+            <p>CNC plasma and oxy-acetylene cutting for thick plate, alongside shearing and shot blasting.</p>
+          </article>
+        </li>
+      </ul>
+      <ul class="fig-grid block" data-stagger>
+        <li><figure class="fig" style="--ar: 4 / 3; --pos: 50% 30%"><picture><source type="image/webp" srcset="assets/img/facilities/press-1000t.webp"><img src="assets/img/facilities/press-1000t.jpg" alt="A tall four-column hydraulic press with a yellow crown and three large cylinders above a blue ram" width="900" height="870" loading="lazy" decoding="async"></picture><figcaption><span class="fig-no"></span>The 1,000&nbsp;t hydraulic press.</figcaption></figure></li>
+        <li><figure class="fig" style="--ar: 4 / 3"><picture><source type="image/webp" srcset="assets/img/facilities/press-brake.webp"><img src="assets/img/facilities/press-brake.jpg" alt="A red and grey Bystronic CNC press brake with its control screen" width="726" height="543" loading="lazy" decoding="async"></picture><figcaption><span class="fig-no"></span>A Bystronic press brake.</figcaption></figure></li>
+        <li><figure class="fig" style="--ar: 4 / 3"><picture><source type="image/webp" srcset="assets/img/facilities/roll-forming.webp"><img src="assets/img/facilities/roll-forming.jpg" alt="A long blue roll forming line with a row of roller stands" width="1000" height="562" loading="lazy" decoding="async"></picture><figcaption><span class="fig-no"></span>A roll forming line.</figcaption></figure></li>
+      </ul>
+      <div class="table-scroll block">
+        <table class="spec-table" data-reveal>
+          <caption>Thickness and monthly capacity by metal, for each machine family. Capacity in metric tons a month.</caption>
+          <thead>
+            <tr><th scope="col">Metal</th><th scope="col">Thickness</th><th scope="col">Laser cutting</th><th scope="col">Pressing</th><th scope="col">Press brakes</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Mild steel and galvanized iron</th><td>0.5 to 25&nbsp;mm (0.02 to 1&nbsp;in)</td><td>200 to 250&nbsp;t</td><td>400 to 600&nbsp;t</td><td>200 to 250&nbsp;t</td></tr>
+            <tr><th scope="row">Stainless steel</th><td>0.5 to 25&nbsp;mm (0.02 to 1&nbsp;in)</td><td>200 to 250&nbsp;t</td><td>400 to 600&nbsp;t</td><td>200 to 250&nbsp;t</td></tr>
+            <tr><th scope="row">Aluminum alloy</th><td>1 to 10&nbsp;mm (0.04 to 0.4&nbsp;in)</td><td>200 to 250&nbsp;t</td><td>400 to 600&nbsp;t</td><td>200 to 250&nbsp;t</td></tr>
+            <tr><th scope="row">Copper</th><td>1 to 10&nbsp;mm (0.04 to 0.4&nbsp;in)</td><td>200 to 250&nbsp;t</td><td>400 to 600&nbsp;t</td><td>200 to 250&nbsp;t</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="welding" aria-labelledby="welding-title">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <h2 id="welding-title" class="h2" data-split>Welding and Fabrication</h2>
+          <p class="lead" data-reveal>Welding robots and qualified welders build up to 2,000&nbsp;t of fabrications a month.</p>
+        </div>
+      </div>
+      <div class="split">
+        <div>
+          <ul class="machine-grid is-two" data-stagger>
+            <li>
+              <article class="machine">
+                <div class="machine-top"><span data-icon="robot" aria-hidden="true"></span><span class="machine-count" data-odometer="30">30</span></div>
+                <h3>Welding robots</h3>
+                <p>Two of them added in 2020–21.</p>
+                <dl class="spec">
+                  <div><dt>Capacity</dt><dd>2,000&nbsp;t a month</dd></div>
+                </dl>
+              </article>
+            </li>
+            <li>
+              <article class="machine">
+                <div class="machine-top"><span data-icon="quality" aria-hidden="true"></span><span class="machine-count">50&nbsp;t</span></div>
+                <h3>Heavy fabrication</h3>
+                <p>Welded structures up to 50&nbsp;t, to EN 15085-2 CL1, DIN EN ISO 3834-2 and EN 1090.</p>
+              </article>
+            </li>
+          </ul>
+          <div class="block" data-reveal>
+            <h3 class="block-title">Why Robotic Welding</h3>
+            <ul class="bullets">
+              <li>A high production rate</li>
+              <li>Uniform weld bead thickness</li>
+              <li>Little or no distortion</li>
+              <li>Little or no spatter</li>
+              <li>Even heating of the part, for stronger weld joints</li>
+              <li>Reach into intricate cavities</li>
+            </ul>
+          </div>
+          <div class="block" data-reveal>
+            <h3 class="block-title">Manual Welding Processes</h3>
+            <ul class="tags">
+              <li class="tag">Submerged arc (SAW)</li>
+              <li class="tag">Gas metal arc (GMAW)</li>
+              <li class="tag">Flux-cored arc (FCAW)</li>
+              <li class="tag">Shielded metal arc (SMAW)</li>
+              <li class="tag">Gas tungsten arc (GTAW)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="split-aside">
+          <figure class="fig" data-reveal style="--ar: 4 / 5">
+            <picture><source type="image/webp" srcset="assets/img/facilities/robotic-welding.webp"><img src="assets/img/facilities/robotic-welding.jpg" alt="A white ABB welding robot over a steel fixture, inside a cell walled with yellow screens" width="1000" height="750" loading="lazy" decoding="async"></picture>
+            <figcaption><span class="fig-no"></span>A robotic welding cell.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band-muted" id="finishing" aria-labelledby="finishing-title">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <h2 id="finishing-title" class="h2" data-split>Heat Treatment and Finishing</h2>
+          <p class="lead" data-reveal>Heat treatment, galvanizing, coating and plating in-house, so parts leave ready to install.</p>
+        </div>
+      </div>
+      <ul class="machine-grid" data-stagger>
+        <li>
+          <article class="machine">
+            <div class="machine-top"><span data-icon="furnace" aria-hidden="true"></span><span class="machine-count" data-odometer="5 t">5&nbsp;t</span></div>
+            <h3>Heat treatment</h3>
+            <p>Electric pit-type furnaces taking 5&nbsp;t a charge, with polymer quenching and tempering, and carburizing in a continuous sealed-quench furnace.</p>
+          </article>
+        </li>
+        <li>
+          <article class="machine">
+            <div class="machine-top"><span data-icon="galvanize" aria-hidden="true"></span><span class="machine-count" data-odometer="2,500 t">2,500&nbsp;t</span></div>
+            <h3>Hot-dip galvanizing</h3>
+            <p>An in-house galvanizing plant, handling 2,500&nbsp;t a month.</p>
+          </article>
+        </li>
+        <li>
+          <article class="machine">
+            <div class="machine-top"><span data-icon="coat" aria-hidden="true"></span><span class="machine-count" data-odometer="1,200 t">1,200&nbsp;t</span></div>
+            <h3>Powder coating</h3>
+            <p>A powder coating line, handling 1,200&nbsp;t a month.</p>
+          </article>
+        </li>
+      </ul>
+      <div class="block" data-reveal>
+        <h3 class="block-title">Special Processes</h3>
+        <ul class="tags">
+          <li class="tag">Shot blasting</li>
+          <li class="tag">Liquid painting</li>
+          <li class="tag">Molykote coating</li>
+          <li class="tag">Ceramic coating</li>
+          <li class="tag">Xylan coating</li>
+          <li class="tag">Baked-on fluoropolymer coating</li>
+          <li class="tag">Zinc and manganese phosphating</li>
+          <li class="tag">Electroless nickel plating (ENP)</li>
+          <li class="tag">Copper plating</li>
+          <li class="tag">Glass beading</li>
+          <li class="tag">Pressure testing</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="quality-lab" aria-labelledby="quality-title">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <h2 id="quality-title" class="h2" data-split>Quality Lab</h2>
+          <p class="lead" data-reveal>Quality systems at every stage of inspection, and engineers with dedicated instruments for in-process and final inspection.</p>
+        </div>
+      </div>
+      <div class="split">
+        <div>
+          <ul class="machine-grid is-two" data-stagger>
+            <li>
+              <article class="machine">
+                <div class="machine-top"><span data-icon="cmm" aria-hidden="true"></span></div>
+                <h3>Measurement</h3>
+                <ul class="bullets">
+                  <li>Bridge-type CMM from Accurate</li>
+                  <li>Zeiss CMM</li>
+                  <li>Faro Quantum E3.5 portable measuring arm</li>
+                  <li>Electronic height gauge</li>
+                  <li>Roundness checking gauge</li>
+                </ul>
+              </article>
+            </li>
+            <li>
+              <article class="machine">
+                <div class="machine-top"><span data-icon="review" aria-hidden="true"></span></div>
+                <h3>Testing and traceability</h3>
+                <ul class="bullets">
+                  <li>Hardness tester</li>
+                  <li>Torque master and gearbox torque tester</li>
+                  <li>Salt spray chamber, for corrosion testing</li>
+                  <li>Continuous ink-jet marking</li>
+                  <li>NDT and pressure testing</li>
+                </ul>
+              </article>
+            </li>
+            <li>
+              <article class="machine">
+                <div class="machine-top"><span data-icon="quality" aria-hidden="true"></span></div>
+                <h3>ISO 9001:2015</h3>
+                <p>A quality management system covering fabricated, machined, heat-treated, surface-treated and formed components, sub-assemblies and pressure-tested assemblies.</p>
+                <span class="todo-badge">Confirm the certificate is current</span>
+              </article>
+            </li>
+            <li>
+              <article class="machine">
+                <div class="machine-top"><span data-icon="oil" aria-hidden="true"></span></div>
+                <h3>API Spec Q1 and API 5CT</h3>
+                <p>A license to use the API Monogram on casing and tubing couplings and pup joints.</p>
+                <span class="todo-badge">Confirm the license is current</span>
+              </article>
+            </li>
+          </ul>
+        </div>
+        <div class="split-aside">
+          <figure class="fig" data-reveal style="--ar: 4 / 5">
+            <picture><source type="image/webp" srcset="assets/img/facilities/cmm.webp"><img src="assets/img/facilities/cmm.jpg" alt="An inspector at a bridge-type coordinate measuring machine with a granite table, in a clean room" width="455" height="549" loading="lazy" decoding="async"></picture>
+            <figcaption><span class="fig-no"></span>The bridge-type CMM.</figcaption>
+          </figure>
+          <div data-reveal>
+            <h3 class="block-title">CMM Specification</h3>
+            <dl class="spec">
+              <div><dt>Make</dt><dd>Accurate, Cordimesur</dd></div>
+              <div><dt>Type</dt><dd>Bridge, rectangular, air bearings on four sides</dd></div>
+              <div><dt>Accuracy</dt><dd>2.5 + L/350&nbsp;µm</dd></div>
+              <div><dt>Probing</dt><dd>Touch trigger, 1.9&nbsp;µm uncertainty</dd></div>
+              <div><dt>Verified to</dt><dd>ISO 10360-2</dd></div>
+              <div><dt>Load</dt><dd>1,600&nbsp;kg, about 3,500&nbsp;lb</dd></div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta theme-light" aria-labelledby="cta-title" data-tone="light" data-scrub="enter" data-span="0.85">
+    <div class="wrap cta-inner">
+      <h2 id="cta-title" class="cta-title" data-split>Put Our Plants to Work</h2>
+      <p class="cta-line" data-reveal>Send us your drawings, and an engineer will match your part to the right plant and machines.</p>
+      <div data-reveal style="--delay: 150ms"><a class="btn btn-primary btn-xl" href="contact.html" data-magnetic>Request a quote</a></div>
+    </div>
+  </section>
+</main>
+
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <a class="brand" href="index.html" aria-label="Ultra Corpotech Inc. home"><img class="brand-lockup" src="assets/img/lockup.png" alt="" width="692" height="265" loading="lazy"><img class="brand-mark" src="assets/img/mark.png" alt="" width="118" height="171" loading="lazy"></a>
+      <p>The American subsidiary of Ultra Corpotech Pvt Ltd, Pune, India.</p>
+    </div>
+    <nav class="footer-col is-links" aria-label="What we do">
+      <h2>What we do</h2>
+      <ul class="footer-links">
+        <li><a class="link" href="products.html">Products</a></li>
+        <li><a class="link" href="services.html">Services</a></li>
+        <li><a class="link" href="facilities.html">Facilities</a></li>
+        <li><a class="link" href="case-studies.html">Case studies</a></li>
+      </ul>
+    </nav>
+    <nav class="footer-col is-links" aria-label="Company">
+      <h2>Company</h2>
+      <ul class="footer-links">
+        <li><a class="link" href="about.html">About</a></li>
+        <li><a class="link" href="careers.html">Careers</a></li>
+        <li><a class="link" href="blog.html">Blog</a></li>
+        <li><a class="link" href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="footer-col">
+      <h2>United States</h2>
+      <address>Ultra Corpotech Inc.<br>14737 Firetower Rd<br>Conroe, Texas 77306<br>[Phone]<br>[Email]</address>
+    </div>
+    <div class="footer-col">
+      <h2>Group headquarters</h2>
+      <address>Ultra Corpotech Pvt Ltd<br>Nighoje–Kuruli Road, Chakan<br>Pune, Maharashtra, India<br><a class="link" href="tel:+912135693500">+91 2135 693 500</a></address>
+      <a class="link" href="https://ultracorpotech.com/">ultracorpotech.com</a>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="footer-base">
+      <p>© 2026 Ultra Corpotech Inc. All rights reserved.</p>
+      <p>Engineering &amp; Energy Solutions</p>
+    </div>
+  </div>
+  <div class="foot-bar" aria-hidden="true"></div>
+</footer>
+</body>
+</html>

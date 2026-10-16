@@ -511,6 +511,7 @@ address { font-style: normal; }
   display: inline-flex;
   align-items: center;
   min-height: 44px;
+  white-space: nowrap;
   color: var(--ink);
   font-size: var(--fs-fine);
   line-height: 1.2;
@@ -565,7 +566,7 @@ address { font-style: normal; }
 .menu-open .menu-toggle-icon i:first-child { top: 5px; transform: rotate(45deg); }
 .menu-open .menu-toggle-icon i:last-child { top: 5px; transform: rotate(-45deg); }
 
-@media (max-width: 1119px) {
+@media (max-width: 1199px) {
   .brand img { height: 44px; }
   .js .nav,
   .js .header-cta { display: none; }
@@ -3192,7 +3193,7 @@ html:not(.js) .quote-slide:first-child { opacity: 1; visibility: visible; transf
 .voice,
 .cs-block,
 .logo-slot { position: relative; }
-:is(.tile, .cap, .usp, .sustain-item, .std, .office, .leader, .voice, .cs-block, .logo-slot, .line-art, .aside)::after {
+:is(.tile, .cap, .usp, .sustain-item, .std, .office, .leader, .voice, .cs-block, .logo-slot, .line-art, .aside, .machine)::after {
   content: "";
   position: absolute;
   inset: -1px;
@@ -3217,7 +3218,7 @@ a.tile:focus-visible::after,
 .std:hover::after { --c: var(--green); }
 /* On reveal the brackets draw out from each corner */
 @keyframes brackets-in { from { background-size: 0 2px, 2px 0, 0 2px, 2px 0, 0 2px, 2px 0, 0 2px, 2px 0; } }
-.motion :is([data-stagger], [data-in]).is-in :is(.tile, .cap, .usp, .sustain-item, .std, .office, .leader, .voice, .cs-block, .logo-slot)::after {
+.motion :is([data-stagger], [data-in]).is-in :is(.tile, .cap, .usp, .sustain-item, .std, .office, .leader, .voice, .cs-block, .logo-slot, .machine)::after {
   animation: brackets-in 0.9s var(--ease-push) backwards;
   animation-delay: calc(var(--i, 0) * 75ms + 380ms);
 }
@@ -3478,6 +3479,278 @@ a.tile:focus-visible .tile-top::after { color: var(--on-green); }
 @media (max-width: 420px) {
   .footer-base.title-block { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* 18. Facilities: plants, machines and capacity ----------------------------- */
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: clamp(32px, 5vw, 80px);
+  align-items: start;
+}
+.split-aside {
+  position: sticky;
+  top: calc(var(--header-h) + 40px);
+  display: grid;
+  gap: var(--space-8);
+}
+@media (max-width: 900px) {
+  .split { grid-template-columns: minmax(0, 1fr); }
+  .split-aside { position: relative; top: 0; }
+}
+* + .block.block { margin-top: clamp(40px, 5vw, 72px); }
+.block-title {
+  margin-bottom: var(--space-6);
+  font-size: var(--fs-h3);
+  line-height: 1.08;
+  letter-spacing: -0.012em;
+}
+
+/* Figures: photographs numbered and captioned like a drawing's figures */
+main { counter-reset: fig; }
+.fig { margin: 0; counter-increment: fig; }
+.fig picture { position: relative; display: block; }
+.fig img {
+  width: 100%;
+  aspect-ratio: var(--ar, 3 / 2);
+  object-fit: cover;
+  object-position: var(--pos, 50% 50%);
+  background: var(--surface-muted);
+}
+.fig figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-3);
+  padding-top: var(--space-3);
+  font-size: var(--fs-fine);
+  line-height: 1.4;
+  color: var(--ink-muted);
+}
+.fig-no { flex: none; color: var(--ink); letter-spacing: 0.06em; text-transform: uppercase; font-variant-numeric: tabular-nums; }
+.fig-no::before {
+  content: "Fig. " counter(fig, decimal-leading-zero);
+  content: "Fig. " counter(fig, decimal-leading-zero) / "";
+}
+.fig-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(28px, 3vw, 40px) var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.fig-grid.is-two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 860px) {
+  .fig-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 540px) {
+  .fig-grid,
+  .fig-grid.is-two { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Machine cards: an icon, the count, and a spec sheet */
+.machine-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.machine-grid.is-two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 1023px) {
+  .machine-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .machine-grid,
+  .machine-grid.is-two { grid-template-columns: minmax(0, 1fr); }
+}
+.machine {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  height: 100%;
+  padding: clamp(20px, 2.2vw, 28px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--surface-raised);
+  --tone-bg: var(--surface-raised);
+}
+.machine-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-2);
+}
+.machine-top .ico-host { width: 64px; flex: none; }
+.machine-count {
+  font-size: clamp(40px, 4vw, 60px);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  color: var(--draw);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.machine h3 { font-size: var(--fs-sub); line-height: 1.25; }
+.machine > p { font-size: var(--fs-fine); line-height: 1.55; color: var(--ink-muted); }
+.machine .todo-badge { margin-top: var(--space-1); }
+
+/* Spec sheet: label and value rows, ruled like a drawing's tables */
+.spec { display: grid; margin: auto 0 0; padding-top: var(--space-3); }
+.spec > div {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+  gap: var(--space-1) var(--space-3);
+  padding-block: var(--space-2);
+  border-top: 1px solid var(--line);
+}
+.spec dt {
+  font-size: var(--fs-fine);
+  line-height: 1.4;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+.spec dd { font-size: var(--fs-fine); line-height: 1.4; font-variant-numeric: tabular-nums; }
+@media (max-width: 420px) {
+  .spec > div { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Bar tables: a real table, each value drawn to scale as a bar */
+.bar-table { width: 100%; border-collapse: collapse; font-size: var(--fs-fine); line-height: 1.3; }
+.bar-table th,
+.bar-table td {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+  font-weight: 400;
+  text-align: left;
+  vertical-align: middle;
+}
+.bar-table thead th {
+  padding-top: 0;
+  border-bottom-color: var(--line-strong);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+.bar-table thead th:last-child { text-align: right; }
+.bar-table tbody th { width: 34%; padding-right: var(--space-6); }
+.bar-table small { display: block; font-size: var(--fs-fine); color: var(--ink-muted); }
+.bar-cell { display: flex; align-items: center; gap: var(--space-4); }
+.bar { position: relative; display: block; flex: 1 1 auto; height: 14px; }
+.bar i {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: calc(var(--v, 1) * 100%);
+  border-radius: 0 4px 4px 0;
+  background: var(--draw);
+  transform-origin: left center;
+  transition: transform 1.3s var(--ease-inout), background-color 0.25s;
+  transition-delay: calc(var(--i, 0) * 90ms + 200ms), 0s;
+}
+.motion [data-in]:not(.is-in) .bar i { transform: scaleX(0); }
+.bar-table tbody tr:hover .bar i,
+.unit:hover .bar i { background: var(--green-deep); }
+.bar-val { flex: none; min-width: 7.5em; text-align: right; font-variant-numeric: tabular-nums; }
+@media (max-width: 640px) {
+  .bar-table tbody th { width: 42%; padding-right: var(--space-3); }
+  .bar-val { min-width: 5.5em; }
+}
+
+/* Units: number, location and work, and floor area to scale */
+.units {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line-strong);
+}
+.unit {
+  display: grid;
+  grid-template-columns: minmax(0, 4.5rem) minmax(0, 1fr) minmax(0, 13rem);
+  gap: var(--space-2) var(--space-6);
+  align-items: center;
+  padding-block: var(--space-4);
+  border-bottom: 1px solid var(--line);
+}
+.unit-no {
+  font-size: clamp(32px, 3vw, 44px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--draw);
+  font-variant-numeric: tabular-nums;
+}
+.unit h3 { font-size: var(--fs-sub); line-height: 1.25; }
+.unit p { margin-top: var(--space-1); font-size: var(--fs-fine); line-height: 1.5; color: var(--ink-muted); }
+.unit-area { display: grid; gap: var(--space-2); font-size: var(--fs-fine); line-height: 1.2; font-variant-numeric: tabular-nums; }
+.unit-area .bar { height: 10px; }
+.unit.is-total { border-bottom: 0; border-top: 2px solid var(--ink); margin-top: -1px; }
+.unit.is-total .unit-no { color: var(--ink); }
+@media (max-width: 760px) {
+  .unit { grid-template-columns: minmax(0, 3rem) minmax(0, 1fr); }
+  .unit-area { grid-column: 2; }
+}
+
+/* Spec table: thickness and monthly capacity by metal */
+.spec-table { width: 100%; min-width: 620px; border-collapse: collapse; font-size: var(--fs-fine); line-height: 1.4; }
+.spec-table th,
+.spec-table td { padding: 12px 14px; border: 1px solid var(--line-strong); text-align: left; vertical-align: top; font-variant-numeric: tabular-nums; }
+.spec-table thead th { font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-muted); background: var(--surface); }
+.spec-table tbody th { font-weight: 700; }
+.spec-table td { background: var(--surface-raised); }
+.spec-table caption { padding-bottom: var(--space-3); font-size: var(--fs-fine); line-height: 1.5; color: var(--ink-muted); text-align: left; }
+
+.fig picture::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  --c: var(--line-strong);
+  background:
+    linear-gradient(var(--c) 0 0) left top / var(--arm, 12px) 2px,
+    linear-gradient(var(--c) 0 0) left top / 2px var(--arm, 12px),
+    linear-gradient(var(--c) 0 0) right top / var(--arm, 12px) 2px,
+    linear-gradient(var(--c) 0 0) right top / 2px var(--arm, 12px),
+    linear-gradient(var(--c) 0 0) left bottom / var(--arm, 12px) 2px,
+    linear-gradient(var(--c) 0 0) left bottom / 2px var(--arm, 12px),
+    linear-gradient(var(--c) 0 0) right bottom / var(--arm, 12px) 2px,
+    linear-gradient(var(--c) 0 0) right bottom / 2px var(--arm, 12px);
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+/* Machine icons and the press brake */
+@keyframes dip { 0%, 100% { transform: translate3d(0, 0, 0); } 45%, 62% { transform: translate3d(0, 14px, 0); } }
+.a-dip { animation: dip 3.4s var(--ease-inout) infinite; }
+@keyframes brake-ram {
+  0%, 16% { transform: translate3d(0, 0, 0); }
+  36.4% { transform: translate3d(0, 18px, 0); }
+  50%, 62% { transform: translate3d(0, 30px, 0); }
+  84%, 100% { transform: translate3d(0, 0, 0); }
+}
+@keyframes brake-sheet {
+  0%, 36.4% { transform: translate3d(0, 0, 0); opacity: 1; }
+  50%, 84% { transform: translate3d(0, 12px, 0); opacity: 1; }
+  91% { transform: translate3d(0, 12px, 0); opacity: 0; }
+  92% { transform: translate3d(0, 0, 0); opacity: 0; }
+  100% { transform: translate3d(0, 0, 0); opacity: 1; }
+}
+@keyframes brake-l { 0%, 36.4% { transform: rotate(0); } 50%, 91% { transform: rotate(38deg); } 92%, 100% { transform: rotate(0); } }
+@keyframes brake-r { 0%, 36.4% { transform: rotate(0); } 50%, 91% { transform: rotate(-38deg); } 92%, 100% { transform: rotate(0); } }
+@keyframes brake-arc {
+  0%, 52% { opacity: 0; stroke-dashoffset: 40; }
+  60%, 82% { opacity: 1; stroke-dashoffset: 0; }
+  88%, 100% { opacity: 0; stroke-dashoffset: 0; }
+}
+.a-brake-ram { animation: brake-ram 4.2s linear infinite; }
+.a-brake-sheet { animation: brake-sheet 4.2s linear infinite; }
+.a-brake-l { animation: brake-l 4.2s linear infinite; }
+.a-brake-r { animation: brake-r 4.2s linear infinite; }
+.a-brake-arc { animation: brake-arc 4.2s var(--ease-out) infinite; }
+html:not(.motion) .a-brake-arc { opacity: 0; }
 
 /* 14. Reduced motion --------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
