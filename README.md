@@ -2,9 +2,11 @@
 
 The animated website for Ultra Corpotech Inc., the American subsidiary of Ultra Corpotech Pvt Ltd. It is built on the Ultra Corpotech design system: brand green `#00a972` on white, Bahnschrift (Barlow on the web) in Regular and Bold only, square full-bleed photography, no drop shadows, and the 8px green foot bar.
 
-Pages: Home, Products, Services, Facilities, Case studies, About, Careers, Blog (with three articles) and Contact. Product, process, plant and company details come from the group site, [ultracorpotech.com](https://ultracorpotech.com/), and from the group's corporate presentation (December 2025): the Facilities page (units, machines, capacities, quality lab and the shop-floor photographs), the solar parts, business mix, solar project countries and the Parts Library on Products (87 parts cut out of the presentation's photographs and drawings), the 550+ machine tools and the six values.
+Pages: Home, Products, Services, Facilities, Case studies, About, Careers, Blog (with three articles) and Contact. The site leads with UCI in Conroe, Texas, serving customers throughout the United States and Canada, then explains the Ultra group that supports it.
 
-Where the presentation and the group site disagree on the number of plants, the site keeps the group site's "14 facilities across 10 locations" and shows the presentation's units as the main manufacturing units.
+The June 2026 corporate presentation supplies the updated UCI facility profile and three-phase development plan, group scale (4,500+ people, 650+ machine tools and 18 manufacturing facilities across 10 Pune locations), material capabilities and expanded product examples. The UCI plan's dates are intended milestones, not confirmation that each phase is complete. Earlier content and imagery from the December 2025 presentation and [ultracorpotech.com](https://ultracorpotech.com/) remain where they have not been superseded. See [content sources](docs/content-sources.md) for page references and editorial boundaries.
+
+The Parts Library has 101 examples: the original 87, with eight images upgraded, plus 14 additions from the June 2026 presentation (eight oil-and-gas components, three rail components and three mining components). Source photographs are extracted at their embedded resolution, cleaned with image generation to remove backgrounds and improve clarity, then exported with transparent backgrounds and matching edge masks. They are illustrative component photographs, not dimensionally accurate CAD models. [Image source records](docs/part-image-sources.json) identify the 22 upgraded or added images by presentation page and embedded-image reference.
 
 It is a plain static site: HTML, one stylesheet and one script, with no build step and no third-party requests.
 
@@ -29,13 +31,13 @@ Content the company still has to supply is marked on the pages with a yellow **T
 grep -n 'todo-badge\|todo-box\|\[[A-Z#][^]]*\]' *.html
 ```
 
-- **Contact details.** `[Phone]` and `[Email]` (footer of every page, and the Contact page aside and offices), `[Year]` the US company was established (About), and `[Careers email]` (Careers).
-- **Proof.** The two missing figures on Home (parts delivered, by quantity and value; customers served), the customer logo wall and the testimonials (Home), and the challenge and result of each case study (Case studies). Use only logos and quotes you have permission to show.
+- **Contact details.** `[Phone]` and `[Email]` (footer of every page, and the Contact page aside and offices), and `[Careers email]` (Careers).
+- **Proof.** The customer logo wall and testimonials (Home), and the challenge and result of each case study (Case studies). Use only logos and quotes you have permission to show.
 - **Careers.** Current openings, benefits, and employee stories, photos or video.
 - **About.** A short biography for Pratiksha A. Bhosle, and measurable sustainability figures (waste, energy, water). Facility photographs can go in the "Where We Make It" section once the photoshoot is done.
-- **Facilities photographs.** The photographs in `assets/img/facilities/` are stills taken from the corporate presentation and are soft at large sizes. Replace them with photoshoot images of the same subjects (same file names, as `.jpg` and `.webp`) when they are available.
-- **Parts library.** The solar tracker, aluminum and hardware parts carry the names in the presentation's captions (without the customer program codes such as GCS and VMS). The presentation does not name the oil and gas, mining and industrial parts, so their names are descriptive, written from the photographs: check them against your part list and correct them in `products.html`. Those presentation photographs are small, so the oil and gas parts look soft; to replace any part, cut it out with a background remover and run `python3 tools/part-image.py cutout.png og-drill-01` (same file name), then update the image's `width` and `height` if they changed.
-- **Claims to confirm.** That the ISO 14001 certificate is current (the badge says so where it is claimed), that the ISO 9001:2015 certificate and the API Spec Q1 / API 5CT license are current (Facilities; the copies in the presentation expired in February 2023 and September 2021), the 24 to 48 hour reply time (Home, Services, Contact and the quote checklist article), 3,500+ people, and the EEPC India Star Performer award.
+- **Facilities photographs.** The photographs in `assets/img/facilities/` come from the corporate presentations, including the Conroe aerial photograph from June 2026, page 8. Some are soft at large sizes. Replace them with approved photographs of the same subjects when available, preserving the file paths used by the pages.
+- **Parts library.** Solar tracker, aluminum and hardware names retain the earlier presentation captions without customer program codes. The June 2026 update corrects identifiable oil-and-gas and mining captions, including the two crossheads, micro grid, boom bracket, counterweight and carrying fixtures; see [content sources](docs/content-sources.md). Some retained images still have descriptive names that need checking against the company's part list. The enlarged image viewer helps visitors inspect examples and their available specifications. For later replacements, use a transparent cutout and run `python3 tools/part-image.py cutout.png og-drill-01` (same file name), then update the image dimensions and any enlarged-image source in `products.html`. Keep the source record current.
+- **Claims to confirm.** Confirm the validity and site scope of certificates before using them for a customer's program; group certifications must not be presented as UCI certifications. Existing certificate confirmation badges remain where needed. Confirm any remaining response-time promises, award claims and descriptive product names. The June 2026 development plan gives target dates; ask UCI to verify each phase's actual commissioning status before marking it complete.
 - **Quote form.** The form validates and shows its confirmation, but a static site cannot send email. In `contact.html`, set `data-endpoint` on the `<form>` to your form handler's URL (Formspree, Netlify Forms, or your own endpoint). The script then posts the form, files included, and only shows the confirmation when the handler accepts it.
 
 ## How it is put together
@@ -44,17 +46,19 @@ grep -n 'todo-badge\|todo-box\|\[[A-Z#][^]]*\]' *.html
 index.html             Home
 products.html          Products, by line: oil and gas, renewable energy, rail, telecom, infrastructure, industrial, defense
 services.html          Services: capacity, the process chain, drawing to delivery, standards
-facilities.html        Plants and machines: figures, monthly capacity, main units, machining, cutting and forming, welding, finishing, quality lab
+facilities.html        UCI Conroe site and development plan, then group plants, machines, capacity and quality lab
 case-studies.html      Case studies
 about.html             Story, milestones, vision, mission and values, leadership, plants, sustainability
 careers.html           Careers
 blog.html              Blog index, plus blog-rfq-checklist.html, blog-en-15085-2.html, blog-choosing-a-finish.html
 contact.html           Quote form and offices
 assets/css/site.css    design tokens (light and dark), layout, components, motion states
-assets/js/site.js      the motion engine, canvases, world map, line icons and the form
+assets/js/site.js      motion, canvases, dual-origin shipping map, part inspector, line icons and form
 assets/img/            logos and photographs from the design system, plus WebP copies
-assets/img/facilities/ shop-floor photographs from the corporate presentation, as JPEG and WebP
-assets/img/parts/      parts cut out of the presentation, as WebP with transparency, each with an -edges.webp wireframe
+assets/img/facilities/ Conroe aerial and group shop-floor photographs from the corporate presentations
+assets/img/parts/      transparent part images, matching -edges.webp masks and enlarged images where available
+docs/content-sources.md source pages, claim scope and corrected product captions
+docs/part-image-sources.json source page and embedded-image reference for updated part images
 tools/part-image.py    turns a cut-out part photograph into the two files the Parts Library uses
 assets/fonts/          Barlow Regular and Bold, latin and latin-ext (SIL Open Font License)
 ```
@@ -78,16 +82,16 @@ The pages also read like an engineering drawing sheet:
 - **Muted bands** are graph paper on the same 48px pitch as the hero grid. Figures sit on a scale, and the scroll gauge has a tick every tenth.
 - **Gears** show dash-dot pitch circles, the centre line and callouts with each gear's tooth count.
 - **The footer** ends in a title block: company, discipline, page title, sheet number, scale and units.
-- **The Parts Library** shows each part like a model in a CAD viewer: it stands on a turntable whose grid floor turns with it, with its shadow on the floor, a highlight that slides across the metal, a view triad and an azimuth and elevation readout. A part loads as a green wireframe that a scan line fills in, turns slowly on its own, follows the pointer, and shows its wireframe again on hover. The parts are photographs, so they turn within a few degrees either side rather than all the way round.
+- **The Parts Library** shows each part like a model in a CAD viewer: it stands on a turntable whose grid floor turns with it, with its shadow on the floor, a highlight that slides across the metal, a view triad and an azimuth and elevation readout. A part loads as a green wireframe that a scan line fills in, turns slowly on its own, follows the pointer, and shows its wireframe again on hover. The parts are photographs, so they turn within a few degrees either side rather than all the way round. The Inspect control opens an enlarged view with the product name and available example specifications; these images are illustrative, not measurement tools.
 
 The tags, dimension lines, readout and title-block cells are added by the script and hidden from assistive technology; without the script the page is unchanged.
 
 | Where | What moves |
 | --- | --- |
 | Every page | First-visit intro with the lockup framed in registration brackets, green page curtain patterned with the monogram, ruled scroll gauge along the foot, crosshair cursor whose frame locks onto links and buttons, magnetic buttons with rolling labels, section tags whose centre lines draw out, dimensioned page titles, card corners that draw out |
-| Home | Monogram field with CAD rulers and a millimetre readout, 3D wireframe gears with pitch circles and tooth-count callouts that mesh and follow the pointer, the cover photo screened behind What We Make, drifting under a scan line, product cards, stacking service strips, scroll-driven marquees, pinned four-step "Working With UCI" run with a truck along the foot bar, rolling odometers, case study index with a preview that trails the pointer, testimonial slider, dot-matrix world map that draws its export lanes from Pune, a milestone strip you can drag, word-by-word vision quote, values that fill in, rising skyline |
+| Home | Monogram field with CAD rulers and a millimetre readout, 3D wireframe gears with pitch circles and tooth-count callouts that mesh and follow the pointer, the cover photo screened behind What We Make, drifting under a scan line, product cards, stacking service strips, scroll-driven marquees, pinned four-step "Working With UCI" run with a truck along the foot bar, rolling odometers, case study index with a preview that trails the pointer, testimonial slider, dot-matrix world map with UCI delivery lanes from Conroe across the US and into Canada, alongside the group’s global lanes from Pune, a milestone strip you can drag, word-by-word vision quote, values that fill in, rising skyline |
 | Products | The sectors orbiting the mark, the business mix drawn as bars, the Parts Library's turntables, illustrations that stay in view beside each product line, scroll-driven metro train |
-| Services | Laser cutter that cuts parts from a plate (inner contours first) with a live X/Y readout, capacity visuals (550 squares for 550 machine tools), process chain whose monogram nodes fill green as you scroll, pinned "From Drawing to Delivery", stamped standards |
+| Services | Laser cutter that cuts parts from a plate (inner contours first) with a live X/Y readout, capacity visuals (650 squares for 650+ group machine tools), process chain whose monogram nodes fill green as you scroll, pinned "From Drawing to Delivery", stamped standards |
 | Facilities | A press brake that bends a blank and dimensions the angle, bars that draw out to scale (monthly capacity, floor area of each unit), machine icons that run (laser head, press ram, welding robot, roll formers, furnace, galvanizing dip, CMM probe), numbered figures in registration brackets |
 | Case studies | The four sectors orbiting the mark |
 | About | Datum ring around the mark, scroll-lit story, the milestone strip, vision and mission cards that lock together, plants listed year by year |
@@ -102,7 +106,7 @@ The line icons and illustrations are drawn in code (one stroke weight, ink with 
 - Automated browsers (link previews, screenshots) also get the still page.
 - Text never goes below 13 pt (17.33px), green is never used for small text, and every interactive element shows the design system's focus ring.
 - The milestone strip scrolls with the keyboard as well as by dragging, and has Earlier and Later buttons.
-- The Parts Library's families are tabs (the arrow keys move between them, Home and End jump to the ends); without the script every family is listed in turn under its own heading.
+- The Parts Library's families are tabs (the arrow keys move between them, Home and End jump to the ends); without the script every family is listed in turn under its own heading. Its Inspect buttons open a modal dialog that supports keyboard focus, Escape to close and focus return to the opening control.
 - The site follows the visitor's light or dark setting using the design system's dark theme. On dark grounds the header and footer use the mark alone, as the logo rules require. The skyline at the foot of each page is a mask drawn in the theme's green, so its band follows the theme too.
 
 ### Brand notes
