@@ -855,6 +855,98 @@
     });
   }
 
+  /* One enlarged image viewer for every family, including newly added parts.
+     The original component image is requested only when its dialog opens. */
+  function initPartInspector() {
+    const figs = $$('[data-part]');
+    if (!figs.length || typeof HTMLDialogElement === 'undefined') return;
+    const dialog = doc.createElement('dialog');
+    if (typeof dialog.showModal !== 'function') return;
+    dialog.id = 'part-inspector';
+    dialog.className = 'part-dialog';
+    dialog.setAttribute('aria-labelledby', 'part-dialog-title');
+    dialog.innerHTML = `
+      <button class="part-dialog-close" type="button" autofocus>Close<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+      <div class="part-dialog-layout">
+        <div class="part-dialog-media"><img decoding="async" alt=""></div>
+        <div class="part-dialog-info">
+          <p class="part-no" data-inspector-number></p>
+          <h2 id="part-dialog-title"></h2>
+          <p id="part-dialog-meta" class="part-dialog-meta"></p>
+          <p id="part-dialog-spec" class="part-dialog-spec" hidden></p>
+          <p id="part-dialog-note" class="part-dialog-note">Representative component. Final dimensions and specifications follow your drawing.</p>
+        </div>
+      </div>`;
+    doc.body.appendChild(dialog);
+    const image = $('img', dialog);
+    const title = $('#part-dialog-title', dialog);
+    const number = $('[data-inspector-number]', dialog);
+    const meta = $('#part-dialog-meta', dialog);
+    const spec = $('#part-dialog-spec', dialog);
+    const close = $('.part-dialog-close', dialog);
+    let opener = null;
+    let pressedBackdrop = false;
+    const outside = (e) => {
+      const box = dialog.getBoundingClientRect();
+      return e.clientX < box.left || e.clientX > box.right || e.clientY < box.top || e.clientY > box.bottom;
+    };
+    close.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('keydown', (e) => {
+      if (e.key !== 'Tab') return;
+      const controls = $$('button:not([disabled]), a[href], [tabindex="0"]', dialog).filter((el) => el.getClientRects().length);
+      const first = controls[0];
+      const last = controls[controls.length - 1];
+      if (first && (e.shiftKey ? doc.activeElement === first : doc.activeElement === last)) {
+        e.preventDefault();
+        (e.shiftKey ? last : first).focus();
+      }
+    });
+    dialog.addEventListener('pointerdown', (e) => {
+      pressedBackdrop = e.target === dialog && outside(e);
+    });
+    dialog.addEventListener('click', (e) => {
+      if (pressedBackdrop && e.target === dialog && outside(e)) dialog.close();
+      pressedBackdrop = false;
+    });
+    dialog.addEventListener('close', () => {
+      root.classList.remove('has-part-dialog');
+      image.removeAttribute('src');
+      image.alt = '';
+      if (opener && opener.isConnected && opener.getClientRects().length) opener.focus({ preventScroll: true });
+      opener = null;
+    });
+    figs.forEach((fig) => {
+      const source = $('.part-stage img', fig);
+      const caption = $('figcaption', fig);
+      const name = $('.part-name', fig);
+      if (!source || !caption || !name) return;
+      const button = doc.createElement('button');
+      button.type = 'button';
+      button.className = 'part-inspect';
+      button.setAttribute('aria-label', `Inspect ${name.textContent.trim()}`);
+      button.setAttribute('aria-haspopup', 'dialog');
+      button.setAttribute('aria-controls', dialog.id);
+      button.innerHTML = 'Inspect part<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M14 4h6v6M20 4l-7 7M10 20H4v-6M4 20l7-7"/></svg>';
+      caption.appendChild(button);
+      button.addEventListener('click', () => {
+        if (dialog.open) return;
+        opener = button;
+        title.textContent = name.textContent.trim();
+        number.textContent = $('.part-no', caption)?.textContent.trim() || '';
+        meta.textContent = $('.part-meta', caption)?.textContent.trim() || '';
+        spec.textContent = fig.dataset.spec || '';
+        spec.hidden = !spec.textContent;
+        dialog.setAttribute('aria-describedby', `part-dialog-meta${spec.hidden ? '' : ' part-dialog-spec'} part-dialog-note`);
+        image.alt = `${title.textContent} — enlarged component view`;
+        image.src = source.currentSrc || source.src;
+        dialog.showModal();
+        dialog.scrollTop = 0;
+        root.classList.add('has-part-dialog');
+        close.focus({ preventScroll: true });
+      });
+    });
+  }
+
   /* Part families as tabs; without the script every family shows in turn */
   function initPartTabs() {
     $$('[data-part-tabs]').forEach((lib) => {
@@ -2296,8 +2388,8 @@
     });
   }
 
-  /* World map: Natural Earth land as a square dot matrix (2° cells). Export and
-     delivery regions light up green, and delivery lanes run out from Pune. */
+  /* World map: UCI's North American deliveries originate in Conroe. Dashed
+     group export routes originate in Pune. Destinations illustrate coverage. */
   const LAND = {
     cols: 180,
     rows: 68,
@@ -2318,8 +2410,20 @@
     (lon, lat) => lon > 110 && lat < -9,
     (lon, lat) => lon >= 66 && lon <= 150 && lat >= -11 && lat <= 50,
   ];
-  const MAP_HOME = [73.86, 18.52];
-  const MAP_LANES = [[-95.46, 30.31], [10, 50], [47, 26], [22, 2], [-58, -16], [135, -25], [116, 32]];
+  const MAP_HUBS = { conroe: [-95.46, 30.31], pune: [73.86, 18.52] };
+  const MAP_LANES = [
+    // Draw UCI first, so the US and Canada appear first during the reveal.
+    { from: 'conroe', to: [-119, 36] },
+    { from: 'conroe', to: [-104, 40] },
+    { from: 'conroe', to: [-87, 42] },
+    { from: 'conroe', to: [-76, 39] },
+    { from: 'conroe', to: [-82, 28] },
+    { from: 'conroe', to: [-116, 53] },
+    { from: 'conroe', to: [-79, 45] },
+    { from: 'pune', to: MAP_HUBS.conroe },
+    ...[[10, 50], [47, 26], [22, 2], [-58, -16], [135, -25], [116, 32]]
+      .map((to) => ({ from: 'pune', to })),
+  ];
 
   function WorldMap(canvas) {
     const ctx = canvas.getContext('2d');
@@ -2406,16 +2510,18 @@
         paintDots(ctx, dots);
       }
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      const home = project(MAP_HOME[0], MAP_HOME[1]);
       const n = MAP_LANES.length;
-      ctx.lineWidth = 1.5;
       for (let k = 0; k < n; k++) {
         const lp = clamp(lanes * (n + 1) - k);
         if (lp <= 0) continue;
-        const end = project(MAP_LANES[k][0], MAP_LANES[k][1]);
+        const lane = MAP_LANES[k];
+        const uci = lane.from === 'conroe';
+        const home = project(...MAP_HUBS[lane.from]);
+        const end = project(...lane.to);
         const ctl = control(home, end);
-        ctx.setLineDash([4, 5]);
-        ctx.strokeStyle = rgba(colors.draw, 0.95);
+        ctx.lineWidth = uci ? 2 : 1.3;
+        ctx.setLineDash(uci ? [] : [4, 5]);
+        ctx.strokeStyle = rgba(uci ? colors.ink : colors.draw, uci ? 0.9 : 0.7);
         ctx.beginPath();
         for (let i = 0; i <= 48; i++) {
           const p = bez(home, ctl, end, (i / 48) * lp);
@@ -2827,6 +2933,7 @@
     safe(initTilt);
     safe(initPartTabs);
     safe(initParts);
+    safe(initPartInspector);
     safe(initCursor);
     safe(initForm);
     safe(initTimelines);

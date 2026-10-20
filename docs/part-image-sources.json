@@ -1,0 +1,248 @@
+{
+  "presentation": "UCPL Corporate Presentation -June- 2026.pdf",
+  "processing": "Native embedded images extracted from the supplied PDF; background removal and clarity cleanup with image generation; WebP export and edge masks for the existing presentation. These are representative product images, not dimensional CAD models.",
+  "parts": [
+    {
+      "xref": 711,
+      "page": 49,
+      "file": "og-drill-01",
+      "name": "Crosshead Q10",
+      "family": "Drilling and frac",
+      "spec": "AISI 4340. Example size: 11 × 9.02 × 6.5 inches.",
+      "group": "oil-and-gas",
+      "replacement": true,
+      "id": "OG-01"
+    },
+    {
+      "xref": 687,
+      "page": 45,
+      "file": "og-drill-03",
+      "name": "Fabricated power frame",
+      "family": "Drilling and frac",
+      "spec": "S690QL steel. Example weight: 4.2 tons; 55 × 35 × 49.25 inches.",
+      "group": "oil-and-gas",
+      "replacement": true,
+      "id": "OG-03"
+    },
+    {
+      "xref": 707,
+      "page": 48,
+      "file": "og-drill-04",
+      "name": "Connecting rod with bushing",
+      "family": "Drilling and frac",
+      "spec": "AISI 4340. Example size: 28.5 × 10 × 5.96 inches.",
+      "group": "oil-and-gas",
+      "replacement": true,
+      "id": "OG-04"
+    },
+    {
+      "xref": 713,
+      "page": 49,
+      "file": "og-drill-09",
+      "name": "Crosshead 2000",
+      "family": "Drilling and frac",
+      "spec": "AISI 4340. Example size: 11.20 × 9.70 × 7.43 inches.",
+      "group": "oil-and-gas",
+      "replacement": true,
+      "id": "OG-09"
+    },
+    {
+      "xref": 942,
+      "page": 76,
+      "file": "min-screen-box",
+      "name": "Screen box",
+      "family": "Fabricated screening equipment",
+      "spec": "",
+      "group": "mining",
+      "replacement": true,
+      "id": "MI-02"
+    },
+    {
+      "xref": 943,
+      "page": 76,
+      "file": "min-screen",
+      "name": "Micro grid",
+      "family": "Fabricated screening equipment",
+      "spec": "",
+      "group": "mining",
+      "replacement": true,
+      "id": "MI-01"
+    },
+    {
+      "xref": 935,
+      "page": 74,
+      "file": "min-dump-body",
+      "name": "Dump box",
+      "family": "Mining truck body",
+      "spec": "QUARD 400 wear-resistant steel.",
+      "group": "mining",
+      "replacement": true,
+      "id": "MI-03"
+    },
+    {
+      "xref": 936,
+      "page": 74,
+      "file": "min-dump-shell",
+      "name": "Dump box, alternate view",
+      "family": "Mining truck body",
+      "spec": "QUARD 400 wear-resistant steel.",
+      "group": "mining",
+      "replacement": true,
+      "id": "MI-04"
+    },
+    {
+      "xref": 671,
+      "page": 43,
+      "file": "og-fluid-end",
+      "name": "Stainless fluid end",
+      "family": "Drilling and frac",
+      "spec": "15-5 PH stainless steel. Example weight: 2.4 tons.",
+      "group": "oil-and-gas",
+      "replacement": false,
+      "id": "OG-31"
+    },
+    {
+      "xref": 705,
+      "page": 48,
+      "file": "og-connecting-rod",
+      "name": "Connecting rod",
+      "family": "Drilling and frac",
+      "spec": "AISI 4140, 130 KSI. Example weight: 103 kg.",
+      "group": "oil-and-gas",
+      "replacement": false,
+      "id": "OG-32"
+    },
+    {
+      "xref": 677,
+      "page": 44,
+      "file": "og-retainer-spring",
+      "name": "Retainer spring",
+      "family": "Fluid-end assembly",
+      "spec": "",
+      "group": "oil-and-gas",
+      "replacement": false,
+      "id": "OG-33"
+    },
+    {
+      "xref": 679,
+      "page": 44,
+      "file": "og-suction-cover",
+      "name": "Suction cover",
+      "family": "Fluid-end assembly",
+      "spec": "",
+      "group": "oil-and-gas",
+      "replacement": false,
+      "id": "OG-34"
+    },
+    {
+      "xref": 681,
+      "page": 44,
+      "file": "og-packing-nut",
+      "name": "Packing nut",
+      "family": "Fluid-end assembly",
+      "spec": "",
+      "group": "oil-and-gas",
+      "replacement": false,
+      "id": "OG-35"
+    },
+    {
+      "xref": 683,
+      "page": 44,
+      "file": "og-suction-retainer",
+      "name": "Suction retainer",
+      "family": "Fluid-end assembly",
+      "spec": "",
+      "group": "oil-and-gas",
+      "replacement": false,
+      "id": "OG-36"
+    },
+    {
+      "xref": 747,
+      "page": 53,
+      "file": "og-intervention-ring",
+      "name": "Intervention ring",
+      "family": "Subsea components",
+      "spec": "S355J2 steel. Example outer diameter: 37.66 inches; inner diameter: 27.75 inches.",
+      "group": "oil-and-gas",
+      "replacement": false,
+      "id": "OG-37"
+    },
+    {
+      "xref": 775,
+      "page": 58,
+      "file": "og-gate-segment",
+      "name": "Gate segment",
+      "family": "Valve components",
+      "spec": "ASTM A36 steel. Example weight: 20.7 kg.",
+      "group": "oil-and-gas",
+      "replacement": false,
+      "id": "OG-38"
+    },
+    {
+      "xref": 897,
+      "page": 69,
+      "file": "rail-main-cab",
+      "name": "Main locomotive cab",
+      "family": "Rail and metro",
+      "spec": "Example weight: 1,952 kg; 3,152 mm wide × 3,728 mm long × 2,245 mm high.",
+      "group": "rail",
+      "replacement": false,
+      "id": "RA-01"
+    },
+    {
+      "xref": 905,
+      "page": 70,
+      "file": "rail-bogie-frame",
+      "name": "Electric-locomotive bogie frame",
+      "family": "Rail and metro",
+      "spec": "S355J2+N steel. Example weight: 3,300 kg.",
+      "group": "rail",
+      "replacement": false,
+      "id": "RA-02"
+    },
+    {
+      "xref": 908,
+      "page": 71,
+      "file": "rail-headstock",
+      "name": "Headstock",
+      "family": "Rail and metro",
+      "spec": "ASTM A588 steel. Example weight: 600 kg; 2,750 mm wide × 1,500 mm long.",
+      "group": "rail",
+      "replacement": false,
+      "id": "RA-03"
+    },
+    {
+      "xref": 951,
+      "page": 78,
+      "file": "min-chassis",
+      "name": "Equipment chassis",
+      "family": "Construction and mining",
+      "spec": "",
+      "group": "mining",
+      "replacement": false,
+      "id": "MI-12"
+    },
+    {
+      "xref": 955,
+      "page": 79,
+      "file": "min-vibro-grid",
+      "name": "Vibro grid",
+      "family": "Screening equipment",
+      "spec": "",
+      "group": "mining",
+      "replacement": false,
+      "id": "MI-13"
+    },
+    {
+      "xref": 967,
+      "page": 82,
+      "file": "min-crusher-frame",
+      "name": "Crusher frame",
+      "family": "Construction and mining",
+      "spec": "",
+      "group": "mining",
+      "replacement": false,
+      "id": "MI-14"
+    }
+  ]
+}
