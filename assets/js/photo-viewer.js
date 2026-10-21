@@ -6,13 +6,12 @@
   const dialog = document.createElement('dialog');
   dialog.className = 'photo-dialog';
   dialog.setAttribute('aria-labelledby', 'photo-dialog-title');
-  dialog.innerHTML = `<div class="photo-dialog-head"><h2 id="photo-dialog-title"></h2><button type="button" class="photo-dialog-close" autofocus>Close<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div><div class="photo-dialog-stage"><img alt="" decoding="async"><p class="photo-dialog-status" role="status">Loading image…</p></div><div class="photo-dialog-foot"><p>AI-enhanced from the supplied photograph.</p><a class="photo-dialog-source" target="_blank" rel="noopener noreferrer">View original<span class="sr-only"> in a new tab</span></a><a class="photo-dialog-full" target="_blank" rel="noopener noreferrer">Open full image<span class="sr-only"> in a new tab</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a></div>`;
+  dialog.innerHTML = `<div class="photo-dialog-head"><h2 id="photo-dialog-title"></h2><button type="button" class="photo-dialog-close" autofocus>Close<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div><div class="photo-dialog-stage"><img alt="" decoding="async"><p class="photo-dialog-status" role="status">Loading image…</p></div><div class="photo-dialog-foot"><a class="photo-dialog-full" target="_blank" rel="noopener noreferrer">Open full image<span class="sr-only"> in a new tab</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a></div>`;
   document.body.append(dialog);
   const title = dialog.querySelector('h2');
   const image = dialog.querySelector('img');
   const status = dialog.querySelector('[role="status"]');
   const fullLink = dialog.querySelector('.photo-dialog-full');
-  const sourceLink = dialog.querySelector('.photo-dialog-source');
   const close = dialog.querySelector('button');
   let opener = null;
   let backdropDown = false;
@@ -51,7 +50,6 @@
       image.onerror = () => { status.textContent = 'The image could not load. Please try opening the full image.'; };
       image.src = source.dataset.fullSrc || source.currentSrc || source.src;
       fullLink.href = image.src;
-      sourceLink.href = source.dataset.originalSrc || source.src;
       dialog.showModal();
       document.documentElement.classList.add('has-photo-dialog');
       close.focus({ preventScroll: true });
