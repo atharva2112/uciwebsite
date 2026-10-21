@@ -1,0 +1,1190 @@
+{
+  "source": "Existing product photographs at git revision ec235c7, before this quality pass.",
+  "images": [
+    {
+      "name": "alu-hinge-bracket",
+      "image": "assets/img/parts/alu-hinge-bracket.webp",
+      "source_dimensions": [
+        465,
+        213
+      ],
+      "dimensions": [
+        625,
+        310
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Product silhouette and major components match source; clarity improved. Fine texture reconstructed. Illustrative photograph, not CAD."
+    },
+    {
+      "name": "ind-beam",
+      "image": "assets/img/parts/ind-beam.webp",
+      "source_dimensions": [
+        570,
+        346
+      ],
+      "dimensions": [
+        609,
+        424
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Product silhouette and major components match source; clarity improved. Fine texture reconstructed. Illustrative photograph, not CAD."
+    },
+    {
+      "name": "hw-r-clip",
+      "image": "assets/img/parts/hw-r-clip.webp",
+      "source_dimensions": [
+        383,
+        216
+      ],
+      "dimensions": [
+        634,
+        268
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Product silhouette and major components match source; clarity improved. Fine texture reconstructed. Illustrative photograph, not CAD."
+    },
+    {
+      "name": "og-completion-10",
+      "image": "assets/img/parts/og-completion-10.webp",
+      "source_dimensions": [
+        163,
+        152
+      ],
+      "dimensions": [
+        457,
+        488
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Product silhouette and major components match source; clarity improved. Fine texture reconstructed. Illustrative photograph, not CAD."
+    },
+    {
+      "name": "trk-motor-bracket",
+      "image": "assets/img/parts/trk-motor-bracket.webp",
+      "source_dimensions": [
+        339,
+        309
+      ],
+      "dimensions": [
+        608,
+        606
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Product silhouette and major components match source; clarity improved. Fine texture reconstructed. Illustrative photograph, not CAD."
+    },
+    {
+      "name": "trk-rack-coupler",
+      "image": "assets/img/parts/trk-rack-coupler.webp",
+      "source_dimensions": [
+        311,
+        268
+      ],
+      "dimensions": [
+        607,
+        544
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Product silhouette and major components match source; clarity improved. Fine texture reconstructed. Illustrative photograph, not CAD."
+    },
+    {
+      "name": "trk-bracket-ibeam",
+      "image": "assets/img/parts/trk-bracket-ibeam.webp",
+      "source_dimensions": [
+        354,
+        265
+      ],
+      "dimensions": [
+        634,
+        515
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Product silhouette and major components match source; clarity improved. Fine texture reconstructed. Illustrative photograph, not CAD."
+    },
+    {
+      "name": "hw-mid-clamp",
+      "image": "assets/img/parts/hw-mid-clamp.webp",
+      "source_dimensions": [
+        300,
+        191
+      ],
+      "dimensions": [
+        585,
+        413
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Product silhouette and major components match source; clarity improved. Fine texture reconstructed. Illustrative photograph, not CAD."
+    },
+    {
+      "name": "og-drill-08",
+      "image": "assets/img/parts/og-drill-08.webp",
+      "source_dimensions": [
+        235,
+        147
+      ],
+      "dimensions": [
+        589,
+        413
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Product silhouette and major components match source; clarity improved. Fine texture reconstructed. Illustrative photograph, not CAD."
+    },
+    {
+      "name": "og-drill-10",
+      "image": "assets/img/parts/og-drill-10.webp",
+      "source_dimensions": [
+        248,
+        142
+      ],
+      "dimensions": [
+        620,
+        367
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Product silhouette and major components match source; clarity improved. Fine texture reconstructed. Illustrative photograph, not CAD."
+    },
+    {
+      "name": "min-ripper",
+      "image": "assets/img/parts/min-ripper.webp",
+      "source_dimensions": [
+        224,
+        322
+      ],
+      "dimensions": [
+        528,
+        700
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Product silhouette and major components match source; clarity improved. Fine texture reconstructed. Illustrative photograph, not CAD."
+    },
+    {
+      "name": "min-fixture-frame",
+      "image": "assets/img/parts/min-fixture-frame.webp",
+      "source_dimensions": [
+        352,
+        378
+      ],
+      "dimensions": [
+        598,
+        675
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Product silhouette and major components match source; clarity improved. Fine texture reconstructed. Illustrative photograph, not CAD."
+    },
+    {
+      "name": "og-surface-07",
+      "image": "assets/img/parts/og-surface-07.webp",
+      "source_dimensions": [
+        270,
+        163
+      ],
+      "dimensions": [
+        639,
+        404
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Product silhouette and major components match source; clarity improved. Fine texture reconstructed. Illustrative photograph, not CAD."
+    },
+    {
+      "name": "og-completion-09",
+      "image": "assets/img/parts/og-completion-09.webp",
+      "source_dimensions": [
+        268,
+        164
+      ],
+      "dimensions": [
+        599,
+        431
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Product silhouette and major components match source; clarity improved. Fine texture reconstructed. Illustrative photograph, not CAD."
+    },
+    {
+      "name": "og-surface-08",
+      "image": "assets/img/parts/og-surface-08.webp",
+      "source_dimensions": [
+        150,
+        132
+      ],
+      "dimensions": [
+        598,
+        534
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Product silhouette and major components match source; clarity improved. Fine texture reconstructed. Illustrative photograph, not CAD."
+    },
+    {
+      "name": "hdg-coupler-half",
+      "image": "assets/img/parts/hdg-coupler-half.webp",
+      "source_dimensions": [
+        490,
+        351
+      ],
+      "dimensions": [
+        638,
+        504
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Product silhouette and major components match source; clarity improved. Fine texture reconstructed. Illustrative photograph, not CAD."
+    },
+    {
+      "name": "cmp-braided-strap",
+      "image": "assets/img/parts/cmp-braided-strap.webp",
+      "source_dimensions": [
+        720,
+        157
+      ],
+      "dimensions": [
+        2083,
+        368
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Single-image restoration with same two terminal lugs and curved braid. Improved clarity and resolution; surface weave reconstructed. Illustrative photograph, not CAD."
+    },
+    {
+      "name": "min-cross-member",
+      "image": "assets/img/parts/min-cross-member.webp",
+      "source_dimensions": [
+        397,
+        275
+      ],
+      "dimensions": [
+        596,
+        438
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Product silhouette and major components match source; clarity improved. Fine texture reconstructed. Illustrative photograph, not CAD."
+    },
+    {
+      "name": "og-completion-05",
+      "image": "assets/img/parts/og-completion-05.webp",
+      "source_dimensions": [
+        267,
+        159
+      ],
+      "dimensions": [
+        609,
+        432
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Product silhouette and major components match source; clarity improved. Fine texture reconstructed. Illustrative photograph, not CAD."
+    },
+    {
+      "name": "og-surface-02",
+      "image": "assets/img/parts/og-surface-02.webp",
+      "source_dimensions": [
+        250,
+        150
+      ],
+      "dimensions": [
+        603,
+        420
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Product silhouette and major components match source; clarity improved. Fine texture reconstructed. Illustrative photograph, not CAD."
+    },
+    {
+      "name": "alu-stop",
+      "image": "assets/img/parts/alu-stop.webp",
+      "source_dimensions": [
+        367,
+        235
+      ],
+      "dimensions": [
+        622,
+        462
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Product silhouette and major components match source; clarity improved. Fine texture reconstructed. Illustrative photograph, not CAD."
+    },
+    {
+      "name": "ind-housing",
+      "image": "assets/img/parts/ind-housing.webp",
+      "source_dimensions": [
+        533,
+        312
+      ],
+      "dimensions": [
+        663,
+        479
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Product silhouette and major components match source; clarity improved. Fine texture reconstructed. Illustrative photograph, not CAD."
+    },
+    {
+      "name": "og-completion-03",
+      "image": "assets/img/parts/og-completion-03.webp",
+      "source_dimensions": [
+        233,
+        168
+      ],
+      "dimensions": [
+        677,
+        511
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Product silhouette and major components match source; clarity improved. Fine texture reconstructed. Illustrative photograph, not CAD."
+    },
+    {
+      "name": "hdg-upright-motor",
+      "image": "assets/img/parts/hdg-upright-motor.webp",
+      "source_dimensions": [
+        254,
+        420
+      ],
+      "dimensions": [
+        417,
+        749
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Product silhouette and major components match source; clarity improved. Fine texture reconstructed. Illustrative photograph, not CAD."
+    },
+    {
+      "name": "hw-module-clamp",
+      "image": "assets/img/parts/hw-module-clamp.webp",
+      "source_dimensions": [
+        319,
+        223
+      ],
+      "dimensions": [
+        622,
+        460
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Restored illustrative component; material and geometry reviewed against source."
+    },
+    {
+      "name": "trk-bearing",
+      "image": "assets/img/parts/trk-bearing.webp",
+      "source_dimensions": [
+        483,
+        317
+      ],
+      "dimensions": [
+        593,
+        420
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Restored illustrative component; material and geometry reviewed against source."
+    },
+    {
+      "name": "trk-rack-coupler-62",
+      "image": "assets/img/parts/trk-rack-coupler-62.webp",
+      "source_dimensions": [
+        320,
+        235
+      ],
+      "dimensions": [
+        634,
+        537
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Restored illustrative component; material and geometry reviewed against source."
+    },
+    {
+      "name": "alu-clip-end",
+      "image": "assets/img/parts/alu-clip-end.webp",
+      "source_dimensions": [
+        297,
+        142
+      ],
+      "dimensions": [
+        600,
+        335
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Restored illustrative component; material and geometry reviewed against source."
+    },
+    {
+      "name": "cmp-plastic-bushing",
+      "image": "assets/img/parts/cmp-plastic-bushing.webp",
+      "source_dimensions": [
+        376,
+        359
+      ],
+      "dimensions": [
+        1236,
+        1155
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Single-image retry restores distinctive component geometry missing from initial batch; still illustrative, not dimensional CAD."
+    },
+    {
+      "name": "min-boom",
+      "image": "assets/img/parts/min-boom.webp",
+      "source_dimensions": [
+        496,
+        203
+      ],
+      "dimensions": [
+        651,
+        293
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Restored illustrative component; material and geometry reviewed against source."
+    },
+    {
+      "name": "og-drill-07",
+      "image": "assets/img/parts/og-drill-07.webp",
+      "source_dimensions": [
+        225,
+        142
+      ],
+      "dimensions": [
+        600,
+        425
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Restored illustrative component; material and geometry reviewed against source."
+    },
+    {
+      "name": "hdg-mount-bracket",
+      "image": "assets/img/parts/hdg-mount-bracket.webp",
+      "source_dimensions": [
+        307,
+        154
+      ],
+      "dimensions": [
+        1644,
+        813
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Single-image retry restores distinctive component geometry missing from initial batch; still illustrative, not dimensional CAD."
+    },
+    {
+      "name": "ind-spoked-ring",
+      "image": "assets/img/parts/ind-spoked-ring.webp",
+      "source_dimensions": [
+        720,
+        365
+      ],
+      "dimensions": [
+        650,
+        427
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Restored illustrative component; material and geometry reviewed against source."
+    },
+    {
+      "name": "og-completion-06",
+      "image": "assets/img/parts/og-completion-06.webp",
+      "source_dimensions": [
+        257,
+        166
+      ],
+      "dimensions": [
+        595,
+        460
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Restored illustrative component; material and geometry reviewed against source."
+    },
+    {
+      "name": "og-completion-08",
+      "image": "assets/img/parts/og-completion-08.webp",
+      "source_dimensions": [
+        155,
+        123
+      ],
+      "dimensions": [
+        487,
+        480
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Restored illustrative component; material and geometry reviewed against source."
+    },
+    {
+      "name": "min-bracket",
+      "image": "assets/img/parts/min-bracket.webp",
+      "source_dimensions": [
+        398,
+        272
+      ],
+      "dimensions": [
+        660,
+        505
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Restored illustrative component; material and geometry reviewed against source."
+    },
+    {
+      "name": "trk-column",
+      "image": "assets/img/parts/trk-column.webp",
+      "source_dimensions": [
+        252,
+        533
+      ],
+      "dimensions": [
+        326,
+        731
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Restored illustrative component; material and geometry reviewed against source."
+    },
+    {
+      "name": "alu-rail-bracket",
+      "image": "assets/img/parts/alu-rail-bracket.webp",
+      "source_dimensions": [
+        465,
+        338
+      ],
+      "dimensions": [
+        1379,
+        993
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Single-image retry restores distinctive component geometry missing from initial batch; still illustrative, not dimensional CAD."
+    },
+    {
+      "name": "og-surface-06",
+      "image": "assets/img/parts/og-surface-06.webp",
+      "source_dimensions": [
+        225,
+        128
+      ],
+      "dimensions": [
+        605,
+        485
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Restored illustrative component; material and geometry reviewed against source."
+    },
+    {
+      "name": "ind-ring-frame",
+      "image": "assets/img/parts/ind-ring-frame.webp",
+      "source_dimensions": [
+        544,
+        306
+      ],
+      "dimensions": [
+        655,
+        446
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Restored illustrative component; material and geometry reviewed against source."
+    },
+    {
+      "name": "og-drill-06",
+      "image": "assets/img/parts/og-drill-06.webp",
+      "source_dimensions": [
+        212,
+        135
+      ],
+      "dimensions": [
+        609,
+        496
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Restored illustrative component; material and geometry reviewed against source."
+    },
+    {
+      "name": "hdg-damper-bracket",
+      "image": "assets/img/parts/hdg-damper-bracket.webp",
+      "source_dimensions": [
+        298,
+        170
+      ],
+      "dimensions": [
+        587,
+        422
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Restored illustrative component; material and geometry reviewed against source."
+    },
+    {
+      "name": "ind-arms",
+      "image": "assets/img/parts/ind-arms.webp",
+      "source_dimensions": [
+        549,
+        319
+      ],
+      "dimensions": [
+        610,
+        476
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Restored illustrative component; material and geometry reviewed against source."
+    },
+    {
+      "name": "min-arm",
+      "image": "assets/img/parts/min-arm.webp",
+      "source_dimensions": [
+        595,
+        237
+      ],
+      "dimensions": [
+        648,
+        302
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Restored illustrative component; material and geometry reviewed against source."
+    },
+    {
+      "name": "og-surface-01",
+      "image": "assets/img/parts/og-surface-01.webp",
+      "source_dimensions": [
+        233,
+        155
+      ],
+      "dimensions": [
+        669,
+        525
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Restored illustrative component; material and geometry reviewed against source."
+    },
+    {
+      "name": "og-completion-04",
+      "image": "assets/img/parts/og-completion-04.webp",
+      "source_dimensions": [
+        237,
+        171
+      ],
+      "dimensions": [
+        566,
+        498
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Restored illustrative component; material and geometry reviewed against source."
+    },
+    {
+      "name": "alu-bushing-housing",
+      "image": "assets/img/parts/alu-bushing-housing.webp",
+      "source_dimensions": [
+        416,
+        397
+      ],
+      "dimensions": [
+        664,
+        626
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Restored illustrative component; material and geometry reviewed against source."
+    },
+    {
+      "name": "hw-end-clamp",
+      "image": "assets/img/parts/hw-end-clamp.webp",
+      "source_dimensions": [
+        340,
+        266
+      ],
+      "dimensions": [
+        575,
+        495
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Restored illustrative component; material and geometry reviewed against source."
+    },
+    {
+      "name": "cmp-ss-pins",
+      "image": "assets/img/parts/cmp-ss-pins.webp",
+      "source_dimensions": [
+        331,
+        198
+      ],
+      "dimensions": [
+        610,
+        434
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Both original stepped pins retained as one image group; opposite axial orientations and collars preserved. Major geometry reviewed against original; an illustrative restoration, not dimensional CAD."
+    },
+    {
+      "name": "min-mount-frame",
+      "image": "assets/img/parts/min-mount-frame.webp",
+      "source_dimensions": [
+        342,
+        296
+      ],
+      "dimensions": [
+        614,
+        523
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Blue welded frame and rectangular front flange retained; weld texture and fine hole spacing inferred. Major geometry reviewed against original; an illustrative restoration, not dimensional CAD."
+    },
+    {
+      "name": "cmp-pillow-block",
+      "image": "assets/img/parts/cmp-pillow-block.webp",
+      "source_dimensions": [
+        349,
+        222
+      ],
+      "dimensions": [
+        616,
+        411
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Gold two-bolt bearing flange and central bore retained; removed incidental handwritten marker. Major geometry reviewed against original; an illustrative restoration, not dimensional CAD."
+    },
+    {
+      "name": "og-surface-05",
+      "image": "assets/img/parts/og-surface-05.webp",
+      "source_dimensions": [
+        268,
+        165
+      ],
+      "dimensions": [
+        611,
+        413
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Flanged valve-body silhouette and side flange retained; fine machined detail inferred. Major geometry reviewed against original; an illustrative restoration, not dimensional CAD."
+    },
+    {
+      "name": "og-drill-02",
+      "image": "assets/img/parts/og-drill-02.webp",
+      "source_dimensions": [
+        243,
+        147
+      ],
+      "dimensions": [
+        608,
+        464
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Main power-frame housing, face openings and cooling ribs retained; fine bore detail inferred. Major geometry reviewed against original; an illustrative restoration, not dimensional CAD."
+    },
+    {
+      "name": "hw-pin",
+      "image": "assets/img/parts/hw-pin.webp",
+      "source_dimensions": [
+        218,
+        170
+      ],
+      "dimensions": [
+        527,
+        384
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Original solid pin, cylindrical shaft and broad end head retained. Major geometry reviewed against original; an illustrative restoration, not dimensional CAD."
+    },
+    {
+      "name": "alu-clip-assembly",
+      "image": "assets/img/parts/alu-clip-assembly.webp",
+      "source_dimensions": [
+        341,
+        286
+      ],
+      "dimensions": [
+        609,
+        514
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Three-rib extrusion, threaded fastener and original angle retained. Major geometry reviewed against original; an illustrative restoration, not dimensional CAD."
+    },
+    {
+      "name": "hdg-base-square",
+      "image": "assets/img/parts/hdg-base-square.webp",
+      "source_dimensions": [
+        361,
+        185
+      ],
+      "dimensions": [
+        610,
+        372
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Original rectangular galvanized tray with perimeter slots and four inner openings retained. Major geometry reviewed against original; an illustrative restoration, not dimensional CAD."
+    },
+    {
+      "name": "ind-casing",
+      "image": "assets/img/parts/ind-casing.webp",
+      "source_dimensions": [
+        536,
+        407
+      ],
+      "dimensions": [
+        642,
+        566
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Original industrial casing opening, ribs and base mount ears retained. Major geometry reviewed against original; an illustrative restoration, not dimensional CAD."
+    },
+    {
+      "name": "trk-motor-mount",
+      "image": "assets/img/parts/trk-motor-mount.webp",
+      "source_dimensions": [
+        369,
+        301
+      ],
+      "dimensions": [
+        580,
+        559
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "CAD-style bracket shape, four top square holes and lower ring pattern retained. Major geometry reviewed against original; an illustrative restoration, not dimensional CAD."
+    },
+    {
+      "name": "alu-housing-52",
+      "image": "assets/img/parts/alu-housing-52.webp",
+      "source_dimensions": [
+        314,
+        285
+      ],
+      "dimensions": [
+        578,
+        561
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Yellow-gold curved housing shape, base and large circular opening retained. Major geometry reviewed against original; an illustrative restoration, not dimensional CAD."
+    },
+    {
+      "name": "alu-clamp",
+      "image": "assets/img/parts/alu-clamp.webp",
+      "source_dimensions": [
+        467,
+        242
+      ],
+      "dimensions": [
+        609,
+        380
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Symmetric open aluminum extrusion silhouette retained. Major geometry reviewed against original; an illustrative restoration, not dimensional CAD."
+    },
+    {
+      "name": "cmp-sprocket",
+      "image": "assets/img/parts/cmp-sprocket.webp",
+      "source_dimensions": [
+        336,
+        331
+      ],
+      "dimensions": [
+        601,
+        596
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Toothed sprocket profile and splined center opening retained; incidental part number omitted. Major geometry reviewed against original; an illustrative restoration, not dimensional CAD."
+    },
+    {
+      "name": "og-completion-01",
+      "image": "assets/img/parts/og-completion-01.webp",
+      "source_dimensions": [
+        239,
+        134
+      ],
+      "dimensions": [
+        1588,
+        878
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Sheet result rejected because it simplified machining features. Single-image retry preserves visible stepped collar and longitudinal machining features. Fine slot details inferred from small source. Major geometry reviewed against original; an illustrative restoration, not dimensional CAD."
+    },
+    {
+      "name": "og-completion-07",
+      "image": "assets/img/parts/og-completion-07.webp",
+      "source_dimensions": [
+        109,
+        146
+      ],
+      "dimensions": [
+        394,
+        572
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Tapered perforated sleeve, opening and two marked rectangular features retained; small hole details inferred. Major geometry reviewed against original; an illustrative restoration, not dimensional CAD."
+    },
+    {
+      "name": "hdg-bushing-bracket",
+      "image": "assets/img/parts/hdg-bushing-bracket.webp",
+      "source_dimensions": [
+        275,
+        179
+      ],
+      "dimensions": [
+        648,
+        490
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Bent bracket, four top openings and side slots retained in clean original CAD style. Major geometry reviewed against original; an illustrative restoration, not dimensional CAD."
+    },
+    {
+      "name": "trk-coupler-rack",
+      "image": "assets/img/parts/trk-coupler-rack.webp",
+      "source_dimensions": [
+        349,
+        257
+      ],
+      "dimensions": [
+        618,
+        506
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Compared with source: preserves main silhouette, orientation, material and major openings; fine surface detail is reconstructed. Individually cropped with transparent margins, no adjacent part fragments."
+    },
+    {
+      "name": "hw-flange-bolt",
+      "image": "assets/img/parts/hw-flange-bolt.webp",
+      "source_dimensions": [
+        248,
+        154
+      ],
+      "dimensions": [
+        512,
+        350
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Compared with source: preserves main silhouette, orientation, material and major openings; fine surface detail is reconstructed. Individually cropped with transparent margins, no adjacent part fragments."
+    },
+    {
+      "name": "hdg-upright-support",
+      "image": "assets/img/parts/hdg-upright-support.webp",
+      "source_dimensions": [
+        236,
+        415
+      ],
+      "dimensions": [
+        292,
+        617
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Compared with source: preserves main silhouette, orientation, material and major openings; fine surface detail is reconstructed. Individually cropped with transparent margins, no adjacent part fragments."
+    },
+    {
+      "name": "og-surface-03",
+      "image": "assets/img/parts/og-surface-03.webp",
+      "source_dimensions": [
+        259,
+        174
+      ],
+      "dimensions": [
+        587,
+        402
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Compared with source: preserves main silhouette, orientation, material and major openings; fine surface detail is reconstructed. Individually cropped with transparent margins, no adjacent part fragments."
+    },
+    {
+      "name": "hdg-plate-support",
+      "image": "assets/img/parts/hdg-plate-support.webp",
+      "source_dimensions": [
+        431,
+        316
+      ],
+      "dimensions": [
+        583,
+        552
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Compared with source: preserves main silhouette, orientation, material and major openings; fine surface detail is reconstructed. Individually cropped with transparent margins, no adjacent part fragments."
+    },
+    {
+      "name": "og-completion-02",
+      "image": "assets/img/parts/og-completion-02.webp",
+      "source_dimensions": [
+        228,
+        152
+      ],
+      "dimensions": [
+        580,
+        488
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Compared with source: preserves main silhouette, orientation, material and major openings; fine surface detail is reconstructed. Individually cropped with transparent margins, no adjacent part fragments."
+    },
+    {
+      "name": "hdg-base",
+      "image": "assets/img/parts/hdg-base.webp",
+      "source_dimensions": [
+        601,
+        324
+      ],
+      "dimensions": [
+        623,
+        453
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Compared with source: preserves main silhouette, orientation, material and major openings; fine surface detail is reconstructed. Individually cropped with transparent margins, no adjacent part fragments."
+    },
+    {
+      "name": "og-drill-05",
+      "image": "assets/img/parts/og-drill-05.webp",
+      "source_dimensions": [
+        244,
+        130
+      ],
+      "dimensions": [
+        596,
+        362
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Compared with source: preserves main silhouette, orientation, material and major openings; fine surface detail is reconstructed. Individually cropped with transparent margins, no adjacent part fragments."
+    },
+    {
+      "name": "og-surface-09",
+      "image": "assets/img/parts/og-surface-09.webp",
+      "source_dimensions": [
+        229,
+        132
+      ],
+      "dimensions": [
+        585,
+        435
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Compared with source: preserves main silhouette, orientation, material and major openings; fine surface detail is reconstructed. Individually cropped with transparent margins, no adjacent part fragments."
+    },
+    {
+      "name": "hdg-box-bracket",
+      "image": "assets/img/parts/hdg-box-bracket.webp",
+      "source_dimensions": [
+        258,
+        121
+      ],
+      "dimensions": [
+        623,
+        325
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Compared with source: preserves main silhouette, orientation, material and major openings; fine surface detail is reconstructed. Individually cropped with transparent margins, no adjacent part fragments."
+    },
+    {
+      "name": "og-surface-04",
+      "image": "assets/img/parts/og-surface-04.webp",
+      "source_dimensions": [
+        259,
+        161
+      ],
+      "dimensions": [
+        603,
+        414
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Compared with source: preserves main silhouette, orientation, material and major openings; fine surface detail is reconstructed. Individually cropped with transparent margins, no adjacent part fragments."
+    },
+    {
+      "name": "hw-coupling-nut",
+      "image": "assets/img/parts/hw-coupling-nut.webp",
+      "source_dimensions": [
+        270,
+        199
+      ],
+      "dimensions": [
+        564,
+        485
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Compared with source: preserves main silhouette, orientation, material and major openings; fine surface detail is reconstructed. Individually cropped with transparent margins, no adjacent part fragments."
+    },
+    {
+      "name": "hw-u-bolt",
+      "image": "assets/img/parts/hw-u-bolt.webp",
+      "source_dimensions": [
+        272,
+        212
+      ],
+      "dimensions": [
+        582,
+        459
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Compared with source: preserves main silhouette, orientation, material and major openings; fine surface detail is reconstructed. Individually cropped with transparent margins, no adjacent part fragments."
+    },
+    {
+      "name": "og-surface-10",
+      "image": "assets/img/parts/og-surface-10.webp",
+      "source_dimensions": [
+        261,
+        168
+      ],
+      "dimensions": [
+        604,
+        393
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Compared with source: preserves main silhouette, orientation, material and major openings; fine surface detail is reconstructed. Individually cropped with transparent margins, no adjacent part fragments."
+    },
+    {
+      "name": "alu-clip-center",
+      "image": "assets/img/parts/alu-clip-center.webp",
+      "source_dimensions": [
+        369,
+        217
+      ],
+      "dimensions": [
+        610,
+        371
+      ],
+      "source_revision": "ec235c7",
+      "method": "Reference-guided AI restoration; transparent cutout retained and matching technical edge mask regenerated. Illustrative fine detail, not dimensional CAD.",
+      "qa": "Compared with source: preserves main silhouette, orientation, material and major openings; fine surface detail is reconstructed. Individually cropped with transparent margins, no adjacent part fragments."
+    }
+  ]
+}
