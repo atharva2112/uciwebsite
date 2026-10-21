@@ -925,6 +925,14 @@ address { font-style: normal; }
 .has-cursor textarea { cursor: auto; }
 .has-cursor input[type="file"] { cursor: none; }
 
+/* Native dialogs sit above the custom cursor in the browser's top layer. */
+.has-cursor dialog[open],
+.has-cursor dialog[open] * { cursor: auto; }
+.has-cursor dialog[open] a,
+.has-cursor dialog[open] button { cursor: pointer; }
+.has-cursor dialog::backdrop { cursor: default; }
+.has-cursor:has(dialog[open]) .cursor { visibility: hidden; }
+
 .cursor {
   position: fixed;
   left: 0;
