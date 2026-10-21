@@ -10,7 +10,7 @@ Earlier material from the December 2025 corporate presentation and [the group we
 
 | Website content | Source | Scope and use |
 | --- | --- | --- |
-| UCI site at 14737 Firetower Road, Conroe, Texas; site aerial photograph | Pages 7–8 | The US subsidiary's location; the displayed photograph is extracted from page 8. |
+| UCI site at 14737 Firetower Road, Conroe, Texas; site aerial photograph | Pages 7–8 | The US subsidiary's location; the displayed oblique photograph is extracted from page 7 (xref 202, 1383 × 902). A left-side CSS crop excludes its embedded map graphic. The earlier page-8 portrait asset is retained but unused. |
 | 100-acre site; 36 stabilized acres; 124,300 sq ft built up, comprising 114,300 sq ft of manufacturing/paint/blast space and 10,000 sq ft of offices | Page 8 | UCI facility profile. The building specifications do not by themselves establish which production processes are commissioned. |
 | Three bays; 36 ft crane height; three 10-ton cranes in Bay 1, three 25-ton cranes in Bay 2 and three 10-ton cranes in Bay 3; 480 V, three-phase, 3,000 A supply | Page 8 | UCI site specifications. Individual project capacity remains subject to confirmation with the UCI team. |
 | Three-phase UCI development plan | Page 9 | Preserve the intended milestone dates and describe the scope as a plan. See the phase table below. |
@@ -82,9 +82,17 @@ Some unchanged oil-and-gas and industrial examples still have descriptive captio
 
 For the 22 upgraded or added images, native embedded photographs were extracted from the PDF before background removal and clarity cleanup with image generation. This retains a better source than a screenshot of a complete slide. The original PDF's soft masks often only round the photograph's corners; they do not remove the factory or workshop background.
 
-The resulting transparent images use the site's existing turntable, tilt, sheen and wireframe treatment. An Inspect control opens an enlarged component view and displays available example specifications. This is a visual presentation of component photography, **not a dimensionally accurate CAD model or a 360-degree reconstruction**. Image cleanup can change fine surface details; use approved engineering drawings for geometry, tolerances, material and acceptance requirements. Source dimensions and weights describe the pictured example, not every product in the family.
+The resulting transparent images use the site's existing turntable, tilt, sheen and wireframe treatment. An Inspect control opens an enlarged component view and displays available example specifications. For these 22 images, `assets/img/parts/detail/` now contains lossless WebP conversions of the existing full-resolution generated cutouts, selected through `data-full-src`. This restores the available detail from those files without another generation or upscale. The Flowcell (`og-surface-04`) and Y-block (`og-surface-10`) also have larger actual photographs from page 59 (xrefs 779 and 781, respectively) as inspector sources; they show different views of the components and retain their photographic backgrounds. The inspector caps images at their natural resolution. Most remaining small legacy photographs have no better original in the supplied material. This is a visual presentation of component photography, **not a dimensionally accurate CAD model or a 360-degree reconstruction**. Image cleanup can change fine surface details; use approved engineering drawings for geometry, tolerances, material and acceptance requirements. Source dimensions and weights describe the pictured example, not every product in the family.
 
-The Conroe aerial photograph is extracted from page 8 and remains facility photography rather than a generated facility illustration. Presentation dates, titles, page footers and customer identifiers are not part of the product imagery shown to website visitors.
+[Image-quality source records](image-quality-sources.json) document the inspector files and facility conversions. Fifteen facility WebP files have been re-encoded losslessly from their available originals at native resolution. This avoids further compression loss; it does not recover missing detail or make every photograph high resolution.
+
+The displayed Conroe aerial is the native oblique photograph from page 7 (xref 202, 1383 × 902), presented through an 850 × 650 left-side CSS crop to exclude the map graphic baked into the source. The old page-8 portrait remains an unused asset. The Pune group aerial retains its existing source; the supplied evidence does not establish its exact plant location.
+
+Both aerials use interactive perspective planes with zoom, reset and optional animation. This is a presentation of photographs, not surveyed terrain, reconstructed building geometry or an embedded Google Earth model. The external Earth links open the known Conroe address and, separately, the Pune group headquarters on Nighoje–Kuruli Road. The headquarters link must not be represented as the location of the unidentified Pune photograph. No Google API key or billing integration is configured, and the site makes no third-party runtime requests for these views.
+
+The contact-page handshake has been replaced with a bespoke SVG exploded-flange illustration in the site's engineering-drawing style. It is a conceptual engineering visual, not a product photograph or a dimensionally accurate assembly. Its animation has a pause control, respects reduced motion and retains a static presentation without JavaScript.
+
+Presentation dates, titles, page footers and customer identifiers are not part of the product imagery shown to website visitors.
 
 ## Remaining company inputs
 

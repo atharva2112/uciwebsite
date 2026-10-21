@@ -1,0 +1,84 @@
+/* Contact's resolution-independent engineering study. */
+.contact-engineering {
+  --ce-metal-light: #fdfefe;
+  --ce-metal-mid: #c6d1ce;
+  --ce-top: #edf2ef;
+  --ce-edge: #526760;
+  --ce-bore: #a5bbb1;
+  background: var(--surface-muted);
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+}
+.ce-layout { display: grid; grid-template-columns: 0.85fr 1.65fr; align-items: center; gap: 24px; min-height: 330px; }
+.ce-intro { padding-block: 36px 20px; position: relative; z-index: 1; }
+.ce-kicker { font-size: var(--fs-fine); letter-spacing: .09em; text-transform: uppercase; margin: 0 0 20px; }
+.ce-kicker::before { content: ''; display: inline-block; width: 24px; height: 3px; margin: 0 12px 5px 0; background: var(--green); }
+.ce-headline { font-size: clamp(28px, 2.7vw, 42px); font-weight: 700; line-height: 1.1; letter-spacing: -.025em; margin: 0 0 20px; }
+.ce-caption { color: var(--ink-muted); font-size: var(--fs-fine); line-height: 1.45; margin: 0; }
+.ce-viewport { min-width: 0; position: relative; padding-top: 8px; }
+.ce-drawing { width: 100%; height: auto; display: block; overflow: visible; }
+.ce-drawing path, .ce-drawing circle, .ce-drawing ellipse { vector-effect: non-scaling-stroke; }
+.ce-grid { color: var(--ink-muted); opacity: .11; }
+.ce-construction { stroke: var(--ink-muted); stroke-width: .7; stroke-dasharray: 8 5 2 5; opacity: .4; }
+.ce-construction .ce-corners { stroke-dasharray: none; stroke-width: 1.2; }
+.ce-construction .ce-flow { stroke-dasharray: none; stroke: var(--draw); stroke-width: 1.7; }
+.ce-envelope { opacity: .5; }
+.ce-plan { stroke: var(--draw); stroke-width: 1.4; }
+.ce-plan .ce-secondary { stroke-width: .7; opacity: .55; }
+.ce-plan .ce-pitch { stroke-width: .7; stroke-dasharray: 5 4 1 4; opacity: .75; }
+.ce-stop-light { stop-color: var(--ce-metal-light); }
+.ce-stop-mid { stop-color: var(--ce-metal-mid); }
+.ce-metal-side, .ce-sleeve { fill: url(#ce-metal); stroke: var(--ce-edge); stroke-width: .9; }
+.ce-metal-top { fill: var(--ce-top); }
+.ce-outline { fill: none; stroke: var(--ce-edge); stroke-width: 1.1; }
+.ce-detail { fill: none; stroke: var(--ce-edge); stroke-width: .65; opacity: .45; }
+.ce-bore { fill: var(--ce-bore); stroke: var(--ce-edge); stroke-width: .7; }
+.ce-guide { fill: none; stroke: var(--draw); stroke-dasharray: 4 6; stroke-width: .8; opacity: .55; }
+.ce-callout { fill: var(--draw); stroke: var(--draw); stroke-width: .9; }
+.ce-callout path { fill: none; }
+.ce-scan { stroke: var(--green); stroke-width: 1.5; opacity: 0; }
+.ce-view-labels { display: grid; grid-template-columns: 36% 64%; font-size: var(--fs-fine); line-height: 1.2; color: var(--ink-muted); padding: 0 0 12px; text-align: center; }
+.ce-footer { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 54px; border-top: 1px solid var(--line); font-size: var(--fs-fine); color: var(--ink-muted); }
+.ce-footer-note { display: flex; gap: 12px; align-items: center; }
+.ce-status { flex: none; width: 7px; height: 7px; background: var(--green); }
+.ce-motion-toggle { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 0 8px 12px; min-height: 44px; border: 0; background: none; color: var(--ink); font: inherit; cursor: pointer; }
+.ce-motion-toggle[hidden] { display: none; }
+.ce-motion-toggle:hover { color: var(--link-underline); }
+.ce-motion-toggle:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+.ce-toggle-symbol { width: 20px; text-align: center; font-size: 20px; }
+/* A complete still illustration is the default, including without JavaScript. */
+.contact-engineering.is-enhanced .ce-cap { animation: ce-assemble-cap 12s ease-in-out infinite; }
+.contact-engineering.is-enhanced .ce-middle { animation: ce-assemble-middle 12s ease-in-out infinite; }
+.contact-engineering.is-enhanced .ce-scan { animation: ce-scan 12s linear infinite; }
+.contact-engineering.is-enhanced .ce-animated { animation-play-state: paused; }
+.contact-engineering.is-running .ce-animated { animation-play-state: running; }
+@keyframes ce-assemble-cap { 0%, 16%, 88%, 100% { transform: translateY(0); } 44%, 64% { transform: translateY(51px); } }
+@keyframes ce-assemble-middle { 0%, 16%, 88%, 100% { transform: translateY(0); } 44%, 64% { transform: translateY(27px); } }
+@keyframes ce-scan { 0%, 26%, 82%, 100% { opacity: 0; transform: translateX(270px); } 30% { opacity: .55; } 69% { opacity: .55; transform: translateX(660px); } 74% { opacity: 0; transform: translateX(700px); } }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .contact-engineering { --ce-metal-light: #75877f; --ce-metal-mid: #33473e; --ce-top: #43594e; --ce-edge: #b7cdc1; --ce-bore: #1b3428; }
+}
+:root[data-theme="dark"] .contact-engineering { --ce-metal-light: #75877f; --ce-metal-mid: #33473e; --ce-top: #43594e; --ce-edge: #b7cdc1; --ce-bore: #1b3428; }
+@media (max-width: 900px) {
+  .ce-layout { grid-template-columns: 1fr 1.6fr; gap: 8px; min-height: 300px; }
+  .ce-headline { font-size: 30px; }
+  .ce-kicker { letter-spacing: .04em; }
+  .ce-kicker::before { width: 14px; margin-right: 8px; }
+}
+@media (max-width: 640px) {
+  .ce-layout { display: block; }
+  .ce-intro { padding-block: 28px 8px; }
+  .ce-kicker { margin-bottom: 12px; }
+  .ce-headline { font-size: 30px; margin-bottom: 10px; }
+  .ce-headline br { display: none; }
+  .ce-caption br { display: none; }
+  .ce-viewport { max-width: 480px; margin-inline: auto; padding-top: 4px; }
+  .ce-view-labels { padding-bottom: 16px; }
+  .ce-footer { flex-wrap: wrap; gap: 0 12px; padding-block: 8px; }
+  .ce-footer-note { flex-basis: 100%; padding-block: 6px; }
+  .ce-motion-toggle { padding-left: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .contact-engineering.is-enhanced .ce-animated { animation: none; }
+  .ce-motion-toggle { display: none; }
+}

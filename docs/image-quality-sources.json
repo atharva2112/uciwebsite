@@ -1,0 +1,234 @@
+{
+  "parts": [
+    {
+      "part": "og-drill-01",
+      "detail_image": "assets/img/parts/detail/og-drill-01.webp",
+      "dimensions": [
+        1436,
+        1095
+      ],
+      "source": "Existing full-resolution generated cutout; lossless format conversion only. Original source and enhancement described in part-image-sources.json."
+    },
+    {
+      "part": "og-drill-03",
+      "detail_image": "assets/img/parts/detail/og-drill-03.webp",
+      "dimensions": [
+        1604,
+        981
+      ],
+      "source": "Existing full-resolution generated cutout; lossless format conversion only. Original source and enhancement described in part-image-sources.json."
+    },
+    {
+      "part": "og-drill-04",
+      "detail_image": "assets/img/parts/detail/og-drill-04.webp",
+      "dimensions": [
+        1626,
+        967
+      ],
+      "source": "Existing full-resolution generated cutout; lossless format conversion only. Original source and enhancement described in part-image-sources.json."
+    },
+    {
+      "part": "og-drill-09",
+      "detail_image": "assets/img/parts/detail/og-drill-09.webp",
+      "dimensions": [
+        1417,
+        1110
+      ],
+      "source": "Existing full-resolution generated cutout; lossless format conversion only. Original source and enhancement described in part-image-sources.json."
+    },
+    {
+      "part": "min-screen-box",
+      "detail_image": "assets/img/parts/detail/min-screen-box.webp",
+      "dimensions": [
+        1905,
+        826
+      ],
+      "source": "Existing full-resolution generated cutout; lossless format conversion only. Original source and enhancement described in part-image-sources.json."
+    },
+    {
+      "part": "min-screen",
+      "detail_image": "assets/img/parts/detail/min-screen.webp",
+      "dimensions": [
+        1668,
+        943
+      ],
+      "source": "Existing full-resolution generated cutout; lossless format conversion only. Original source and enhancement described in part-image-sources.json."
+    },
+    {
+      "part": "min-dump-body",
+      "detail_image": "assets/img/parts/detail/min-dump-body.webp",
+      "dimensions": [
+        1608,
+        978
+      ],
+      "source": "Existing full-resolution generated cutout; lossless format conversion only. Original source and enhancement described in part-image-sources.json."
+    },
+    {
+      "part": "min-dump-shell",
+      "detail_image": "assets/img/parts/detail/min-dump-shell.webp",
+      "dimensions": [
+        1470,
+        1070
+      ],
+      "source": "Existing full-resolution generated cutout; lossless format conversion only. Original source and enhancement described in part-image-sources.json."
+    },
+    {
+      "part": "og-fluid-end",
+      "detail_image": "assets/img/parts/detail/og-fluid-end.webp",
+      "dimensions": [
+        1553,
+        1013
+      ],
+      "source": "Existing full-resolution generated cutout; lossless format conversion only. Original source and enhancement described in part-image-sources.json."
+    },
+    {
+      "part": "og-connecting-rod",
+      "detail_image": "assets/img/parts/detail/og-connecting-rod.webp",
+      "dimensions": [
+        1606,
+        979
+      ],
+      "source": "Existing full-resolution generated cutout; lossless format conversion only. Original source and enhancement described in part-image-sources.json."
+    },
+    {
+      "part": "og-retainer-spring",
+      "detail_image": "assets/img/parts/detail/og-retainer-spring.webp",
+      "dimensions": [
+        1703,
+        924
+      ],
+      "source": "Existing full-resolution generated cutout; lossless format conversion only. Original source and enhancement described in part-image-sources.json."
+    },
+    {
+      "part": "og-suction-cover",
+      "detail_image": "assets/img/parts/detail/og-suction-cover.webp",
+      "dimensions": [
+        1704,
+        923
+      ],
+      "source": "Existing full-resolution generated cutout; lossless format conversion only. Original source and enhancement described in part-image-sources.json."
+    },
+    {
+      "part": "og-packing-nut",
+      "detail_image": "assets/img/parts/detail/og-packing-nut.webp",
+      "dimensions": [
+        1732,
+        908
+      ],
+      "source": "Existing full-resolution generated cutout; lossless format conversion only. Original source and enhancement described in part-image-sources.json."
+    },
+    {
+      "part": "og-suction-retainer",
+      "detail_image": "assets/img/parts/detail/og-suction-retainer.webp",
+      "dimensions": [
+        1751,
+        898
+      ],
+      "source": "Existing full-resolution generated cutout; lossless format conversion only. Original source and enhancement described in part-image-sources.json."
+    },
+    {
+      "part": "og-intervention-ring",
+      "detail_image": "assets/img/parts/detail/og-intervention-ring.webp",
+      "dimensions": [
+        1615,
+        974
+      ],
+      "source": "Existing full-resolution generated cutout; lossless format conversion only. Original source and enhancement described in part-image-sources.json."
+    },
+    {
+      "part": "og-gate-segment",
+      "detail_image": "assets/img/parts/detail/og-gate-segment.webp",
+      "dimensions": [
+        1836,
+        856
+      ],
+      "source": "Existing full-resolution generated cutout; lossless format conversion only. Original source and enhancement described in part-image-sources.json."
+    },
+    {
+      "part": "rail-main-cab",
+      "detail_image": "assets/img/parts/detail/rail-main-cab.webp",
+      "dimensions": [
+        1357,
+        1159
+      ],
+      "source": "Existing full-resolution generated cutout; lossless format conversion only. Original source and enhancement described in part-image-sources.json."
+    },
+    {
+      "part": "rail-bogie-frame",
+      "detail_image": "assets/img/parts/detail/rail-bogie-frame.webp",
+      "dimensions": [
+        1743,
+        902
+      ],
+      "source": "Existing full-resolution generated cutout; lossless format conversion only. Original source and enhancement described in part-image-sources.json."
+    },
+    {
+      "part": "rail-headstock",
+      "detail_image": "assets/img/parts/detail/rail-headstock.webp",
+      "dimensions": [
+        1683,
+        935
+      ],
+      "source": "Existing full-resolution generated cutout; lossless format conversion only. Original source and enhancement described in part-image-sources.json."
+    },
+    {
+      "part": "min-chassis",
+      "detail_image": "assets/img/parts/detail/min-chassis.webp",
+      "dimensions": [
+        1517,
+        1037
+      ],
+      "source": "Existing full-resolution generated cutout; lossless format conversion only. Original source and enhancement described in part-image-sources.json."
+    },
+    {
+      "part": "min-vibro-grid",
+      "detail_image": "assets/img/parts/detail/min-vibro-grid.webp",
+      "dimensions": [
+        1447,
+        1087
+      ],
+      "source": "Existing full-resolution generated cutout; lossless format conversion only. Original source and enhancement described in part-image-sources.json."
+    },
+    {
+      "part": "min-crusher-frame",
+      "detail_image": "assets/img/parts/detail/min-crusher-frame.webp",
+      "dimensions": [
+        1681,
+        936
+      ],
+      "source": "Existing full-resolution generated cutout; lossless format conversion only. Original source and enhancement described in part-image-sources.json."
+    },
+    {
+      "part": "og-surface-04",
+      "detail_image": "assets/img/parts/detail/og-surface-04.jpg",
+      "dimensions": [
+        719,
+        919
+      ],
+      "source": "June 2026 corporate presentation, page 59, xref 779; native alternate-view photograph, unchanged."
+    },
+    {
+      "part": "og-surface-10",
+      "detail_image": "assets/img/parts/detail/og-surface-10.jpg",
+      "dimensions": [
+        719,
+        896
+      ],
+      "source": "June 2026 corporate presentation, page 59, xref 781; native alternate-view photograph, unchanged."
+    }
+  ],
+  "facilities": {
+    "webp": "Lossless re-encoding from the existing native JPG photographs, preserving source pixels instead of a second lossy compression pass.",
+    "conroe": {
+      "file": "assets/img/facilities/uci-conroe-oblique.jpg",
+      "source": "June 2026 corporate presentation, page 7, xref 202",
+      "dimensions": [
+        1383,
+        902
+      ],
+      "treatment": "Untouched source image. CSS viewport shows the building and yard on the left, hiding the baked-in map graphic."
+    },
+    "aerial_motion": "Perspective movement of a flat photograph; not a reconstruction or a Google Earth model. External Earth links use the known Conroe and group-headquarters addresses."
+  },
+  "limitations": "Most retained legacy parts and several facility photos are limited by their original source resolution. Enlarged inspection now respects natural resolution. AI aerial reconstructions were reviewed and rejected because they altered building and yard details. Native full-resolution photography is needed for further factual quality improvements."
+}

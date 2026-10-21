@@ -10,6 +10,7 @@
 <link rel="preload" href="assets/fonts/barlow-700-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/barlow-400-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/contact-visual.css">
 <script>
   /* Motion bootstrap: runs before first paint, so the intro and the page curtain can cover the page.
      Motion is skipped when the visitor prefers reduced motion or an automated browser is capturing the page. */
@@ -33,6 +34,7 @@
   })(document, window);
 </script>
 <script src="assets/js/site.js" defer></script>
+<script src="assets/js/contact-visual.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -84,12 +86,75 @@
 
 <main id="main">
   <div data-hero>
-    <div class="photo-band" data-in>
-      <picture>
-        <source type="image/webp" srcset="assets/img/closing-handshake.webp">
-        <img src="assets/img/closing-handshake.jpg" alt="Two people in business suits shaking hands" width="1500" height="354">
-      </picture>
-    </div>
+    <section class="contact-engineering" aria-label="From drawing to engineering" data-contact-engineering>
+      <div class="wrap ce-layout">
+        <div class="ce-intro">
+          <p class="ce-kicker">Engineered together</p>
+          <p class="ce-headline">Every part starts<br> with a conversation.</p>
+          <p class="ce-caption">Bring the drawing.<br> Let’s work through the possibilities.</p>
+        </div>
+        <div class="ce-viewport">
+          <svg class="ce-drawing" viewBox="0 0 750 350" role="img" aria-labelledby="ce-title ce-desc">
+            <title id="ce-title">A technical drawing becomes an exploded mechanical assembly</title>
+            <desc id="ce-desc">A circular flange drawing sits beside an isometric component with three separated machined rings. Green construction lines connect the drawing to the assembly.</desc>
+            <defs>
+              <linearGradient id="ce-metal" x1="0" y1="0" x2="1" y2="0"><stop class="ce-stop-light" offset="0"/><stop class="ce-stop-mid" offset=".46"/><stop class="ce-stop-light" offset=".75"/><stop class="ce-stop-mid" offset="1"/></linearGradient>
+              <pattern id="ce-grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="currentColor" stroke-width=".5"/></pattern>
+              <clipPath id="ce-clip"><rect width="750" height="350"/></clipPath>
+            </defs>
+            <rect class="ce-grid" width="750" height="350" fill="url(#ce-grid)"/>
+            <g class="ce-construction" fill="none">
+              <path d="M24 160H712M135 33V297M500 22V330"/>
+              <path d="M28 26v-10h24m646 0h24v10M28 324v10h24m646 0h24v-10" class="ce-corners"/>
+              <path d="M270 160h64m-8-6 8 6-8 6" class="ce-flow"/>
+              <path d="m363 281 137 57 138-57M365 62l135-55 135 55" class="ce-envelope"/>
+            </g>
+            <g class="ce-plan" fill="none">
+              <circle cx="135" cy="160" r="85"/>
+              <circle cx="135" cy="160" r="78" class="ce-secondary"/>
+              <circle cx="135" cy="160" r="64" class="ce-pitch"/>
+              <circle cx="135" cy="160" r="31"/>
+              <circle cx="135" cy="160" r="25" class="ce-secondary"/>
+              <circle cx="199.0" cy="160.0" r="6"/><circle cx="167.0" cy="215.43" r="6"/><circle cx="103.0" cy="215.43" r="6"/><circle cx="71.0" cy="160.0" r="6"/><circle cx="103.0" cy="104.57" r="6"/><circle cx="167.0" cy="104.57" r="6"/>
+              <path d="M49 260v15m172-15v15m-172-7h172m-167-5-10 10m172-10 10 10" class="ce-secondary"/>
+              <path d="M49 40v15m172-15v15m-172-7h172m-167-5-10 10m172-10 10 10" class="ce-secondary"/>
+            </g>
+            <g class="ce-assembly">
+              <path class="ce-guide" d="M397 102v171M603 102v171M449 63v210M551 63v210"/>
+              <g class="ce-base">
+      <path class="ce-metal-side" d="M365 265v24a135 56 0 0 0 270 0v-24a135 56 0 0 1 -270 0Z"/>
+      <path class="ce-metal-top" fill-rule="evenodd" d="M 365 265 a 135 56 0 1 0 270 0 a 135 56 0 1 0 -270 0 M 458 265 a 42 17 0 1 0 84 0 a 42 17 0 1 0 -84 0 M 595.6 265.0 a 7 3.5 0 1 0 14 0 a 7 3.5 0 1 0 -14 0M 544.3 301.86 a 7 3.5 0 1 0 14 0 a 7 3.5 0 1 0 -14 0M 441.7 301.86 a 7 3.5 0 1 0 14 0 a 7 3.5 0 1 0 -14 0M 390.4 265.0 a 7 3.5 0 1 0 14 0 a 7 3.5 0 1 0 -14 0M 441.7 228.14 a 7 3.5 0 1 0 14 0 a 7 3.5 0 1 0 -14 0M 544.3 228.14 a 7 3.5 0 1 0 14 0 a 7 3.5 0 1 0 -14 0"/>
+      <ellipse class="ce-detail" cx="500" cy="265" rx="125" ry="51"/>
+      <path class="ce-bore" d="M458 265a42 17 0 0 0 84 0v12a42 17 0 0 1 -84 0Z"/>
+      <path class="ce-outline" fill-rule="evenodd" d="M 365 265 a 135 56 0 1 0 270 0 a 135 56 0 1 0 -270 0 M 458 265 a 42 17 0 1 0 84 0 a 42 17 0 1 0 -84 0 M 595.6 265.0 a 7 3.5 0 1 0 14 0 a 7 3.5 0 1 0 -14 0M 544.3 301.86 a 7 3.5 0 1 0 14 0 a 7 3.5 0 1 0 -14 0M 441.7 301.86 a 7 3.5 0 1 0 14 0 a 7 3.5 0 1 0 -14 0M 390.4 265.0 a 7 3.5 0 1 0 14 0 a 7 3.5 0 1 0 -14 0M 441.7 228.14 a 7 3.5 0 1 0 14 0 a 7 3.5 0 1 0 -14 0M 544.3 228.14 a 7 3.5 0 1 0 14 0 a 7 3.5 0 1 0 -14 0"/>
+    </g>
+              <path class="ce-sleeve" d="M458 176v86a42 17 0 0 0 84 0v-86a42 17 0 0 1-84 0Z"/>
+              <g class="ce-middle ce-animated">
+      <path class="ce-metal-side" d="M405 191v26a95 40 0 0 0 190 0v-26a95 40 0 0 1 -190 0Z"/>
+      <path class="ce-metal-top" fill-rule="evenodd" d="M 405 191 a 95 40 0 1 0 190 0 a 95 40 0 1 0 -190 0 M 458 191 a 42 17 0 1 0 84 0 a 42 17 0 1 0 -84 0 M 565.2 191.0 a 7 3.5 0 1 0 14 0 a 7 3.5 0 1 0 -14 0M 529.1 217.33 a 7 3.5 0 1 0 14 0 a 7 3.5 0 1 0 -14 0M 456.9 217.33 a 7 3.5 0 1 0 14 0 a 7 3.5 0 1 0 -14 0M 420.8 191.0 a 7 3.5 0 1 0 14 0 a 7 3.5 0 1 0 -14 0M 456.9 164.67 a 7 3.5 0 1 0 14 0 a 7 3.5 0 1 0 -14 0M 529.1 164.67 a 7 3.5 0 1 0 14 0 a 7 3.5 0 1 0 -14 0"/>
+      <ellipse class="ce-detail" cx="500" cy="191" rx="85" ry="35"/>
+      <path class="ce-bore" d="M458 191a42 17 0 0 0 84 0v12a42 17 0 0 1 -84 0Z"/>
+      <path class="ce-outline" fill-rule="evenodd" d="M 405 191 a 95 40 0 1 0 190 0 a 95 40 0 1 0 -190 0 M 458 191 a 42 17 0 1 0 84 0 a 42 17 0 1 0 -84 0 M 565.2 191.0 a 7 3.5 0 1 0 14 0 a 7 3.5 0 1 0 -14 0M 529.1 217.33 a 7 3.5 0 1 0 14 0 a 7 3.5 0 1 0 -14 0M 456.9 217.33 a 7 3.5 0 1 0 14 0 a 7 3.5 0 1 0 -14 0M 420.8 191.0 a 7 3.5 0 1 0 14 0 a 7 3.5 0 1 0 -14 0M 456.9 164.67 a 7 3.5 0 1 0 14 0 a 7 3.5 0 1 0 -14 0M 529.1 164.67 a 7 3.5 0 1 0 14 0 a 7 3.5 0 1 0 -14 0"/>
+    </g>
+              <g class="ce-cap ce-animated">
+      <path class="ce-metal-side" d="M365 100v20a135 56 0 0 0 270 0v-20a135 56 0 0 1 -270 0Z"/>
+      <path class="ce-metal-top" fill-rule="evenodd" d="M 365 100 a 135 56 0 1 0 270 0 a 135 56 0 1 0 -270 0 M 458 100 a 42 17 0 1 0 84 0 a 42 17 0 1 0 -84 0 M 595.6 100.0 a 7 3.5 0 1 0 14 0 a 7 3.5 0 1 0 -14 0M 544.3 136.86 a 7 3.5 0 1 0 14 0 a 7 3.5 0 1 0 -14 0M 441.7 136.86 a 7 3.5 0 1 0 14 0 a 7 3.5 0 1 0 -14 0M 390.4 100.0 a 7 3.5 0 1 0 14 0 a 7 3.5 0 1 0 -14 0M 441.7 63.14 a 7 3.5 0 1 0 14 0 a 7 3.5 0 1 0 -14 0M 544.3 63.14 a 7 3.5 0 1 0 14 0 a 7 3.5 0 1 0 -14 0"/>
+      <ellipse class="ce-detail" cx="500" cy="100" rx="125" ry="51"/>
+      <path class="ce-bore" d="M458 100a42 17 0 0 0 84 0v12a42 17 0 0 1 -84 0Z"/>
+      <path class="ce-outline" fill-rule="evenodd" d="M 365 100 a 135 56 0 1 0 270 0 a 135 56 0 1 0 -270 0 M 458 100 a 42 17 0 1 0 84 0 a 42 17 0 1 0 -84 0 M 595.6 100.0 a 7 3.5 0 1 0 14 0 a 7 3.5 0 1 0 -14 0M 544.3 136.86 a 7 3.5 0 1 0 14 0 a 7 3.5 0 1 0 -14 0M 441.7 136.86 a 7 3.5 0 1 0 14 0 a 7 3.5 0 1 0 -14 0M 390.4 100.0 a 7 3.5 0 1 0 14 0 a 7 3.5 0 1 0 -14 0M 441.7 63.14 a 7 3.5 0 1 0 14 0 a 7 3.5 0 1 0 -14 0M 544.3 63.14 a 7 3.5 0 1 0 14 0 a 7 3.5 0 1 0 -14 0"/>
+    </g>
+              <g class="ce-callout"><path d="m637 99 31-23h45M598 191h70l25-19M637 281l31 22h45"/><circle cx="637" cy="99" r="3"/><circle cx="598" cy="191" r="3"/><circle cx="637" cy="281" r="3"/></g>
+            </g>
+            <g clip-path="url(#ce-clip)"><path class="ce-scan ce-animated" d="M10 24V326"/></g>
+          </svg>
+          <div class="ce-view-labels" aria-hidden="true"><span>01 / Drawing</span><span>02 / Possibilities</span></div>
+        </div>
+      </div>
+      <div class="wrap ce-footer">
+        <span class="ce-footer-note"><span class="ce-status" aria-hidden="true"></span>Drawings · Materials · Manufacturing</span>
+        <button class="ce-motion-toggle" type="button" data-ce-toggle hidden><span class="ce-toggle-symbol" aria-hidden="true">Ⅱ</span><span data-ce-toggle-label>Pause animation</span></button>
+      </div>
+    </section>
 
     <section class="band contact" aria-labelledby="page-title">
       <div class="wrap">

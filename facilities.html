@@ -10,6 +10,7 @@
 <link rel="preload" href="assets/fonts/barlow-700-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/barlow-400-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/aerial-viewer.css">
 <script>
   /* Motion bootstrap: runs before first paint, so the intro and the page curtain can cover the page.
      Motion is skipped when the visitor prefers reduced motion or an automated browser is capturing the page. */
@@ -33,6 +34,7 @@
   })(document, window);
 </script>
 <script src="assets/js/site.js" defer></script>
+<script src="assets/js/aerial-viewer.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -130,9 +132,23 @@
           <p class="map-note">Facility profile from the June 2026 corporate presentation. Talk to UCI about the equipment, capacity and supply program for your project.</p>
         </div>
         <div class="split-aside">
-          <figure class="fig" data-reveal style="--ar: 8 / 5; --pos: 50% 0%">
-            <picture><img src="assets/img/facilities/uci-conroe-site.jpg" alt="Aerial view of UCI’s Conroe site, with a manufacturing building, extensive yard and tree-lined perimeter" width="881" height="1201" loading="lazy" decoding="async"></picture>
-            <figcaption><span class="fig-no"></span>UCI’s site in Conroe, Texas.</figcaption>
+          <figure class="fig aerial-viewer" data-aerial-viewer data-reveal>
+            <div class="aerial-head"><strong>Conroe, Texas</strong><span class="aerial-kind">Aerial photograph</span></div>
+            <div class="aerial-stage aerial-stage-conroe" role="region" aria-label="Perspective preview of the Conroe aerial photograph">
+              <div class="aerial-plane aerial-crop-conroe">
+                <picture><img src="assets/img/facilities/uci-conroe-oblique.jpg" alt="Aerial view of UCI’s Conroe site, with a manufacturing building, extensive yard and tree-lined perimeter" width="1383" height="902" loading="lazy" decoding="async" draggable="false"></picture>
+              </div>
+            </div>
+            <div class="aerial-controls" role="group" aria-label="Conroe photograph controls" hidden>
+              <button type="button" data-aerial-out aria-label="Zoom out of Conroe photograph">−</button>
+              <span class="aerial-zoom-value" role="status" aria-label="Photograph zoom">100%</span>
+              <button type="button" data-aerial-in aria-label="Zoom into Conroe photograph">+</button>
+              <button type="button" data-aerial-reset>Reset</button>
+              <button class="aerial-motion" type="button" data-aerial-motion aria-pressed="false">Animate</button>
+            </div>
+            <p class="aerial-hint" id="conroe-aerial-hint" hidden>Drag to tilt. Use + / − to zoom, arrow keys to tilt, and Home to reset.</p>
+            <figcaption><span class="fig-no"></span>UCI’s site in Conroe, Texas. Perspective preview of the supplied aerial photograph.</figcaption>
+            <div class="aerial-links"><a class="link-arrow" href="https://earth.google.com/web/search/14737+Firetower+Road,+Conroe,+Texas+77306,+USA/" target="_blank" rel="noopener noreferrer">Explore in Google Earth <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg><span class="sr-only"> (opens in a new tab)</span></a></div>
           </figure>
           <a class="link-arrow" href="contact.html">Discuss your US or Canadian delivery<svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><path d="M4 12h15"/><path d="M13 6l6 6-6 6"/></svg></a>
         </div>
@@ -251,9 +267,24 @@
           <li class="unit is-total"><span class="unit-no" aria-hidden="true">06</span><div><h3>Location 6, Nighoje · expansion</h3><p>Two additional facilities identified as under construction in the June 2026 presentation.</p></div><div class="unit-area">200,000 + 450,000&nbsp;sq ft</div></li>
         </ol>
         <div class="split-aside">
-          <figure class="fig" data-reveal style="--ar: 1 / 1">
-            <picture><source type="image/webp" srcset="assets/img/facilities/plant-aerial.webp"><img src="assets/img/facilities/plant-aerial.jpg" alt="Aerial view of a large white-roofed factory beside a highway, with parked cars and trucks in its yard" width="678" height="554" loading="lazy" decoding="async"></picture>
-            <figcaption><span class="fig-no"></span>A group manufacturing site near Pune, from the air.</figcaption>
+          <figure class="fig aerial-viewer" data-aerial-viewer data-reveal>
+            <div class="aerial-head"><strong>Pune manufacturing network</strong><span class="aerial-kind">Aerial photograph</span></div>
+            <div class="aerial-stage" role="region" aria-label="Perspective preview of the Pune group plant aerial photograph">
+              <div class="aerial-plane">
+                <picture><source type="image/webp" srcset="assets/img/facilities/plant-aerial.webp"><img src="assets/img/facilities/plant-aerial.jpg" alt="Aerial view of a large white-roofed factory beside a highway, with parked cars and trucks in its yard" width="678" height="554" loading="lazy" decoding="async" draggable="false"></picture>
+              </div>
+            </div>
+            <div class="aerial-controls" role="group" aria-label="Pune plant photograph controls" hidden>
+              <button type="button" data-aerial-out aria-label="Zoom out of Pune plant photograph">−</button>
+              <span class="aerial-zoom-value" role="status" aria-label="Photograph zoom">100%</span>
+              <button type="button" data-aerial-in aria-label="Zoom into Pune plant photograph">+</button>
+              <button type="button" data-aerial-reset>Reset</button>
+              <button class="aerial-motion" type="button" data-aerial-motion aria-pressed="false">Animate</button>
+            </div>
+            <p class="aerial-hint" id="pune-aerial-hint" hidden>Drag to tilt. Use + / − to zoom, arrow keys to tilt, and Home to reset.</p>
+            <figcaption><span class="fig-no"></span>A group manufacturing site near Pune. Perspective preview of the supplied aerial photograph.</figcaption>
+            <div class="aerial-links"><a class="link-arrow" href="https://earth.google.com/web/search/Ultra+Corpotech+Pvt+Ltd,+Nighoje+Kuruli+Road,+Chakan,+Pune,+India/" target="_blank" rel="noopener noreferrer">Group HQ in Google Earth <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg><span class="sr-only"> (opens in a new tab)</span></a></div>
+            <p class="aerial-note">The Earth link opens the group headquarters on Nighoje–Kuruli Road.</p>
           </figure>
         </div>
       </div>
