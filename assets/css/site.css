@@ -4035,7 +4035,7 @@ html:not(.motion) .a-brake-arc { opacity: 0; }
   padding: 32px;
   background: radial-gradient(115% 90% at 50% 18%, var(--studio-hi), var(--studio-lo));
 }
-.part-dialog-media img { width: 100%; height: 100%; max-height: min(65dvh, 650px); object-fit: contain; }
+.part-dialog-media img { width: auto; height: auto; max-width: 100%; max-height: min(65dvh, 650px); object-fit: contain; }
 .part-dialog-info { align-self: center; padding: 36px; }
 .part-dialog-info h2 { margin: 12px 0; font-size: clamp(28px, 3vw, 42px); line-height: 1.1; }
 .part-dialog-meta { color: var(--ink-muted); }

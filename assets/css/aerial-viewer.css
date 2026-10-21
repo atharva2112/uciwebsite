@@ -1,0 +1,122 @@
+/* Aerial photographs presented as perspective planes, not reconstructed models. */
+.aerial-viewer { --aerial-x: 0deg; --aerial-y: 0deg; --aerial-zoom: 1; }
+.aerial-head {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  padding: 14px 16px;
+  border: 1px solid var(--line-strong);
+  border-bottom: 0;
+  font-size: var(--fs-fine);
+  line-height: 1.35;
+}
+.aerial-kind { color: var(--ink-muted); }
+.aerial-head strong { font-weight: 700; }
+.aerial-stage {
+  position: relative;
+  aspect-ratio: 8 / 5;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid var(--line-strong);
+  perspective: 1000px;
+  background-color: var(--surface-muted);
+  background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 24px 24px;
+  touch-action: pan-y pinch-zoom;
+}
+.aerial-stage:focus-visible { outline: 3px solid var(--green); outline-offset: 4px; }
+.aerial-viewer.is-ready .aerial-stage { cursor: grab; }
+.aerial-viewer.is-dragging .aerial-stage { cursor: grabbing; }
+.aerial-plane {
+  position: absolute;
+  inset: 7% 5%;
+  transform: rotateX(var(--aerial-x)) rotateY(var(--aerial-y)) scale(var(--aerial-zoom));
+  transition: transform 350ms var(--ease-out);
+  transform-style: preserve-3d;
+  border: 1px solid var(--line-strong);
+}
+.aerial-viewer.is-animating .aerial-plane,
+.aerial-viewer.is-dragging .aerial-plane { transition: none; }
+.aerial-plane::before,
+.aerial-plane::after {
+  content: "";
+  position: absolute;
+  inset: -7px;
+  pointer-events: none;
+  z-index: 1;
+  background:
+    linear-gradient(var(--green) 0 0) left top / 24px 2px,
+    linear-gradient(var(--green) 0 0) left top / 2px 24px,
+    linear-gradient(var(--green) 0 0) right bottom / 24px 2px,
+    linear-gradient(var(--green) 0 0) right bottom / 2px 24px;
+  background-repeat: no-repeat;
+}
+.aerial-plane::after {
+  inset: auto 0 -10px;
+  height: 4px;
+  background: repeating-linear-gradient(90deg, var(--ink-muted) 0 1px, transparent 1px 16px);
+}
+.fig .aerial-plane picture { width: 100%; height: 100%; overflow: hidden; }
+.fig .aerial-plane picture::after { content: none; }
+.fig .aerial-plane img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  object-fit: cover;
+  object-position: center;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+/* A native oblique photograph contains a diagonal map at the lower right.
+   This viewport shows only its original 850 × 650 building/yard region. */
+.aerial-stage-conroe { aspect-ratio: 5 / 4; }
+.fig .aerial-crop-conroe img {
+  width: 162.706%;
+  max-width: none;
+  height: auto;
+  object-fit: initial;
+  object-position: left top;
+}
+.aerial-viewer figcaption { display: block; overflow-wrap: anywhere; }
+.aerial-viewer .fig-no { margin-right: 10px; }
+.aerial-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0;
+  border: 1px solid var(--line-strong);
+  border-top: 0;
+  background: var(--surface);
+}
+.aerial-controls[hidden], .aerial-hint[hidden] { display: none; }
+.aerial-controls button {
+  min-width: 44px;
+  min-height: 46px;
+  border: 0;
+  border-right: 1px solid var(--line);
+  padding: 10px 13px;
+  background: transparent;
+  font-size: var(--fs-fine);
+  line-height: 1.35;
+  cursor: pointer;
+}
+.aerial-controls button:hover { background: var(--surface-muted); }
+.aerial-controls button:focus-visible { outline: 3px solid var(--green); outline-offset: -3px; }
+.aerial-controls button[aria-pressed="true"] { background: var(--green); color: var(--on-green); }
+.aerial-controls button:disabled { opacity: .4; cursor: default; }
+.aerial-zoom-value { min-width: 4ch; text-align: center; font-size: var(--fs-fine); font-variant-numeric: tabular-nums; }
+.aerial-motion { margin-left: auto; }
+.aerial-hint, .aerial-note { margin: 10px 0 0; font-size: var(--fs-fine); line-height: 1.4; color: var(--ink-muted); }
+.aerial-links { margin-top: 16px; }
+.aerial-links .link-arrow { font-size: var(--fs-fine); }
+.aerial-viewer + .link-arrow { margin-top: 24px; }
+@media (max-width: 420px) {
+  .aerial-head { padding: 12px; }
+  .aerial-controls button { padding-inline: 10px; }
+  .aerial-controls .aerial-motion { margin-left: 0; flex: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .aerial-plane { transition: none; }
+}

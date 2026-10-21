@@ -775,6 +775,7 @@
       const w = Number(img.getAttribute('width')) || 1;
       const h = Number(img.getAttribute('height')) || 1;
       model.style.setProperty('--ar', (w / h).toFixed(4));
+      model.style.maxWidth = `${w}px`;
       const shadow = span('part-shadow');
       const edges = span('part-edges');
       const sheen = span('part-sheen');
@@ -938,7 +939,12 @@
         spec.hidden = !spec.textContent;
         dialog.setAttribute('aria-describedby', `part-dialog-meta${spec.hidden ? '' : ' part-dialog-spec'} part-dialog-note`);
         image.alt = `${title.textContent} — enlarged component view`;
-        image.src = source.currentSrc || source.src;
+        const fallback = source.currentSrc || source.src;
+        image.onerror = () => {
+          image.onerror = null;
+          image.src = fallback;
+        };
+        image.src = source.dataset.fullSrc || fallback;
         dialog.showModal();
         dialog.scrollTop = 0;
         root.classList.add('has-part-dialog');
