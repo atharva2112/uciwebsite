@@ -8,9 +8,11 @@ The June 2026 corporate presentation supplies the updated UCI facility profile a
 
 The Parts Library has 101 examples: the original 87, with eight images upgraded, plus 14 additions from the June 2026 presentation (eight oil-and-gas components, three rail components and three mining components). Source photographs are extracted at their embedded resolution, cleaned with image generation to remove backgrounds and improve clarity, then exported with transparent backgrounds and matching edge masks. They are illustrative component photographs, not dimensionally accurate CAD models. [Image source records](docs/part-image-sources.json) identify the 22 upgraded or added images by presentation page and embedded-image reference.
 
-The image-quality update adds native-resolution inspector images for those 22 generated cutouts, plus larger presentation photographs for the Flowcell and Y-block. Fifteen facility WebP files are lossless conversions of the available originals. These changes avoid additional compression and unnecessary enlargement; they do not add photographic detail that the original sources lack. [Image-quality source records](docs/image-quality-sources.json) track the files and dimensions.
+The image-quality update retains native-resolution inspector images for those 22 generated cutouts and larger actual presentation photographs for the Flowcell and Y-block. All 79 legacy component images now have accepted reference-guided restorations, exported as transparent cutouts with regenerated technical edge masks. Together with the 22 earlier generated replacements, this covers all 101 product examples; the Flowcell and Y-block still use their larger actual page-59 photographs in the inspector. [Product restoration records](docs/product-image-restorations.json) identify the 79 restored assets and their sources. These enhanced product visuals remain illustrative: reconstructed fine details must not be used to infer manufacturing geometry or tolerances. [Image-quality source records](docs/image-quality-sources.json) track the earlier inspector sources and dimensions.
 
-It is a plain static site: HTML, shared CSS and JavaScript, and page-specific contact and aerial-viewer resources, with no build step and no third-party runtime requests. Google Earth opens only through external links.
+Facilities now displays 13 AI-restored shop-floor and machine photographs, delivered as responsive 800-pixel and full-resolution WebP images with JPEG fallbacks. The gallery preserves the complete image composition, and its enlarged viewer links to both the enhanced image and the original supplied JPEG. [Facility restoration records](docs/facility-image-restorations.json) document each source, output size and review. Both aerial photographs retain their real source imagery. Across all 12 pages, the intro, header and footer use the larger original logos; Home also includes the native-width 2933-pixel cover image.
+
+It is a plain static site: HTML, shared CSS and JavaScript, and page-specific contact, aerial-viewer and photo-viewer resources, with no build step and no third-party runtime requests. Google Earth opens only through external links.
 
 ## Run it locally
 
@@ -37,8 +39,8 @@ grep -n 'todo-badge\|todo-box\|\[[A-Z#][^]]*\]' *.html
 - **Proof.** The customer logo wall and testimonials (Home), and the challenge and result of each case study (Case studies). Use only logos and quotes you have permission to show.
 - **Careers.** Current openings, benefits, and employee stories, photos or video.
 - **About.** A short biography for Pratiksha A. Bhosle, and measurable sustainability figures (waste, energy, water). Facility photographs can go in the "Where We Make It" section once the photoshoot is done.
-- **Facilities photographs.** The photographs in `assets/img/facilities/` come from the corporate presentations. The displayed Conroe aerial now uses the native oblique photograph from June 2026, page 7, with a CSS crop that excludes its embedded map graphic; the earlier page-8 asset remains unused. Fifteen facility WebP copies preserve their available originals losslessly at native resolution. Some source photographs are still soft and need approved higher-resolution originals for a further quality improvement.
-- **Parts library.** Solar tracker, aluminum and hardware names retain the earlier presentation captions without customer program codes. The June 2026 update corrects identifiable oil-and-gas and mining captions, including the two crossheads, micro grid, boom bracket, counterweight and carrying fixtures; see [content sources](docs/content-sources.md). Some retained images still have descriptive names that need checking against the company's part list. The enlarged image viewer uses `data-full-src` where a larger source is available and caps display size at the image’s natural resolution. Many legacy thumbnails still lack a better original; replace those with approved photographs of the same component when available. For later replacements, use a transparent cutout and run `python3 tools/part-image.py cutout.png og-drill-01` (same file name), then update the image dimensions and any enlarged-image source in `products.html`. Keep the source record current.
+- **Facilities photographs.** The sources in `assets/img/facilities/` come from the corporate presentations. Thirteen displayed shop-floor and machine images now use AI-restored versions from `assets/img/facilities/enhanced/`; the page identifies this treatment and its enlarged viewer provides the original photographs for comparison. Restoration can infer fine labels and surface details, so approved full-resolution photographs remain preferable when available. The real Conroe aerial uses the native oblique photograph from June 2026, page 7, with a CSS crop that excludes its embedded map graphic; the earlier page-8 asset remains unused. The Pune aerial also retains its real source.
+- **Parts library.** Solar tracker, aluminum and hardware names retain the earlier presentation captions without customer program codes. The June 2026 update corrects identifiable oil-and-gas and mining captions, including the two crossheads, micro grid, boom bracket, counterweight and carrying fixtures; see [content sources](docs/content-sources.md). Some retained images still have descriptive names that need checking against the company's part list. The enlarged image viewer uses `data-full-src` where a larger source is available and caps display size at the image’s natural resolution. All 79 legacy thumbnails have been restored from their supplied references, with regenerated edge masks for the engineering presentation. Restorations improve visual clarity but do not establish missing engineering detail; approved photographs of the same component remain the preferred future replacements. For later replacements, use a transparent cutout and run `python3 tools/part-image.py cutout.png og-drill-01` (same file name), then update the image dimensions and any enlarged-image source in `products.html`. Keep the source record current.
 - **Claims to confirm.** Confirm the validity and site scope of certificates before using them for a customer's program; group certifications must not be presented as UCI certifications. Existing certificate confirmation badges remain where needed. Confirm any remaining response-time promises, award claims and descriptive product names. The June 2026 development plan gives target dates; ask UCI to verify each phase's actual commissioning status before marking it complete.
 - **Quote form.** The form validates and shows its confirmation, but a static site cannot send email. In `contact.html`, set `data-endpoint` on the `<form>` to your form handler's URL (Formspree, Netlify Forms, or your own endpoint). The script then posts the form, files included, and only shows the confirmation when the handler accepts it.
 
@@ -59,14 +61,19 @@ assets/css/contact-visual.css  contact engineering illustration and animation
 assets/css/aerial-viewer.css  perspective photograph viewers
 assets/js/contact-visual.js   contact animation pause and motion preferences
 assets/js/aerial-viewer.js    photograph tilt, zoom, reset and optional animation
+assets/css/photo-viewer.css  uncropped facility photographs and enlarged viewer
+assets/js/photo-viewer.js    full-resolution facility viewer with original-source links
 assets/js/site.js      motion, canvases, dual-origin shipping map, part inspector, line icons and form
 assets/img/            logos and photographs from the design system, plus WebP copies
-assets/img/facilities/ Conroe aerial and group shop-floor photographs from the corporate presentations
+assets/img/facilities/ original Conroe aerial and group shop-floor photographs
+assets/img/facilities/enhanced/ restored shop-floor photographs and responsive versions
 assets/img/parts/      transparent part images and matching -edges.webp masks
 assets/img/parts/detail/ native-resolution inspector images where available
 docs/content-sources.md source pages, claim scope and corrected product captions
 docs/part-image-sources.json source page and embedded-image reference for updated part images
-docs/image-quality-sources.json inspector and facility image sources, dimensions and processing
+docs/image-quality-sources.json earlier inspector and facility sources, dimensions and processing
+docs/facility-image-restorations.json restored facility sources, output dimensions and review
+docs/product-image-restorations.json sources and processing for all 79 restored legacy parts
 tools/part-image.py    turns a cut-out part photograph into the two files the Parts Library uses
 assets/fonts/          Barlow Regular and Bold, latin and latin-ext (SIL Open Font License)
 ```
@@ -124,8 +131,8 @@ The line icons and illustrations are drawn in code (one stroke weight, ink with 
 
 ### Brand notes
 
-- Logos are the design system's files, unaltered: `lockup.png` on light grounds, `mark.png` / `mark-large.png` on their own.
-- Photographs are full-bleed, square-cornered and untinted, except the cover photograph behind "What We Make" on Home, which is screened in grey as a backdrop. The facility WebP copies are lossless conversions at the originals’ native resolution; the responsive cover images retain their existing resized versions. The Conroe aerial uses a CSS crop to hide its source map graphic.
+- Logos are the design system's files, unaltered: all page intros, headers and footers use `lockup-large.png` (1551 × 597) on light grounds and `mark-large.png` (431 × 579) on dark grounds. The small mark remains the favicon.
+- Photographs have square corners. The 13 restored facility images preserve their full composition without the earlier display crops and include responsive 800-pixel/full-resolution sources. The cover photograph behind "What We Make" on Home remains screened in grey; its responsive sources now include the original 2933-pixel width, with `sizes="114vw"` matching the backdrop scale. The Conroe aerial keeps a CSS crop solely to hide its source map graphic.
 - The interface has no drop shadows. The only shadows are the ones the parts cast on their turntables, which belong to the 3D scene.
 - Bahnschrift is used where it is installed (Windows); everywhere else the site falls back to Barlow.
 

@@ -1,0 +1,60 @@
+/* Full-resolution facility photographs, loaded only when a visitor opens them. */
+(() => {
+  'use strict';
+  const figures = [...document.querySelectorAll('[data-photo]')];
+  if (!figures.length || !window.HTMLDialogElement || !HTMLDialogElement.prototype.showModal) return;
+  const dialog = document.createElement('dialog');
+  dialog.className = 'photo-dialog';
+  dialog.setAttribute('aria-labelledby', 'photo-dialog-title');
+  dialog.innerHTML = `<div class="photo-dialog-head"><h2 id="photo-dialog-title"></h2><button type="button" class="photo-dialog-close" autofocus>Close<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div><div class="photo-dialog-stage"><img alt="" decoding="async"><p class="photo-dialog-status" role="status">Loading image…</p></div><div class="photo-dialog-foot"><p>AI-enhanced from the supplied photograph.</p><a class="photo-dialog-source" target="_blank" rel="noopener noreferrer">View original<span class="sr-only"> in a new tab</span></a><a class="photo-dialog-full" target="_blank" rel="noopener noreferrer">Open full image<span class="sr-only"> in a new tab</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a></div>`;
+  document.body.append(dialog);
+  const title = dialog.querySelector('h2');
+  const image = dialog.querySelector('img');
+  const status = dialog.querySelector('[role="status"]');
+  const fullLink = dialog.querySelector('.photo-dialog-full');
+  const sourceLink = dialog.querySelector('.photo-dialog-source');
+  const close = dialog.querySelector('button');
+  let opener = null;
+  let backdropDown = false;
+  close.addEventListener('click', () => dialog.close());
+  dialog.addEventListener('pointerdown', event => { backdropDown = event.target === dialog; });
+  dialog.addEventListener('click', event => { if (backdropDown && event.target === dialog) dialog.close(); backdropDown = false; });
+  dialog.addEventListener('close', () => {
+    image.onload = null;
+    image.onerror = null;
+    image.removeAttribute('src');
+    image.alt = '';
+    document.documentElement.classList.remove('has-photo-dialog');
+    opener?.focus({ preventScroll: true });
+    opener = null;
+  });
+  figures.forEach(figure => {
+    const source = figure.querySelector('img');
+    const caption = figure.querySelector('figcaption');
+    if (!source || !caption) return;
+    const label = caption.textContent.trim();
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'photo-enlarge';
+    button.setAttribute('aria-label', `Enlarge ${label}`);
+    button.setAttribute('aria-haspopup', 'dialog');
+    button.innerHTML = `Enlarge<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 4h6v6M20 4l-7 7M10 20H4v-6M4 20l7-7"/></svg>`;
+    caption.append(button);
+    button.addEventListener('click', () => {
+      opener = button;
+      title.textContent = label;
+      image.alt = source.alt;
+      status.hidden = false;
+      status.textContent = 'Loading image…';
+      image.hidden = true;
+      image.onload = () => { image.hidden = false; status.hidden = true; };
+      image.onerror = () => { status.textContent = 'The image could not load. Please try opening the full image.'; };
+      image.src = source.dataset.fullSrc || source.currentSrc || source.src;
+      fullLink.href = image.src;
+      sourceLink.href = source.dataset.originalSrc || source.src;
+      dialog.showModal();
+      document.documentElement.classList.add('has-photo-dialog');
+      close.focus({ preventScroll: true });
+    });
+  });
+})();

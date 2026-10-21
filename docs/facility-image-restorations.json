@@ -1,0 +1,226 @@
+{
+  "method": "AI restorations derived from original supplied photographs. Major composition reviewed; fine details are illustrative. Source photographs retained for comparison.",
+  "images": [
+    {
+      "name": "machining-hall",
+      "original": "assets/img/facilities/machining-hall.jpg",
+      "original_dimensions": [
+        1074,
+        715
+      ],
+      "full": "assets/img/facilities/enhanced/machining-hall-full.webp",
+      "small": "assets/img/facilities/enhanced/machining-hall-800.webp",
+      "fallback": "assets/img/facilities/enhanced/machining-hall.jpg",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "qa": "Major hall composition, two gantry cranes, central aisle, machine rows and visible operator preserved. Significantly clearer. Fine safety lettering/tooling texture reconstructed.",
+      "treatment": "Reference-guided AI photographic restoration; fine labels and surface details may be inferred. Original photograph retained."
+    },
+    {
+      "name": "trevisan",
+      "original": "assets/img/facilities/trevisan.jpg",
+      "original_dimensions": [
+        736,
+        390
+      ],
+      "full": "assets/img/facilities/enhanced/trevisan-full.webp",
+      "small": "assets/img/facilities/enhanced/trevisan-800.webp",
+      "fallback": "assets/img/facilities/enhanced/trevisan.jpg",
+      "dimensions": [
+        1725,
+        912
+      ],
+      "qa": "Main machine enclosure, yellow safety guards, red rack and two fixture assemblies retain placement and overall geometry. Fine fixtures and labels reconstructed.",
+      "treatment": "Reference-guided AI photographic restoration; fine labels and surface details may be inferred. Original photograph retained."
+    },
+    {
+      "name": "hnk",
+      "original": "assets/img/facilities/hnk.jpg",
+      "original_dimensions": [
+        730,
+        390
+      ],
+      "full": "assets/img/facilities/enhanced/hnk-full.webp",
+      "small": "assets/img/facilities/enhanced/hnk-800.webp",
+      "fallback": "assets/img/facilities/enhanced/hnk.jpg",
+      "dimensions": [
+        1716,
+        917
+      ],
+      "qa": "Main black/red tower, open white guards and machining bed retained. Tiny vertical model lettering is not reliably restored; do not use lettering as technical evidence. Major arrangement preserved.",
+      "treatment": "Reference-guided AI photographic restoration; fine labels and surface details may be inferred. Original photograph retained."
+    },
+    {
+      "name": "breton",
+      "original": "assets/img/facilities/breton.jpg",
+      "original_dimensions": [
+        760,
+        388
+      ],
+      "full": "assets/img/facilities/enhanced/breton-full.webp",
+      "small": "assets/img/facilities/enhanced/breton-800.webp",
+      "fallback": "assets/img/facilities/enhanced/breton.jpg",
+      "dimensions": [
+        1756,
+        895
+      ],
+      "qa": "White enclosure, central safety grille, yellow machine interior and control console retained. Breton and ULTRIX markings preserved broadly; the model suffix and fine labels are inferred. More regular grille texture reconstructed.",
+      "treatment": "Reference-guided AI photographic restoration; fine labels and surface details may be inferred. Original photograph retained."
+    },
+    {
+      "name": "doosan",
+      "original": "assets/img/facilities/doosan.jpg",
+      "original_dimensions": [
+        736,
+        385
+      ],
+      "full": "assets/img/facilities/enhanced/doosan-full.webp",
+      "small": "assets/img/facilities/enhanced/doosan-800.webp",
+      "fallback": "assets/img/facilities/enhanced/doosan.jpg",
+      "dimensions": [
+        1733,
+        907
+      ],
+      "qa": "White long machine enclosure, two black doors, console and single operator in same position retained. Brand restored; minor floor cables and control details reconstructed. No primary-machine redesign detected.",
+      "treatment": "Reference-guided AI photographic restoration; fine labels and surface details may be inferred. Original photograph retained."
+    },
+    {
+      "name": "dmg-mori",
+      "original": "assets/img/facilities/dmg-mori.jpg",
+      "original_dimensions": [
+        750,
+        386
+      ],
+      "full": "assets/img/facilities/enhanced/dmg-mori-full.webp",
+      "small": "assets/img/facilities/enhanced/dmg-mori-800.webp",
+      "fallback": "assets/img/facilities/enhanced/dmg-mori.jpg",
+      "dimensions": [
+        1748,
+        900
+      ],
+      "qa": "Major white/charcoal enclosure, dual left windows, front door glazing, bed, yellow background guard and green floor preserved. Fine label text and rail detail reconstructed.",
+      "treatment": "Reference-guided AI photographic restoration; fine labels and surface details may be inferred. Original photograph retained."
+    },
+    {
+      "name": "mazak",
+      "original": "assets/img/facilities/mazak.jpg",
+      "original_dimensions": [
+        760,
+        385
+      ],
+      "full": "assets/img/facilities/enhanced/mazak-full.webp",
+      "small": "assets/img/facilities/enhanced/mazak-800.webp",
+      "fallback": "assets/img/facilities/enhanced/mazak.jpg",
+      "dimensions": [
+        1763,
+        892
+      ],
+      "qa": "Main enclosure, red door strips, yellow Mazak logo, operator location, adjacent bench and green floor preserved. Removed unsupported HORIZONTAL CENTER wording in second edit; plaque now indistinct. Fine labels/operator features inferred.",
+      "treatment": "Reference-guided AI photographic restoration; fine labels and surface details may be inferred. Original photograph retained."
+    },
+    {
+      "name": "assembly-line",
+      "original": "assets/img/facilities/assembly-line.jpg",
+      "original_dimensions": [
+        823,
+        501
+      ],
+      "full": "assets/img/facilities/enhanced/assembly-line-full.webp",
+      "small": "assets/img/facilities/enhanced/assembly-line-800.webp",
+      "fallback": "assets/img/facilities/enhanced/assembly-line.jpg",
+      "dimensions": [
+        1606,
+        979
+      ],
+      "qa": "Bench rows, galvanized upright parts, visible workers and workstations remain in the source composition with substantially clearer edges. Fine repeated product details and distant worker features reconstructed; not a documentary pixel restoration.",
+      "treatment": "Reference-guided AI photographic restoration; fine labels and surface details may be inferred. Original photograph retained."
+    },
+    {
+      "name": "press-1000t",
+      "original": "assets/img/facilities/press-1000t.jpg",
+      "original_dimensions": [
+        900,
+        870
+      ],
+      "full": "assets/img/facilities/enhanced/press-1000t-full.webp",
+      "small": "assets/img/facilities/enhanced/press-1000t-800.webp",
+      "fallback": "assets/img/facilities/enhanced/press-1000t.jpg",
+      "dimensions": [
+        1276,
+        1233
+      ],
+      "qa": "Three visible large rams, crown, blue press ram, yellow ladder cage, safety barrier and surrounding workspace retained. Small notice text and textures inferred. Native output 1276x1233 improves on source900x870 without extra resampling.",
+      "treatment": "Reference-guided AI photographic restoration; fine labels and surface details may be inferred. Original photograph retained."
+    },
+    {
+      "name": "press-brake",
+      "original": "assets/img/facilities/press-brake.jpg",
+      "original_dimensions": [
+        726,
+        543
+      ],
+      "full": "assets/img/facilities/enhanced/press-brake-full.webp",
+      "small": "assets/img/facilities/enhanced/press-brake-800.webp",
+      "fallback": "assets/img/facilities/enhanced/press-brake.jpg",
+      "dimensions": [
+        1451,
+        1084
+      ],
+      "qa": "Red/grey enclosure, upper guard, illuminated workspace, projecting control support, monitor and yellow left board preserved. Internal small tooling and screen details inferred.",
+      "treatment": "Reference-guided AI photographic restoration; fine labels and surface details may be inferred. Original photograph retained."
+    },
+    {
+      "name": "roll-forming",
+      "original": "assets/img/facilities/roll-forming.jpg",
+      "original_dimensions": [
+        1000,
+        562
+      ],
+      "full": "assets/img/facilities/enhanced/roll-forming-full.webp",
+      "small": "assets/img/facilities/enhanced/roll-forming-800.webp",
+      "fallback": "assets/img/facilities/enhanced/roll-forming.jpg",
+      "dimensions": [
+        1674,
+        940
+      ],
+      "qa": "Major roll-forming line, overhead beams, supports, guardrail, floor and background preserved. Texture restored and tiny text inferred; no major equipment redesign observed.",
+      "treatment": "Reference-guided AI photographic restoration; fine labels and surface details may be inferred. Original photograph retained."
+    },
+    {
+      "name": "robotic-welding",
+      "original": "assets/img/facilities/robotic-welding.jpg",
+      "original_dimensions": [
+        1000,
+        750
+      ],
+      "full": "assets/img/facilities/enhanced/robotic-welding-full.webp",
+      "small": "assets/img/facilities/enhanced/robotic-welding-800.webp",
+      "fallback": "assets/img/facilities/enhanced/robotic-welding.jpg",
+      "dimensions": [
+        1448,
+        1086
+      ],
+      "qa": "ABB arm articulation, vertical body, fixture, torch, yellow enclosure and red windows preserve source layout. Fine fixture holes/texture reconstructed; suitable illustrative enhanced photograph, not inspection evidence.",
+      "treatment": "Reference-guided AI photographic restoration; fine labels and surface details may be inferred. Original photograph retained."
+    },
+    {
+      "name": "cmm",
+      "original": "assets/img/facilities/cmm.jpg",
+      "original_dimensions": [
+        455,
+        549
+      ],
+      "full": "assets/img/facilities/enhanced/cmm-full.webp",
+      "small": "assets/img/facilities/enhanced/cmm-800.webp",
+      "fallback": "assets/img/facilities/enhanced/cmm.jpg",
+      "dimensions": [
+        1142,
+        1378
+      ],
+      "qa": "CMM structure, operator pose, measurement table, angled testpiece, windows, computer and chair preserved. Removed reconstructed illegible vertical model lettering in a second corrective edit; small ZEISS brand retained. Fine texture inferred.",
+      "treatment": "Reference-guided AI photographic restoration; fine labels and surface details may be inferred. Original photograph retained."
+    }
+  ]
+}

@@ -875,7 +875,7 @@
           <h2 id="part-dialog-title"></h2>
           <p id="part-dialog-meta" class="part-dialog-meta"></p>
           <p id="part-dialog-spec" class="part-dialog-spec" hidden></p>
-          <p id="part-dialog-note" class="part-dialog-note">Representative component. Final dimensions and specifications follow your drawing.</p>
+          <p id="part-dialog-note" class="part-dialog-note">Enhanced product photography. Fine details are illustrative; final dimensions and specifications follow your approved drawing.</p>
         </div>
       </div>`;
     doc.body.appendChild(dialog);
